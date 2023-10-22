@@ -1,0 +1,86 @@
+# Global properties
+command=$HOME/.config/i3blocks/scripts/$BLOCK_NAME 2>/dev/null
+separator_block_width=15
+markup=pango
+color=#9d79d6
+color1=#719cd6
+color2=#e0c989
+color3=#f4a261
+
+# Playerctl widget
+[playerctl]
+interval=13
+signal=10
+separator=false
+color=#719cd6
+
+[big_separator]
+full_text=|
+separator=false
+
+# CPU usage
+[cpu]
+label=CPU 
+interval=3
+T_WARN=40
+T_CRIT=70
+
+# GPU usage
+[gpu]
+label=GPU/VRAM 
+interval=5
+T_WARN=50
+T_CRIT=80
+# Will default to Nvidia if not found
+GPU_BRAND=AMD
+
+# Memory usage
+[mem]
+label=MEM 
+interval=11
+
+# Disk input/output
+[dio]
+label=DIO 
+interval=persist
+
+# Disk usage
+[disk]
+LABEL=󰉉
+interval=599
+separator=false
+
+[big_separator]
+full_text=|
+separator=false
+
+# Volume
+[volume]
+interval=once
+LONG_FORMAT=${SYMB}${VOL}%
+SHORT_FORMAT=${SYMB}${VOL}%
+signal=10
+color=#719cd6
+
+# Microphone control
+[microphone]
+interval=once
+signal=10
+color=#719cd6
+
+# Battery
+[battery]
+interval=37
+color=#719cd6
+
+# Date Time
+[time]
+command=LANG=ja_JP.utf8 && date '+%A %d.%m.%Y %H:%M'
+interval=31
+color=#719cd6
+
+# Toggle a swaybar for touchscreen functionality
+[touch-bar]
+command=swaymsg bar mode toggle touch-bar >/dev/null && echo "   "
+interval=once
+color=#e0c989

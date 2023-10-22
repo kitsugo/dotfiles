@@ -1,0 +1,11 @@
+[Unit]
+Description=Sync firefox profile in and out of memory
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.dotfiles/scripts/firefox_sync.sh
+ExecStop=%h/.dotfiles/scripts/firefox_sync.sh
+
+[Install]
+WantedBy=default.target

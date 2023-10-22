@@ -1,0 +1,51 @@
+/** Custom Rofi Theme with Nightfox colors **/
+* {
+	foxWhite: #dfdfe0;
+	foxGray: #738091;
+	foxBlue: #719cd6;
+	foxPurple: #9d79d6;
+	foxBackground: #192330;
+	text-color: @foxWhite;
+	background-color: transparent;
+}
+
+window {
+	location: center;
+	width: 550px;
+	height: 650px;
+	border: 3px;
+	background-color: @foxBackground;
+	border-color: @foxPurple;
+	background-image: url("~/.dotfiles/extra/images/terminalbg.png", width);
+}
+
+mainbox {
+	background-color: #192330cc;
+}
+
+inputbar {
+	padding: 10px;
+	border: 1px;
+	border-color: @foxGray;
+	children: [ prompt, textbox-separator, entry, case-indicator];
+}
+
+textbox-separator {
+	expand: false;
+	str: ":";
+	text-color: @foxWhite;
+	margin: 0px 4px 0px 0px;
+}
+
+element {
+	padding: 4px;
+	spacing: 8px;
+}
+
+element-icon {
+	size: 24;
+}
+
+element selected {
+	background-color: #9d79d6cc;
+}

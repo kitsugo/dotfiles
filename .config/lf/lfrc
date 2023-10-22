@@ -1,0 +1,104 @@
+set shell bash
+set shellopts '-eu'
+set ifs "\n"
+set info size
+set icons true
+set history false
+set hidden true
+
+set previewer ~/.config/lf/lf_preview.sh
+set cleaner ~/.config/lf/lf_clean.sh
+
+map D $gio trash "$fx"
+map o calcdirsize
+
+# Move to trash with GIO or move to /tmp/.trash/ if not available
+map X ${{
+	set -f
+    printf "$fx\n"
+    printf "Move all files above to trash? [y/N]"
+    read ans
+	[ "$ans" = "y" ] || exit 0
+	if [ -x "$(command -v gio)" ]; then
+        gio trash $fx
+    else
+        mkdir -p /tmp/.trash/
+        mv -- $fx /tmp/.trash
+    fi
+}}
+
+# Force delete list of files
+map <delete> ${{
+    set -f
+    printf "$fx\n"
+    printf "Force delete all files above? [y/N]"
+    read ans
+    [ "$ans" = "y" ] && rm -rf $fx
+}}
+
+# Open mp3 files in a musicplayer fashion and all other files via xdg-open
+cmd open &{{
+	case "${f,,}" in
+	*.mp3)
+		find $(dirname $f) -maxdepth 1 -name "*.mp3" -type f -printf '%h\0%p\n' | sort | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+		lf_player.sh "$(($(grep -F -n -w "$f" /tmp/playlist.txt | cut -f1 -d:)-1))"
+		;;
+	*)
+		cmd open &$OPENER "$f" &
+		;;
+	esac
+}}
+
+# Extract an archive into /tmp/
+cmd extract ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf "$f" -C /tmp/;;
+        *.tar.gz|*.tgz) tar xzvf "$f" -C /tmp/;;
+        *.tar.xz|*.txz) tar xJvf "$f" -C /tmp/;;
+        *.7z) 7z x "$f" -o/tmp/$(basename -s .7z "$fx");;
+        *.zip) unzip "$f" -d /tmp/;;
+        *.rar) unrar x "$f" /tmp/;;
+    esac
+}}
+
+# Mount and unmount MTP devices
+cmd mtp-mount $mkdir -p /run/user/1000/mtp/ && aft-mtp-mount /run/user/1000/mtp/
+cmd mtp-umount $fusermount -u /run/user/1000/mtp/
+
+# Add files to a (shuffled) mpv playlist and play it
+cmd playlist &{{
+	set -f
+	find $fx -type f -printf '%h\0%p\n' | sort | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+	lf_player.sh auto
+}}
+cmd playlist-shuffle &{{
+	set -f
+	find $fx -type f -printf '%h\0%p\n' | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+	lf_player.sh auto --shuffle
+}}
+
+# Bulk rename files via text editor
+cmd bulk-rename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    if [ -n "$fs" ]; then
+        fs="$(basename -a $fs)"
+    else
+        fs="$(ls)"
+    fi
+    printf '%s\n' "$fs" >"$old"
+    printf '%s\n' "$fs" >"$new"
+    $EDITOR "$new"
+    [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
+    paste "$old" "$new" | while IFS= read -r names; do
+        src="$(printf '%s' "$names" | cut -f1)"
+        dst="$(printf '%s' "$names" | cut -f2)"
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
+}}

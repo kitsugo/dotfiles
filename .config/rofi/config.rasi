@@ -1,0 +1,6 @@
+configuration {
+	modes: [ drun, run];
+	font: "JetBrains Mono Nerdfont 10";
+	show-icons: true;
+ }
+@theme "nightfox"

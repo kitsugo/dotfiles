@@ -1,0 +1,40 @@
+#!/bin/bash
+# Naively calculate bytes read/written in the last N seconds and prints it as hexademical
+# If the value is in Mibibytes, a color change may occur
+last_writes=0
+last_reads=0
+device=0
+
+if grep -q -w nvme0n1 /proc/diskstats; then
+	device=nvme0n1
+elif grep -q -w sda /proc/diskstats; then
+	device=sda
+else
+	exit
+fi
+
+sector_size=$(cat /sys/block/$device/queue/hw_sector_size)
+
+while :; do
+	writes=$(($(grep -w $device </proc/diskstats | awk '{print $10}') * sector_size / 1024))
+	reads=$(($(grep -w $device </proc/diskstats | awk '{print $6}') * sector_size / 1024))
+	written=$((writes - last_writes))
+	read=$((reads - last_reads))
+
+	if [ $written -ge 1024 ]; then
+		written=$(printf "<span foreground='$color2'>%3x</span>" $((written / 1024)))
+	else
+		written=$(printf "%3x" $written)
+	fi
+	if [ $read -ge 1024 ]; then
+		read=$(printf "<span foreground='$color2'>%3x</span>" $((read / 1024)))
+	else
+		read=$(printf "%3x" $read)
+	fi
+
+	printf "%s / %s\n" "$written" "$read"
+
+	last_writes=$writes
+	last_reads=$reads
+	sleep 7
+done

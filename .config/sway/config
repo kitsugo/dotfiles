@@ -1,0 +1,75 @@
+set $mod Mod4
+
+# Keyboard config
+input "type:keyboard" {
+	xkb_layout us,de
+	xkb_options grp:alt_shift_toggle,compose:caps
+}
+
+# Mouse config
+input "type:pointer" {
+	accel_profile flat
+	pointer_accel 0
+}
+
+# Touchpad config
+input "type:touchpad" {
+	scroll_factor 0.4
+	dwt enabled
+	tap enabled
+	natural_scroll enabled
+	middle_emulation enabled
+}
+
+# TabletTool config - Output might need adjustment on some setups
+input "type:tablet_tool" map_to_output eDP-1
+input "type:touch" map_to_output eDP-1
+
+# Control windows via mouse and super key
+floating_modifier $mod normal
+
+# Idle configuration
+exec swayidle -w \
+	timeout 270 "system_cmd.sh lock-notifier" \
+	timeout 300 "system_cmd.sh lock" \
+	timeout 1500 "system_cmd.sh suspend" \
+	before-sleep "system_cmd.sh lock" \
+
+include ../i3/global.conf
+exec_always $HOME/.config/sway/import-gsettings.sh
+
+# Status Bar
+bar {
+    position top
+    status_command i3blocks
+	strip_workspace_numbers yes
+	colors {
+        background #192330cc
+		focused_workspace #9d79d6 #baa1e2  #393b44
+        inactive_workspace #738091 #2b3b51 #dfdfe0
+		urgent_workspace #dbc074 #e0c989 #393b44
+        statusline #ffffff
+	}
+}
+
+# Tablet / Touchscreen setup
+exec "tablet-init.sh"
+# Extra bar for touchscreen functionality
+bar {
+	id touch-bar
+	position top
+    status_command i3blocks -c $HOME/.config/i3blocks/touch-bar
+	font pango:JetBrains Mono Nerd Font 14
+	workspace_buttons no
+	mode dock
+	modifier none
+	colors {
+        background #192330cc
+		focused_workspace #9d79d6 #baa1e2  #393b44
+        inactive_workspace #738091 #2b3b51 #dfdfe0
+		urgent_workspace #dbc074 #e0c989 #393b44
+        statusline #ffffff
+	}
+}
+
+include /etc/sway/config.d/*

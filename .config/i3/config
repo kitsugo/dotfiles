@@ -1,0 +1,24 @@
+set $mod Mod4
+
+# Keyboard config
+exec_always --no-startup-id setxkbmap -layout us,de -option 'grp:alt_shift_toggle,compose:caps'
+
+# Control windows via mouse and super key
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+# Start compositor
+exec --no-startup-id picom -b
+
+# Idle configuration
+exec --no-startup-id xautolock \
+	-notify 30 -notifier "system_cmd.sh lock-notifier" \
+	-time 5 -locker "system_cmd.sh lock" \
+	-killtime 21 -killer "system_cmd.sh suspend"  \
+	-corners 0-00 \
+
+include global.conf
+
+# Copy configuration for i3bar to /tmp/ to allow overwriting the colors via simple reload
+include i3bar.conf
+include /tmp/i3bar.conf

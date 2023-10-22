@@ -1,0 +1,5 @@
+#!/bin/sh
+# Get current mediaplayer (playerctl) info
+emoji=$([ "$(playerctl status)" = "Playing" ] && echo "󰐊" || echo "󰏤")
+playerctl --player=mpv metadata --format "$emoji {{ title }} {{ duration(position) }}|{{ duration(mpris:length) }} ({{ playerName }})"
+

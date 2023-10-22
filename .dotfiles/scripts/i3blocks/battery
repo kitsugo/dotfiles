@@ -1,0 +1,112 @@
+#!/usr/bin/env perl
+# Copyright 2014 Pierre Mavro <deimos@deimos.fr>
+# Copyright 2014 Vivien Didelot <vivien@didelot.org>
+#
+# Licensed under the terms of the GNU GPL v3, or any later version.
+#
+# This script is meant to use with i3blocks. It parses the output of the "acpi"
+# command (often provided by a package of the same name) to read the status of
+# the battery, and eventually its remaining time (to full charge or discharge).
+
+use strict;
+use warnings;
+use utf8;
+
+my $acpi;
+my $status;
+my $percent;
+my $ac_adapt;
+my $full_text;
+my $short_text;
+my $color_norm = $ENV{color};
+my $color_warn = $ENV{color2};
+my $color_crit = $ENV{color3};
+my $bat_number = $ENV{BAT_NUMBER} || 0;
+my $label = $ENV{LABEL} || "";
+# read the first line of the "acpi" command output
+open (ACPI, "acpi -b 2>/dev/null| grep 'Battery $bat_number' |") or die;
+$acpi = <ACPI>;
+close(ACPI);
+
+# fail on unexpected output
+if (not defined($acpi)) {
+    # don't print anything to stderr if there is no battery
+    exit(0);
+}
+elsif ($acpi !~ /: ([\w\s]+), (\d+)%/) {
+	die "$acpi\n";
+}
+
+$status = $1;
+$percent = $2;
+$full_text = "$label$percent%";
+
+if ($status eq 'Discharging') {
+	if ($status eq 'Discharging') {
+		if ($percent < 10) {
+			$full_text .= ' 󰁺';
+			if ($percent <= 5) {
+				system "dunstify -u critical 'Battery low! Please recharge device or else device will be turning of soon.'";
+				if ($percent <= 3) {
+					system "dunstify -u critical 'Battery critically low! Turning off device in 60 seconds!'";
+					system "sleep 60 && system-util.sh poweroff";
+				}
+			}
+		} elsif ($percent < 20) {
+			$full_text .= ' 󰁻';
+		} elsif ($percent < 30) {
+			$full_text .= ' 󰁼';
+		} elsif ($percent < 40) {
+			$full_text .= ' 󰁽';
+		} elsif ($percent < 50) {
+			$full_text .= ' 󰁾';
+		} elsif ($percent < 60) {
+			$full_text .= ' 󰁿';
+		} elsif ($percent < 70) {
+			$full_text .= ' 󰂀';
+		} elsif ($percent < 80) {
+			$full_text .= ' 󰂁';
+		} elsif ($percent < 90) {
+			$full_text .= ' 󰂂';
+		} elsif ($percent <= 100) {
+			$full_text .= ' 󰁹';
+		}
+	}
+} elsif ($status eq 'Charging') {
+	$full_text .= ' 󰚥';
+} elsif ($status eq 'Unknown') {
+	open (AC_ADAPTER, "acpi -a |") or die;
+	$ac_adapt = <AC_ADAPTER>;
+	close(AC_ADAPTER);
+	if ($ac_adapt =~ /: ([\w-]+)/) {
+		$ac_adapt = $1;
+		if ($ac_adapt eq 'on-line') {
+			$full_text .= ' 󰚥';
+		} elsif ($ac_adapt eq 'off-line') {
+			$full_text .= ' 󰂍';
+		}
+	}
+}
+
+$short_text = $full_text;
+
+if ($acpi =~ /(\d\d:\d\d):/) {
+	$full_text .= " ($1)";
+}
+
+# print text
+print "$full_text\n";
+print "$short_text\n";
+
+# Color red when below 20 percent
+if ($status eq 'Discharging') {
+	if ($percent < 20) {
+		print "$color_crit\n";
+	} elsif ($percent < 30) {
+		print "$color_warn\n";
+	} else {
+		print "$color_norm\n";
+	}
+}
+
+exit(0);

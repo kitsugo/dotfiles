@@ -1,0 +1,3 @@
+#!/bin/sh
+# Screensaver for xsecurelock
+feh --window-id="${XSCREENSAVER_WINDOW}" -F "${XSECURELOCK_IMAGE_PATH}"

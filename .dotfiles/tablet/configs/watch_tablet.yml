@@ -1,0 +1,18 @@
+# Use /dev/input/by-path/ to locate tablet_switch device. Or rely on external script to enter append value automatically
+# input_device: /dev/input/by-path/
+
+modes:
+  laptop:
+    - killall "rot8"
+    - rot8 -O && (sleep 3 && rot8 -O) &
+    - killall "squeekboard"
+    - killall "lisgd"
+    - rmdir "/tmp/system-util.lock.d/"
+    - dunstify -u low "Entered laptop mode!"
+  tablet:
+    - rot8 --invert-y &
+    - squeekboard &
+    - sleep 3 && tablet-util.sh lisgd &
+    - gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled true
+    - mkdir "/tmp/system-util.lock.d"
+    - dunstify -u low "Entered tablet mode!"

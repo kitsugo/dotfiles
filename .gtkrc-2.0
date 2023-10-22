@@ -1,0 +1,10 @@
+gtk-theme-name="HighContrastInverse"
+gtk-icon-theme-name="breeze-dark"
+gtk-font-name="Sans11"
+gtk-cursor-theme-name=Adwaita
+gtk-cursor-theme-size=22
+gtk-button-images=1
+gtk-menu-images=1
+gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
+gtk-enable-event-sounds=0
+gtk-enable-input-feedback-sounds=0

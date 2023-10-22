@@ -1,0 +1,17 @@
+[alias]
+	ci = commit
+	st = status
+	br = branch
+	logge = log --color --graph --all --pretty='format:%C(auto)%d%C(reset)\n%C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'
+	purge-hist = "!f(){ git reset $(git commit-tree HEAD^{tree} \"$@\");};f"
+
+[core]
+	editor = nvim
+
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = red
+
+[init]
+	defaultBranch = master

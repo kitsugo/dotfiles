@@ -1,0 +1,27 @@
+-- Load markdown setup (normal / fast note taking) depending on user choice.
+local snippets_status, snippets = pcall(require, "luasnip.loaders.from_snipmate")
+vim.keymap.set("n", "<leader>fp", ":MarkdownPreviewToggle<CR>", { silent = true }) -- Preview markdown file
+
+if not MARKDOWN_TYPE then
+	MARKDOWN_TYPE = "t"
+		.. vim.fn.inputlist({
+			"You opened a markdown file. Are you writing notes quickly?",
+			"0. No",
+			"1. Yes",
+		})
+end
+
+if MARKDOWN_TYPE == "t1" then
+	-- Have <CR> create actual newlines by appending two spaces. Use Shift+Enter to have a "normal" carriage return. Requires that terminal handles the input correctly. (send escape sequence "\u001b[13;2u" on shift+enter)
+	vim.keymap.set("i", "<CR>", "  <CR>", { silent = true })
+	vim.keymap.set("i", "<S-CR>", "<CR>", { silent = true })
+	vim.keymap.set("i", "<C-CR>", "\\\\<CR>", { silent = true })
+	vim.keymap.set("i", "<C-J>", "\\\\<CR>", { silent = true }) -- Windows sees this as <C-CR>
+	if snippets_status then -- Only load fast markdown snippets in fast mode
+		snippets.lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets/" })
+	end
+else
+	if snippets_status then --Load all markdown snippets in normal mode
+		snippets.lazy_load()
+	end
+end

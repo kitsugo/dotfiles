@@ -1,0 +1,11 @@
+set shell cmd
+set info size
+set icons true
+set history false
+
+map w $powershell
+map <enter> shell
+map e $nvim %f%
+
+map <delete> $del /q %f%
+map o calcdirsize
