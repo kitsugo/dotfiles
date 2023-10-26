@@ -7,12 +7,12 @@ modes:
     - rot8 -O && (sleep 3 && rot8 -O) &
     - killall "squeekboard"
     - killall "lisgd"
-    - rmdir "/tmp/system-util.lock.d/"
+    - rmdir "/tmp/system_cmd.lock.d/"
     - dunstify -u low "Entered laptop mode!"
   tablet:
     - rot8 --invert-y &
     - squeekboard &
-    - sleep 3 && tablet-util.sh lisgd &
+    - sleep 3 && tablet_util.sh lisgd &
     - gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled true
-    - mkdir "/tmp/system-util.lock.d"
+    - mkdir "/tmp/system_cmd.lock.d/"
     - dunstify -u low "Entered tablet mode!"

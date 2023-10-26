@@ -89,12 +89,12 @@ color=#f4a261
 
 [move-prev]
 full_text=󰳝 move to prev
-command=move-window.sh -1 >/dev/null
+command=move_window.sh -1 >/dev/null
 color=#f4a261
 
 [move-next]
 full_text=move to next 󰳟
-command=move-window.sh 1 >/dev/null
+command=move_window.sh 1 >/dev/null
 color=#f4a261
 
 [next]
@@ -104,7 +104,7 @@ color=#f4a261
 
 [lisgd-rot]
 full_text= 󰵶 
-command=swaymsg exec "killall lisgd && dunstify -u low 'Rotated lisgd!' && tablet-util.sh lisgd" >/dev/null
+command=swaymsg exec "killall lisgd && dunstify -u low 'Rotated lisgd!' && tablet_util.sh lisgd" >/dev/null
 color=#719cd6
 
 [screenshot]
@@ -114,10 +114,10 @@ color=#719cd6
 
 [virtual-keyboard]
 full_text=keyboard 󰌌 
-command=swaymsg exec "tablet-util.sh toggle-keyboard" >/dev/null
+command=swaymsg exec "tablet_util.sh toggle-keyboard" >/dev/null
 color=#719cd6
 
 [menu]
 full_text=menu 󰵆 
-command=swaymsg exec "tablet-util.sh toggle-menu" >/dev/null
+command=swaymsg exec "tablet_util.sh toggle-menu" >/dev/null
 color=#719cd6

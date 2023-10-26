@@ -8,7 +8,7 @@ touch_event=$(echo "$device_list" | grep -A 1 "$U_TOUCH_DEV" | awk 'FNR == 2 {pr
 
 # Write device for watch_tablet into the first line and for lisgd into the second line of watch_tablet.yml config
 printf "input_device: %s\n# %s\n" "$switch_mode_event" "$touch_event" | cat - "$HOME"/.dotfiles/tablet/configs/watch_tablet.yml >/tmp/watch_tablet.yml
-ln -s "$HOME/.config/watch_tablet.yml" "/tmp/watch_tablet.yml"
+# ln -s "$HOME/.config/watch_tablet.yml" "/tmp/watch_tablet.yml"
 
 # Start watch_tablet with the config in place
 watch_tablet &

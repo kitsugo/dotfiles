@@ -53,7 +53,7 @@ bar {
 }
 
 # Tablet / Touchscreen setup
-exec "tablet-init.sh"
+exec "tablet_init.sh"
 # Extra bar for touchscreen functionality
 bar {
 	id touch-bar

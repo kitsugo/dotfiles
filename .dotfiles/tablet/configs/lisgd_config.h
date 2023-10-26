@@ -26,8 +26,8 @@ Gesture gestures[] = {
 	/* nfingers  gesturetype  command */
 	{ 2,         SwipeRL,     EdgeAny, DistanceAny, ActModeReleased, "swaymsg workspace next" },
 	{ 2,         SwipeLR,     EdgeAny, DistanceAny, ActModeReleased, "swaymsg workspace prev" },
-	{ 3,         SwipeLR,     EdgeAny, DistanceAny, ActModeReleased, "move-window.sh 1" },
-	{ 3,         SwipeRL,     EdgeAny, DistanceAny, ActModeReleased, "move-window.sh -1" },
-	{ 3,         SwipeDU,     EdgeAny, DistanceAny, ActModeReleased, "tablet-util.sh toggle-keyboard" },
+	{ 3,         SwipeLR,     EdgeAny, DistanceAny, ActModeReleased, "move_window.sh 1" },
+	{ 3,         SwipeRL,     EdgeAny, DistanceAny, ActModeReleased, "move_window.sh -1" },
+	{ 3,         SwipeDU,     EdgeAny, DistanceAny, ActModeReleased, "tablet_util.sh toggle-keyboard" },
 	{ 3,         SwipeUD,     EdgeAny, DistanceAny, ActModeReleased, "swaymsg bar mode toggle touch-bar" },
 };
