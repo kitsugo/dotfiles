@@ -18,8 +18,8 @@ case "$1" in
 		killall "wofi"
 	fi
 	;;
-"lisgd") # Wrapper to start lisgd with correct device event. Reads second line of watch_tablet.yml
+"lisgd") # Wrapper to start lisgd with correct flags to make it compilation-agnostic. Reads second line of watch_tablet.yml to determine device event
 	event="$(sed -n '2p' /tmp/watch_tablet.yml 2>/dev/null)"
-	lisgd -d "${event:2}" &
+	lisgd -d "${event:2}" -g "2,RL,*,*,R,swaymsg workspace next" -g "2,LR,*,*,R,swaymsg workspace prev" -g "3,RL,*,*,R,move_window.sh -1" -g "3,LR,*,*,R,move_window.sh 1" -g "3,UD,*,*,R,swaymsg bar mode toggle touch-bar" -g "3,DU,*,*,R,tablet_util.sh toggle-keyboard" &
 	;;
 esac
