@@ -23,12 +23,12 @@ if mkdir "/tmp/system_cmd.lock.d"; then
 		(xsecurelock -- system_cmd.sh hibernate) || system_cmd.sh hibernate
 		;;
 	"reboot")
-		dunstify -i "$HOME"/.dotfiles/extra/images/off.* -u low -a "Locker" "Rebooting in just a moment..."
+		dunstify -i "$HOME"/.dotfiles/extra/images/action.* -u low -a "Locker" "Rebooting in just a moment..."
 		sleep 2
 		systemctl reboot || shutdown -r now
 		;;
 	"poweroff")
-		dunstify -i "$HOME"/.dotfiles/extra/images/off.* -u low -a "Locker" "Shuting down in just a moment..."
+		dunstify -i "$HOME"/.dotfiles/extra/images/action.* -u low -a "Locker" "Shuting down in just a moment..."
 		sleep 2
 		systemctl poweroff || shutdown -P now
 		;;

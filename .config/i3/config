@@ -17,6 +17,9 @@ exec --no-startup-id xautolock \
 	-killtime 21 -killer "system_cmd.sh suspend"  \
 	-corners 0-00 \
 
+# Set XDG desktop
+exec systemctl --user set-environment XDG_CURRENT_DESKTOP=i3
+
 include global.conf
 
 # Copy configuration for i3bar to /tmp/ to allow overwriting the colors via simple reload
