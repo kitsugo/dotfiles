@@ -8,6 +8,9 @@ export LESSHISTFILE=/dev/null
 export XSECURELOCK_IMAGE_PATH="$HOME/.dotfiles/extra/images/lockbg.png"
 export XSECURELOCK_SAVER="$HOME/.config/xsecurelock_saver"
 export XSECURELOCK_PASSWORD_PROMPT=time_hex
+export TIMEWARRIORDB="$HOME/.dotfiles/extra/gtd/timew/"
+export TASKRC="$HOME/.dotfiles/extra/gtd/task/.taskrc"
+export TASKDATA="$HOME/.dotfiles/extra/gtd/task/"
 export MOZ_ENABLE_WAYLAND=1
 export PATH="$PATH:$HOME/.local/bin/:$HOME/.dotfiles/scripts/:$HOME/.dotfiles/tablet/"
 

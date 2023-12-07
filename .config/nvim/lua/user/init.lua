@@ -1,6 +1,22 @@
 -- Plugins without elaborate configuration setup
 return {
 	{
+		"serenevoid/kiwi.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			{
+				name = "General",
+				path = os.getenv("HOME") .. "/.dotfiles/extra/gtd/wiki",
+			},
+		},
+		keys = {
+			{ "<leader>ww", ':lua require("kiwi").open_wiki_index()<cr>', desc = "Open Wiki index" },
+		},
+		lazy = true,
+	},
+	{
 		"iamcco/markdown-preview.nvim",
 		enabled = check_installed("node") and check_installed("npm"),
 		config = function()
