@@ -39,6 +39,13 @@ flatpak override <package_name> --filesystem=<path>
 # Make flatpak take gsettings into account
 flatpak run --command=$HOME/.config/sway/import-gsettings.sh <package_name>
 
+# Use kitty to get font names
+kitty +list-fonts
+
+# Remove tasks in taskwarrior
+task delete uid
+task status:deleted purge
+
 ```
 
 ### SSH Config Example

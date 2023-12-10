@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+activity=$(timew export now | jq '.[0] | ."tags" | join(",")' 2>/dev/null) || exit 0
+printf "%s\n" "$activity"

@@ -40,7 +40,9 @@ exec_always $HOME/.config/sway/import-gsettings.sh
 
 # Status Bar
 bar {
+	id bar-0
     position top
+	font pango:JetBrains Mono Nerd Font 12
     status_command i3blocks
 	strip_workspace_numbers yes
 	colors {

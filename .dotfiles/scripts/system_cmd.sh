@@ -8,7 +8,7 @@ if mkdir "/tmp/system_cmd.lock.d"; then
 		;;
 	"lock") # Lock system via swaylock or xsecurelock. Remove lockfile to allow subsequent suspension
 		rmdir "/tmp/system_cmd.lock.d/"
-		swaylock -e -k -s fill -i "$XSECURELOCK_IMAGE_PATH" || xsecurelock
+		(swaylock -e -k -s fill -i "$XSECURELOCK_IMAGE_PATH"  || xsecurelock) &
 		;;
 	"suspend-lock") # Lock and suspend / hibernate system after short timeout. Remove lockfile to allow subsequent suspension. swaylock will lock implicitly
 		dunstify -i "$HOME"/.dotfiles/extra/images/sleep.* -u low -a "Locker" "Suspending in just a moment..."

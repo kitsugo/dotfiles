@@ -7,6 +7,7 @@ LANGUAGES.servers = {
 	-- "cssls",
 	-- "html",
 	"lua_ls",
+	-- "ltex",
 	-- "perlnavigator",
 	-- "texlab",
 	-- "tsserver",
@@ -20,25 +21,29 @@ LANGUAGES.treesitter = {
 	-- "java",
 	"lua",
 	-- "markdown",
+	-- "markdown_inline",
 	-- "scala",
 }
 
 -- Null-LS sources to be setup - Must still be installed with :Mason
 -- Possible types: formatting, diagnostics, code_actions
 LANGUAGES.sources = {
+	-- eslint_d = {
+	-- 	type = "diagnostics",
+	-- },
 	gitsigns = {
 		type = "code_actions",
 	},
-	stylua = {
-		type = "formatting",
-	},
+	-- latexindent = {
+	-- 	type = "formatting",
+	-- },
 	-- prettier = {
 	-- 	type = "formatting",
 	-- },
 	-- shfmt = {
 	-- 	type = "formatting",
 	-- },
-	-- eslint_d = {
-	-- 	type = "diagnostics",
-	-- },
+	stylua = {
+		type = "formatting",
+	},
 }

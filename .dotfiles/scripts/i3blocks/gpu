@@ -67,14 +67,14 @@ elsif ($gpu_brand eq "AMD") {
         }
     }
     close(AMD);
-    $full_text = sprintf "%.0f%% %.0f%%\n", $gpu_usage, $gpu_mem;
+    $full_text = sprintf "%2.0f%%|%2.0f%%\n", $gpu_usage, $gpu_mem;
 }
 
 $gpu_usage eq -1 and die 'Can\'t find GPU information';
 
 # Print full_text, short_text
 print $full_text;
-printf "%.0f%%\n", $gpu_usage;
+printf "%2.0f%%\n", $gpu_usage;
 
 # Print color, if needed
 if ($gpu_usage >= $t_crit || $gpu_mem >= $t_crit || $gpu_video >= $t_crit || $gpu_pcie >= $t_crit) {

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+task=$(task export active | jq '.[0] | ."description"' 2>/dev/null) || exit 0
+[ "$task" = "null" ] && exit 0
+printf "%s\n" "$task"
