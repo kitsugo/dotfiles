@@ -21,7 +21,7 @@ case "${file,,}" in
 	if [[ "$(file -Lb --mime-type "$file")" =~ ^text ]]; then
 		cat "$file"
 	else
-		cat "$HOME/.dotfiles/extra/images/ascii.txt"
+		cat "$HOME/.dotfiles/extra/ascii/no_preview.txt"
 	fi
 	;;
 esac

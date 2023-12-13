@@ -27,6 +27,8 @@ alias ls='ls -a --color=auto'
 alias lf='lfcd'
 alias novim='nvim -u NONE'
 alias ks='kitty +kitten ssh'
+alias mnt='udisksctl mount -b'
+alias umnt='udisksctl unmount -b'
 
 # SSH + Git setup
 # Check if git is installed

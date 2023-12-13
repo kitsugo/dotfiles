@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# Monitor directories and warn if they are not empty, i.e. data in /tmp/
+dirs_to_monitor='/tmp/music /tmp/firefox/downloads'
+for i in $dirs_to_monitor; do
+	if [ -n "$(ls -A "$i" 2>/dev/null)" ]; then
+		printf "%s\n" "$i"
+		exit
+	fi
+done

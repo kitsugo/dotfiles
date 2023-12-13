@@ -1,6 +1,5 @@
 #!/bin/bash
-# Naively calculate bytes read/written in the last N seconds and prints it as hexademical
-# If the value is in Mibibytes, a color change may occur
+# Calculate bytes "written / read" in the last N seconds
 last_writes=0
 last_reads=0
 device=0
@@ -22,14 +21,14 @@ while :; do
 	read=$((reads - last_reads))
 
 	if [ $written -ge 1024 ]; then
-		written=$(printf "<span foreground='$color2'>%3xM</span>" $((written / 1024)))
+		written=$(printf "<span foreground='$color2'>%3sM</span>" $((written / 1024)))
 	else
-		written=$(printf "%3xK" $written)
+		written=$(printf "%3sK" $written)
 	fi
 	if [ $read -ge 1024 ]; then
-		read=$(printf "<span foreground='$color2'>%3xM</span>" $((read / 1024)))
+		read=$(printf "<span foreground='$color2'>%3sM</span>" $((read / 1024)))
 	else
-		read=$(printf "%3xK" $read)
+		read=$(printf "%3sK" $read)
 	fi
 
 	printf "%s/%s\n" "$written" "$read"

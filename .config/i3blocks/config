@@ -10,32 +10,38 @@ color=#dfdfe0
 
 [separator]
 full_text=<span font_size="15pt"> </span>
-color=#39506dcc
+color=#39506d
 
 # Playerctl widget
 [playerctl]
 label=  
 interval=13
 signal=10
-background=#39506dcc
+background=#39506d
+color=#81b29a
+
+[tmpstore]
+label= 󰷌 
+interval=47
+background=#39506d
 color=#81b29a
 
 [taskw]
 label=  
 interval=41
-background=#39506dcc
+background=#39506d
 color=#81b29a
 
 [timew]
 label= 󰥔 
 interval=43
-background=#39506dcc
+background=#39506d
 color=#81b29a
 
 [separator]
 full_text= 
-background=#39506dcc
-color=#2b3b51cc
+background=#39506d
+color=#2b3b51
 
 # CPU usage
 [cpu]
@@ -43,7 +49,7 @@ label= 󰾆
 interval=3
 T_WARN=40
 T_CRIT=70
-background=#2b3b51cc
+background=#2b3b51
 color=#719cd6
 
 # GPU usage
@@ -54,34 +60,34 @@ T_WARN=50
 T_CRIT=80
 # Will default to Nvidia if not found
 GPU_BRAND=AMD
-background=#2b3b51cc
+background=#2b3b51
 color=#719cd6
 
 # Memory usage
 [mem]
 label=  
 interval=11
-background=#2b3b51cc
+background=#2b3b51
 color=#719cd6
 
 # Disk input/output
 [dio]
-label=  
+label= 
 interval=persist
-background=#2b3b51cc
+background=#2b3b51
 color=#719cd6
 
 # Disk usage
 [disk]
 LABEL= 󰉉
 interval=599
-background=#2b3b51cc
+background=#2b3b51
 color=#719cd6
 
 [separator]
 full_text= 
-color=#192330cc
-background=#2b3b51cc
+background=#2b3b51
+color=#192330
 
 # Volume
 [volume]
@@ -89,32 +95,32 @@ interval=once
 LONG_FORMAT= ${SYMB}${VOL}%
 SHORT_FORMAT= ${SYMB}${VOL}%
 signal=10
-background=#192330cc
+background=#192330
 color=#9d79d6
 
 # Microphone control
 [microphone]
 interval=once
 signal=10
-background=#192330cc
+background=#192330
 color=#9d79d6
 
 # Battery
 [battery]
 interval=37
-background=#192330cc
+background=#192330
 color=#9d79d6
 
 # Date Time
 [time]
 command=LANG=ja_JP.utf8 && date '+%A %d.%m.%Y %H:%M'
 interval=31
-background=#192330cc
+background=#192330
 color=#9d79d6
 
 # Toggle a swaybar for touchscreen functionality
 [touch-bar]
 command=swaymsg bar mode toggle touch-bar >/dev/null && echo "   "
 interval=once
-background=#192330cc
+background=#192330
 color=#e0c989
