@@ -19,6 +19,16 @@ vim.api.nvim_create_autocmd({ "BufNewFile" }, {
 })
 vim.api.nvim_create_autocmd({ "BufNewFile" }, {
 	group = template,
+	pattern = "*.lua",
+	command = "0put =readfile('" .. template_location .. "shebang.sh" .. "')[3:3]"
+})
+vim.api.nvim_create_autocmd({ "BufNewFile" }, {
+	group = template,
+	pattern = "*.ps1",
+	command = "0put =readfile('" .. template_location .. "shebang.sh" .. "')[4:4]"
+})
+vim.api.nvim_create_autocmd({ "BufNewFile" }, {
+	group = template,
 	pattern = "lsp_config.lua",
 	command = "0r " .. template_location .. "lsp_config.lua",
 })

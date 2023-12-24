@@ -1,0 +1,20 @@
+[Groups/0]
+Name="Group 1"
+Default Layout=us
+DefaultIM=kkc
+
+[Groups/0/Items/0]
+Name=keyboard-us
+Layout=
+
+[Groups/0/Items/1]
+Name=keyboard-de
+Layout=
+
+[Groups/0/Items/2]
+Name=kkc
+Layout=
+
+[GroupOrder]
+0="Group 1"
+

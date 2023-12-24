@@ -7,13 +7,13 @@ return {
 		},
 		opts = {
 			{
-				name = "General",
+				name = "general",
 				path = os.getenv("HOME") .. "/.dotfiles/extra/gtd/wiki",
 			},
 		},
 		keys = {
-			{ "<leader>ww", ':lua require("kiwi").open_wiki_index()<cr>', desc = "Open Wiki index" },
-			{ "<leader>wt", ':lua require("kiwi").todo.toggle()<cr>', desc = "Toggle Markdown Task" },
+			{ "<leader>ww", ':lua require("kiwi").open_wiki_index()<cr>', desc = "Open wiki index" },
+			{ "<leader>wt", ':lua require("kiwi").todo.toggle()<cr>', desc = "Toggle task" },
 		},
 		lazy = true,
 	},

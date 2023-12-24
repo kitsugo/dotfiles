@@ -2,7 +2,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Set custom prompt
+# Custom prompt
 PS1="\[$(printf '\e[0;35m')\][\@] \[$(printf '\e[0;35m')\]\u †\[$(printf '\e[0m')\] \[$(printf '\e[0;33m')\]\w \[$(printf '\e[0;36m')\]\\$ \[$(printf '\e[0m')\]"
 
 # Better bash
@@ -31,31 +31,28 @@ alias mnt='udisksctl mount -b'
 alias umnt='udisksctl unmount -b'
 
 # SSH + Git setup
-# Check if git is installed
 if [[ $(git --version 2>&1 >/dev/null) -eq 0 ]]; then
 	# Git completion
 	[[ -f /usr/share/git/completion/git-completion.bash ]] && . "/usr/share/git/completion/git-completion.bash"
 	[[ -f /usr/share/bash-completion/completions/git ]] && . "/usr/share/bash-completion/completions/git"
-
 	# Git prompt
 	if [[ -f "$HOME/.local/share/bash-git-prompt/gitprompt.sh" ]]; then
 		GIT_PROMPT_ONLY_IN_REPO=1
 		GIT_PROMPT_FETCH_REMOTE_STATUS=0
 		. "$HOME/.local/share/bash-git-prompt/gitprompt.sh"
 	fi
-
 	# Start ssh agent if not started yet
 	if [[ ! $(pgrep -u "$USER" ssh-agent) ]]; then
 		ssh-agent -t 4h >"$XDG_RUNTIME_DIR/ssh-agent.env"
 		chmod 600 "$XDG_RUNTIME_DIR/ssh-agent.env"
 	fi
-	# Source auth_socket if not sourced yet
+	# Source auth_socket
 	if [[ -z $SSH_AUTH_SOCK ]]; then
 		. "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null 2>&1
 	fi
 fi
 
-# CD into last directory when qutting LF
+# Global function definitions
 lfcd() {
 	tmp="$(mktemp)"
 	command lf -last-dir-path="$tmp" "$@"
