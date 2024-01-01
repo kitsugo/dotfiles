@@ -114,10 +114,10 @@ color=#719cd6
 
 [virtual-keyboard]
 full_text=keyboard 󰌌 
-command=swaymsg exec "tablet_util.sh toggle-keyboard" >/dev/null
+command=swaymsg exec "tablet_util.sh toggle_keyboard" >/dev/null
 color=#719cd6
 
 [menu]
 full_text=menu 󰵆 
-command=swaymsg exec "tablet_util.sh toggle-menu" >/dev/null
+command=swaymsg exec "tablet_util.sh toggle_menu" >/dev/null
 color=#719cd6
