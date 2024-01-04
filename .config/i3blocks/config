@@ -1,4 +1,6 @@
 # Global properties
+# Commands are symlinked as desired from ~/.dotfiles/scripts
+# This is to avoid calling unnecessary scripts, i.e. battery on a desktop
 command=$HOME/.config/i3blocks/scripts/$BLOCK_NAME 2>/dev/null
 markup=pango
 separator=false
@@ -20,18 +22,21 @@ signal=10
 background=#39506d
 color=#81b29a
 
+# Notification for potentially important files in /tmp/
 [tmpstore]
 label= 󰷌 
 interval=47
 background=#39506d
 color=#81b29a
 
+# Current taskwarrior task
 [taskw]
 label=  
 interval=41
 background=#39506d
 color=#81b29a
 
+# Current timewarrior trackign
 [timew]
 label= 󰥔 
 interval=43
@@ -118,7 +123,7 @@ interval=31
 background=#192330
 color=#9d79d6
 
-# Toggle a swaybar for touchscreen functionality
+# (sway only) Toggle a second swaybar for touchscreen functionality
 [touch-bar]
 command=swaymsg bar mode toggle touch-bar >/dev/null && echo "   "
 interval=once

@@ -3,20 +3,29 @@
 # These are called externally by touch-related programs to trigger certain behavior
 
 case "$1" in
+"toggle_menu") # Toggle rofi drun menu. Must be run with -n to avoid occasional crashing
+	menu_opened=$(pgrep "rofi")
+	if [ -z "$menu_opened" ]; then
+		rofi -n -show drun
+	else
+		killall "rofi"
+	fi
+	;;
+"toggle_files") # Toggle rofi file browser menu
+	menu_opened=$(pgrep "rofi")
+	if [ -z "$menu_opened" ]; then
+		rofi -n -filebrowser-directory "$HOME" -show filebrowser
+	else
+		killall "rofi"
+	fi
+
+	;;
 "toggle_keyboard") # Toggle virtual keybord
 	kb_visible=$(busctl get-property --user sm.puri.OSK0 /sm/puri/OSK0 sm.puri.OSK0 Visible)
 	if [ "$kb_visible" = "b false" ]; then
 		busctl call --user sm.puri.OSK0 /sm/puri/OSK0 sm.puri.OSK0 SetVisible b true
 	else
 		busctl call --user sm.puri.OSK0 /sm/puri/OSK0 sm.puri.OSK0 SetVisible b false
-	fi
-	;;
-"toggle_menu") # Toggle rofi menu. Must be run with -n to avoid occasional crashing
-	menu_opened=$(pgrep "rofi")
-	if [ -z "$menu_opened" ]; then
-		rofi -n --style -show drun
-	else
-		killall "rofi"
 	fi
 	;;
 "lisgd") # Wrapper to start lisgd with correct flags to make it compilation-agnostic. It reads the second line of watch_tablet.yml to determine device event on which to listen

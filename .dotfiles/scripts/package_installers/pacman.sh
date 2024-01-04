@@ -1,6 +1,5 @@
 #!/bin/sh
 # Download a shipment of packages for certain setups
-
 case "$1" in
 "i3")
 	pacman -S --needed i3-wm feh xautolock xsecurelock xclip

@@ -46,6 +46,11 @@ kitty +list-fonts
 task delete uid
 task status:deleted purge
 
+# Open and close encrypted rive
+cryptsetup luksOpen /dev/sdX sdX
+# Mount /dev/mapper/sdX
+# Unmount /dev/mapper/sdX
+cryptsetup luksClose sdX
 ```
 
 ### SSH Config Example
@@ -55,11 +60,13 @@ Host user1-github
     HostName github.com
     User git
     IdentityFile ~/.ssh/user1_rsa
+    IdentitiesOnly yes
     AddKeysToAgent yes
 Host user2-github
     HostName github.com
     User git
     IdentityFile ~/.ssh/user2_rsa
+    IdentitiesOnly yes
     AddKeysToAgent yes
 
 # If already setup, your Host + Hostname might need to be changed to 'github.com', 'gitlab' etc.

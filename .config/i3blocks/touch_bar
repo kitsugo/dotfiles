@@ -1,0 +1,94 @@
+# Widgets for touchscreen functionality in sway
+separator=false
+separator_block_width=0
+markup=pango
+full_text= 
+
+[brightness-min]
+full_text=[ 󰃛 ]
+command=brightnessctl set 1 >/dev/null
+color=#dbc074
+
+[brightness-down]
+full_text=[ 󰃞 - ]
+command=brightnessctl set 5%- >/dev/null
+color=#dbc074
+
+[brightness-up]
+full_text=[ 󰃠 + ]
+command=brightnessctl set 5%+ >/dev/null
+color=#dbc074
+
+[volume-mute]
+full_text=[ 󰝟 ]
+command=pactl set-sink-mute @DEFAULT_SINK@ toggle >/dev/null
+color=#dbc074
+
+[volume-down]
+full_text=[ 󰝞 ]
+command=pamixer --decrease 5 >/dev/null
+color=#dbc074
+
+[volume-up]
+full_text=[ 󰝝 ]
+command=pamixer --increase 5 >/dev/null
+color=#dbc074
+
+[separator]
+
+[close]
+full_text=[  ]
+command=swaymsg kill >/dev/null
+color=#63cdcf
+
+[previous]
+full_text=[  ]
+command=swaymsg workspace prev >/dev/null
+color=#63cdcf
+
+[move-prev]
+full_text=[ 󰳝 ]
+command=move_window.sh -1 >/dev/null
+color=#63cdcf
+
+[move-next]
+full_text=[ 󰳟 ]
+command=move_window.sh 1 >/dev/null
+color=#63cdcf
+
+[next]
+full_text=[  ]
+command=swaymsg workspace next >/dev/null
+color=#63cdcf
+
+[workspaces]
+full_text=[  ]
+command=swaymsg exec "tablet_util.sh toggle_workspaces" >/dev/null
+color=#63cdcf
+
+[separator]
+
+[screenshot]
+full_text=[ screen 󰋩 ]
+command=screenshot.sh >/dev/null
+color=#d67ad2
+
+[files]
+full_text=[ files 󰝰 ]
+command=swaymsg exec "tablet_util.sh toggle_files" >/dev/null
+color=#d67ad2
+
+[menu]
+full_text=[ apps 󰵆 ]
+command=swaymsg exec "tablet_util.sh toggle_menu" >/dev/null
+color=#d67ad2
+
+[virtual-keyboard]
+full_text=[ keyboard 󰌌 ]
+command=swaymsg exec "tablet_util.sh toggle_keyboard" >/dev/null
+color=#d67ad2
+
+[lisgd-rot]
+full_text=[ menu 󰵶 ]
+command=swaymsg exec "killall lisgd && dunstify -u low 'Rotated lisgd!' && tablet_util.sh lisgd" >/dev/null
+color=#d67ad2

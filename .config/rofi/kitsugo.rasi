@@ -1,0 +1,85 @@
+/**
+* Kitsugo's ROFI theme
+* My personal ROFI theme. You probably don't want to use it, but you are welcome to copy and modify it to your needs. 
+*
+* User: Kitsugo
+* Copyright: Kitsugo
+*/
+
+// TODO: Reuseable colors in sepearate file + a bit more ricing...
+
+* {
+	foxWhite: #dfdfe0;
+	foxGray: #738091;
+	foxBlue: #719cd6;
+	foxPurple: #9d79d6;
+	foxBackground: #192330;
+	text-color: @foxWhite;
+	background-color: transparent;
+}
+
+window {
+	location: center;
+	width: 80%;
+	height: 80%;
+	border: 4px;
+	border-radius: 16px;
+	background-color: #192330cc;
+	border-color: #131a24;
+}
+
+mainbox {
+    children: [ "inputbar", "listview" ];
+}
+
+listview {
+	flow: horizontal;
+	fixed-columns: true;
+	columns: 7;
+	spacing: 1.0em;
+	scrollbar: true;
+}
+
+scrollbar {
+    handle-width: 0.5em;
+    border-radius: 16px;
+	handle-color: @foxWhite;
+	border-color: @foxWhite;
+	border: 1px;
+	margin: 10px;
+}
+
+element {
+    orientation: vertical;
+	spacing: 1em;
+}
+
+element-icon {
+	size: 72px;
+	horizontal-align: 0.5;
+	vertical-align: 0.5;
+}
+
+element-text {
+	expand: false;
+	width: 10px;
+	horizontal-align: 0.5;
+	vertical-align: 0.5;
+}
+
+element selected {
+	background-color: #39506d;
+	border-radius: 16px;
+}
+
+inputbar {
+	padding: 10px;
+	children: [ prompt, textbox-separator, entry, case-indicator];
+}
+
+textbox-separator {
+	expand: false;
+	str: ":";
+	text-color: @foxWhite;
+	margin: 0px 4px 0px 0px;
+}

@@ -21,17 +21,17 @@ while :; do
 	read=$((reads - last_reads))
 
 	if [ $written -ge 1024 ]; then
-		written=$(printf "<span foreground='$color2'>%3sM</span>" $((written / 1024)))
+		written=$(printf "<span foreground='$color2'>%4sM</span>" $((written / 1024)))
 	else
-		written=$(printf "%3sK" $written)
+		written=$(printf "%4sK" $written)
 	fi
 	if [ $read -ge 1024 ]; then
-		read=$(printf "<span foreground='$color2'>%3sM</span>" $((read / 1024)))
+		read=$(printf "<span foreground='$color2'>%4sM</span>" $((read / 1024)))
 	else
-		read=$(printf "%3sK" $read)
+		read=$(printf "%4sK" $read)
 	fi
 
-	printf "%s/%s\n" "$written" "$read"
+	printf "%s|%s\n" "$written" "$read"
 
 	last_writes=$writes
 	last_reads=$reads

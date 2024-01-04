@@ -2,4 +2,4 @@
 # Get current mediaplayer (playerctl) info
 icon=$([ "$(playerctl --player=mpv status)" = "Playing" ] && echo "󰐊" || echo "󰏤")
 title=$(playerctl --player=mpv metadata title)
-playerctl --player=mpv metadata --format "$icon ${title%%.*} {{ duration(position) }}/{{ duration(mpris:length) }}"
+playerctl --player=mpv metadata --format "$icon ${title%%.mp3} {{ duration(position) }}/{{ duration(mpris:length) }}"

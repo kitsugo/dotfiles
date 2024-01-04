@@ -3,7 +3,7 @@
 dirs_to_monitor='/tmp/music /tmp/firefox/downloads /tmp/youtube-dl'
 for i in $dirs_to_monitor; do
 	if [ -n "$(ls -A "$i" 2>/dev/null)" ]; then
-		printf "%s\n" "$i"
+		printf "%s\n" "$(basename "$i")"
 		exit
 	fi
 done

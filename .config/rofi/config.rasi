@@ -1,6 +1,17 @@
 configuration {
-	modes: [ drun, run];
+	modes: [ drun, run, filebrowser ];
 	font: "JetBrains Mono Nerdfont 10";
 	show-icons: true;
+
+	run, drun {
+		fallback-icon: "application-x-executable";
+	}
+
+	filebrowser {
+		// Directory is set via command call since no $HOME expansion
+		show-hidden: true;
+		command: "xdg-open";
+		fallback-icon: "application-x-generic";
+	}
  }
-@theme "nightfox"
+@theme "kitsugo"

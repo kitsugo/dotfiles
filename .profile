@@ -8,6 +8,7 @@ export LESSHISTFILE=/dev/null
 export XSECURELOCK_IMAGE_PATH="$HOME/.dotfiles/extra/images/lockbg.png"
 export XSECURELOCK_SAVER="$HOME/.config/xsecurelock_saver"
 export XSECURELOCK_PASSWORD_PROMPT=time_hex
+export WINEPREFIX="/tmp/.wine"
 export TIMEWARRIORDB="$HOME/.dotfiles/extra/gtd/timew/"
 export TASKRC="$HOME/.dotfiles/extra/gtd/task/.taskrc"
 export TASKDATA="$HOME/.dotfiles/extra/gtd/task/"
@@ -19,6 +20,10 @@ if command -v fcitx5 >/dev/null; then
 	export GTK_IM_MODULE=fcitx
 	export QT_IM_MODULE=fcitx
 	export XMODIFIERS=@im=fcitx
+elif command -v ibus >/dev/null; then
+	export GTK_IM_MODULE=ibus
+	export QT_IM_MODULE=ibus
+	export XMODIFIERS=@im=ibus
 fi
 
 [ -f "$HOME/.bash_history" ] && rm "$HOME/.bash_history"
