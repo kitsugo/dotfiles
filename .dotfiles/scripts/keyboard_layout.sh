@@ -16,14 +16,16 @@ setup_IME() {
 }
 
 if [ -n "$WAYLAND_DISPLAY" ]; then
-	swaymsg input type:keyboard xkb_options 'compose:caps'
 	if ! setup_IME; then
 		swaymsg input type:keyboard xkb_layout '"us,de"'
-		swaymsg input type:keyboard xkb_options '"grp:alt_shift_toggle"'
+		swaymsg input type:keyboard xkb_options '"grp:alt_shift_toggle,compose:caps"'
+	else
+		swaymsg input type:keyboard xkb_options '"compose:caps"'
 	fi
 else
-	setxkbmap -option 'compose:caps'
 	if ! setup_IME; then
-		setxkbmap -layout us,de -option 'grp:alt_shift_toggle'
+		setxkbmap -layout us,de -option 'grp:alt_shift_toggle,compose:caps'
+	else
+		setxkbmap -option 'compose:caps'
 	fi
 fi
