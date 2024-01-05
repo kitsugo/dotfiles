@@ -6,47 +6,47 @@ markup=pango
 separator=false
 separator_block_width=0
 
-color2=#e0c989
-color3=#f4a261
 color=#dfdfe0
+color2=$U_COLOR_WARN
+color3=$U_COLOR_CRIT
 
 [separator]
 full_text=<span font_size="15pt"> </span>
-color=#39506d
+color=$U_COLOR_BLOCKS_BG3
 
 # Playerctl widget
 [playerctl]
 label=  
 interval=13
 signal=10
-background=#39506d
-color=#81b29a
+background=$U_COLOR_BLOCKS_BG3
+color=$U_COLOR_BLOCKS_3
 
 # Notification for potentially important files in /tmp/
 [tmpstore]
 label= 󰷌 
 interval=47
-background=#39506d
-color=#81b29a
+background=$U_COLOR_BLOCKS_BG3
+color=$U_COLOR_BLOCKS_3
 
 # Current taskwarrior task
 [taskw]
 label=  
 interval=41
-background=#39506d
-color=#81b29a
+background=$U_COLOR_BLOCKS_BG3
+color=$U_COLOR_BLOCKS_3
 
 # Current timewarrior trackign
 [timew]
 label= 󰥔 
 interval=43
-background=#39506d
-color=#81b29a
+background=$U_COLOR_BLOCKS_BG3
+color=$U_COLOR_BLOCKS_3
 
 [separator]
 full_text= 
-background=#39506d
-color=#2b3b51
+background=$U_COLOR_BLOCKS_BG3
+color=$U_COLOR_BLOCKS_BG2
 
 # CPU usage
 [cpu]
@@ -54,8 +54,8 @@ label= 󰾆
 interval=3
 T_WARN=40
 T_CRIT=70
-background=#2b3b51
-color=#719cd6
+background=$U_COLOR_BLOCKS_BG2
+color=$U_COLOR_BLOCKS_2
 
 # GPU usage
 [gpu]
@@ -65,34 +65,34 @@ T_WARN=50
 T_CRIT=80
 # Will default to Nvidia if not found
 GPU_BRAND=AMD
-background=#2b3b51
-color=#719cd6
+background=$U_COLOR_BLOCKS_BG2
+color=$U_COLOR_BLOCKS_2
 
 # Memory usage
 [mem]
 label=  
 interval=11
-background=#2b3b51
-color=#719cd6
+background=$U_COLOR_BLOCKS_BG2
+color=$U_COLOR_BLOCKS_2
 
 # Disk input/output
 [dio]
 label= 
 interval=persist
-background=#2b3b51
-color=#719cd6
+background=$U_COLOR_BLOCKS_BG2
+color=$U_COLOR_BLOCKS_2
 
 # Disk usage
 [disk]
 LABEL= 󰉉
 interval=599
-background=#2b3b51
-color=#719cd6
+background=$U_COLOR_BLOCKS_BG2
+color=$U_COLOR_BLOCKS_2
 
 [separator]
 full_text= 
-background=#2b3b51
-color=#192330
+background=$U_COLOR_BLOCKS_BG2
+color=$U_COLOR_BLOCKS_BG1
 
 # Volume
 [volume]
@@ -100,32 +100,32 @@ interval=once
 LONG_FORMAT= ${SYMB}${VOL}%
 SHORT_FORMAT= ${SYMB}${VOL}%
 signal=10
-background=#192330
-color=#9d79d6
+background=$U_COLOR_BLOCKS_BG1
+color=$U_COLOR_BLOCKS_1
 
 # Microphone control
 [microphone]
 interval=once
 signal=10
-background=#192330
-color=#9d79d6
+background=$U_COLOR_BLOCKS_BG1
+color=$U_COLOR_BLOCKS_1
 
 # Battery
 [battery]
 interval=37
-background=#192330
-color=#9d79d6
+background=$U_COLOR_BLOCKS_BG1
+color=$U_COLOR_BLOCKS_1
 
 # Date Time
 [time]
 command=LANG=ja_JP.utf8 && date '+%A %d.%m.%Y %H:%M'
 interval=31
-background=#192330
-color=#9d79d6
+background=$U_COLOR_BLOCKS_BG1
+color=$U_COLOR_BLOCKS_1
 
 # (sway only) Toggle a second swaybar for touchscreen functionality
 [touch-bar]
 command=swaymsg bar mode toggle touch-bar >/dev/null && echo "   "
 interval=once
-background=#192330
-color=#e0c989
+background=$U_COLOR_BLOCKS_BG1
+color=$U_COLOR_WARN

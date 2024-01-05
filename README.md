@@ -1,9 +1,7 @@
-# Dotfiles
+# Kitsugo's Dotfiles 🦊
 
-Dotfiles for all the programs I use - partly works with Microsoft Windows as well.
-
-You probably don't want to use these directly, but rather create your own, personal dotfiles.
-However, you're more than welcome to take inspiration from them.
+These are my Dotfiles for most of the programs I use - they partly work with Windows as well.  
+You likely don't want to use these directly, but you are more than welcome to take them as inspiration or reference.
 
 ## Setup
 
@@ -30,4 +28,4 @@ cd .\.dotfiles\windows\
 
 ## License
 
-This project and all its files are licensed under the terms of the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0) license.
+This project and all its files (if not specified otherwise) are licensed under the terms of the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0) license.

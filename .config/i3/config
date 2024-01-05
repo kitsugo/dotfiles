@@ -21,7 +21,4 @@ exec --no-startup-id xautolock \
 exec -no-startup-id systemctl --user set-environment XDG_CURRENT_DESKTOP=i3
 
 include global.conf
-
-# Copy configuration for i3bar to /tmp/ to allow overwriting the colors via simple reload
-include i3bar.conf
-include /tmp/i3bar.conf
+include /tmp/colorscheme/i3bar.conf
