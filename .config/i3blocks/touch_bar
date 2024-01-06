@@ -7,88 +7,88 @@ full_text=
 [brightness-min]
 full_text=[ 󰃛 ]
 command=brightnessctl set 1 >/dev/null
-color=#dbc074
+color=$U_COLOR_BLOCKS_4
 
 [brightness-down]
 full_text=[ 󰃞 - ]
 command=brightnessctl set 5%- >/dev/null
-color=#dbc074
+color=$U_COLOR_BLOCKS_4
 
 [brightness-up]
 full_text=[ 󰃠 + ]
 command=brightnessctl set 5%+ >/dev/null
-color=#dbc074
+color=$U_COLOR_BLOCKS_4
 
 [volume-mute]
 full_text=[ 󰝟 ]
 command=pactl set-sink-mute @DEFAULT_SINK@ toggle >/dev/null
-color=#dbc074
+color=$U_COLOR_BLOCKS_4
 
 [volume-down]
 full_text=[ 󰝞 ]
 command=pamixer --decrease 5 >/dev/null
-color=#dbc074
+color=$U_COLOR_BLOCKS_4
 
 [volume-up]
 full_text=[ 󰝝 ]
 command=pamixer --increase 5 >/dev/null
-color=#dbc074
+color=$U_COLOR_BLOCKS_4
 
 [separator]
 
 [close]
 full_text=[  ]
 command=swaymsg kill >/dev/null
-color=#63cdcf
+color=$U_COLOR_BLOCKS_5
 
 [previous]
 full_text=[  ]
 command=swaymsg workspace prev >/dev/null
-color=#63cdcf
+color=$U_COLOR_BLOCKS_5
 
 [move-prev]
 full_text=[ 󰳝 ]
 command=move_window.sh -1 >/dev/null
-color=#63cdcf
+color=$U_COLOR_BLOCKS_5
 
 [move-next]
 full_text=[ 󰳟 ]
 command=move_window.sh 1 >/dev/null
-color=#63cdcf
+color=$U_COLOR_BLOCKS_5
 
 [next]
 full_text=[  ]
 command=swaymsg workspace next >/dev/null
-color=#63cdcf
+color=$U_COLOR_BLOCKS_5
 
 [workspaces]
 full_text=[  ]
 command=swaymsg exec "tablet_util.sh toggle_workspaces" >/dev/null
-color=#63cdcf
+color=$U_COLOR_BLOCKS_5
 
 [separator]
 
 [screenshot]
 full_text=[ screen 󰋩 ]
 command=screenshot.sh >/dev/null
-color=#d67ad2
+color=$U_COLOR_BLOCKS_6
 
 [files]
 full_text=[ files 󰝰 ]
 command=swaymsg exec "tablet_util.sh toggle_files" >/dev/null
-color=#d67ad2
+color=$U_COLOR_BLOCKS_6
 
 [menu]
 full_text=[ apps 󰵆 ]
 command=swaymsg exec "tablet_util.sh toggle_menu" >/dev/null
-color=#d67ad2
+color=$U_COLOR_BLOCKS_6
 
 [virtual-keyboard]
 full_text=[ keyboard 󰌌 ]
 command=swaymsg exec "tablet_util.sh toggle_keyboard" >/dev/null
-color=#d67ad2
+color=$U_COLOR_BLOCKS_6
 
 [lisgd-rot]
 full_text=[ menu 󰵶 ]
 command=swaymsg exec "killall lisgd && dunstify -u low 'Rotated lisgd!' && tablet_util.sh lisgd" >/dev/null
-color=#d67ad2
+color=$U_COLOR_BLOCKS_6

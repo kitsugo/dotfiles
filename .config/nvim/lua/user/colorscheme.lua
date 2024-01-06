@@ -13,11 +13,11 @@ function M.config()
 
 	vim.api.nvim_create_user_command("ColorLightmode", function()
 		vim.cmd("colorscheme dayfox")
-		vim.cmd("silent ! colorscheme.sh")
+		vim.cmd("silent ! colorscheme.sh dayfox")
 	end, {})
 	vim.api.nvim_create_user_command("ColorDarkmode", function()
 		vim.cmd("colorscheme nightfox")
-		vim.cmd("silent ! colorscheme.sh")
+		vim.cmd("silent ! colorscheme.sh nightfox")
 	end, {})
 
 	cs.setup({

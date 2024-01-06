@@ -18,7 +18,14 @@ case "$1" in
 	else
 		killall "rofi"
 	fi
-
+	;;
+"toggle_workspaces") # Toggle rofi workspace menu
+	menu_opened=$(pgrep "rofi")
+	if [ -z "$menu_opened" ]; then
+		rofi -n -theme "$HOME/.config/rofi/kitsugo_dmenu.rasi" -show ws -modes "ws:$HOME/.config/rofi/scripts/workspace_menu.sh"
+	else
+		killall "rofi"
+	fi
 	;;
 "toggle_keyboard") # Toggle virtual keybord
 	kb_visible=$(busctl get-property --user sm.puri.OSK0 /sm/puri/OSK0 sm.puri.OSK0 Visible)

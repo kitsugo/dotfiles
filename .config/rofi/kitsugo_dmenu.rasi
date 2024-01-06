@@ -1,1 +1,46 @@
-TODO
+/**
+* Kitsugo's ROFI theme for dmenus
+*
+* User: Kitsugo
+* Copyright: Kitsugo
+*/
+
+* {
+	background-color: #192330cc;
+	text-color: #dfdfe0;
+	font: "JetBrains Mono Nerdfont 24";
+}
+
+window {
+	location: center;
+	width: 80%;
+	height: 2em;
+	border: 4px;
+	border-radius: 16px;
+	background-color: #192330cc;
+	border-color: #131a24;
+}
+
+listview {
+	flow: horizontal;
+	fixed-columns: true;
+	columns: 9;
+	scrollbar: false;
+}
+
+inputbar {
+	enabled: false;
+}
+
+element-icon {
+	enabled: false;
+}
+
+element-text {
+	horizontal-align: 0.5;
+}
+
+element selected {
+	background-color: #39506d;
+	border-radius: 16px;
+}

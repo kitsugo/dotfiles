@@ -6,8 +6,6 @@
 * Copyright: Kitsugo
 */
 
-// TODO: Reuseable colors in sepearate file + a bit more ricing...
-
 * {
 	foxWhite: #dfdfe0;
 	foxGray: #738091;

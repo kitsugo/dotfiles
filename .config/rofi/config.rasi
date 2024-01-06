@@ -5,7 +5,7 @@ configuration {
 
 	run, drun {
 		fallback-icon: "application-x-executable";
-	}
+	} 
 
 	filebrowser {
 		// Directory is set via command call since no $HOME expansion

@@ -43,6 +43,9 @@ export U_COLOR_BLOCKS_BG3=#39506d
 export U_COLOR_BLOCKS_1="$color5"
 export U_COLOR_BLOCKS_2="$color4"
 export U_COLOR_BLOCKS_3="$color2"
+export U_COLOR_BLOCKS_4="$color11"
+export U_COLOR_BLOCKS_5="$color6"
+export U_COLOR_BLOCKS_6="$color17"
 export U_COLOR_WARN="$color11"
 export U_COLOR_CRIT="$color16"
 
