@@ -1,7 +1,7 @@
 -- Plugins without elaborate configuration setup
 return {
 	{ -- Minimal VimWiki
-		"serenevoid/kiwi.nvim",
+		"kitsugo/kiwi.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},

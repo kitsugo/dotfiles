@@ -37,7 +37,7 @@ function M.config()
 			end,
 		},
 		mapping = cmp.mapping.preset.insert({
-			["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs( -1), { "i", "c" }),
+			["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 			["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 			["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 			["<S-CR>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
@@ -58,8 +58,8 @@ function M.config()
 			["<S-Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_prev_item()
-				elseif snip.jumpable( -1) then
-					snip.jump( -1)
+				elseif snip.jumpable(-1) then
+					snip.jump(-1)
 				else
 					fallback()
 				end
@@ -75,40 +75,40 @@ function M.config()
 			fields = { "kind", "abbr", "menu" },
 			format = function(entry, vim_item)
 				vim_item.kind = ({
-						Text = "󰉿",
-						Method = "󰊕",
-						Function = "󰊕",
-						Constructor = "",
-						Field = "",
-						Variable = "",
-						Class = "󰌗",
-						Interface = "",
-						Module = "",
-						Property = "",
-						Unit = "",
-						Value = "󰎠",
-						Enum = "",
-						Keyword = "󰌋",
-						Snippet = "",
-						Color = "󰏘",
-						File = "",
-						Reference = "",
-						Folder = "",
-						EnumMember = "",
-						Constant = "",
-						Struct = "",
-						Event = "",
-						Operator = "󰆕",
-						TypeParameter = "󰊄",
-						Codeium = "󰚩",
-						Copilot = "",
-					})[vim_item.kind]
+					Text = "󰉿",
+					Method = "󰊕",
+					Function = "󰊕",
+					Constructor = "",
+					Field = "",
+					Variable = "",
+					Class = "󰌗",
+					Interface = "",
+					Module = "",
+					Property = "",
+					Unit = "",
+					Value = "󰎠",
+					Enum = "",
+					Keyword = "󰌋",
+					Snippet = "",
+					Color = "󰏘",
+					File = "",
+					Reference = "",
+					Folder = "",
+					EnumMember = "",
+					Constant = "",
+					Struct = "",
+					Event = "",
+					Operator = "󰆕",
+					TypeParameter = "󰊄",
+					Codeium = "󰚩",
+					Copilot = "",
+				})[vim_item.kind]
 				vim_item.menu = ({
-						nvim_lsp = "[LSP]",
-						luasnip = "[SNIP]",
-						buffer = "[BUFFER]",
-						path = "[PATH]",
-					})[entry.source.name]
+					nvim_lsp = "[LSP]",
+					luasnip = "[SNIP]",
+					buffer = "[BUFFER]",
+					path = "[PATH]",
+				})[entry.source.name]
 				return vim_item
 			end,
 		},

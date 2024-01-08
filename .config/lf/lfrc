@@ -39,10 +39,26 @@ map <delete> ${{
 # Open mp3 files in a musicplayer fashion and all other files via xdg-open
 cmd open &{{
 	case "${f,,}" in
+	*.mp3)
+		find $(dirname $f) -maxdepth 1 -name "*.mp3" -type f -printf '%h\0%p\n' | sort | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+		lf_player.sh "$(($(grep -F -n -w "$f" /tmp/playlist.txt | cut -f1 -d:)-1))"
+		;;
 	*)
 		cmd open &$OPENER "$f" &
 		;;
 	esac
+}}
+
+# Add files to a (shuffled) mpv playlist and play it
+cmd playlist &{{
+	set -f
+	find $fx -type f -printf '%h\0%p\n' | sort | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+	lf_player.sh auto
+}}
+cmd playlist-shuffle &{{
+	set -f
+	find $fx -type f -printf '%h\0%p\n' | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+	lf_player.sh auto --shuffle
 }}
 
 # Extract an archive into /tmp/

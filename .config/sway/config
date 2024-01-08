@@ -1,7 +1,7 @@
 set $mod Mod4
 
 # Keyboard config
-exec keyboard_layout.sh
+exec_always keyboard_layout.sh
 
 # Mouse config
 input "type:pointer" {

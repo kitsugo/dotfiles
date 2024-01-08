@@ -1,7 +1,7 @@
 set $mod Mod4
 
 # Keyboard config
-exec --no-startup-id keyboard_layout.sh
+exec_always --no-startup-id keyboard_layout.sh
 
 # Control windows via mouse and super key
 floating_modifier $mod

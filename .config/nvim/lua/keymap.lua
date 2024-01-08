@@ -46,8 +46,8 @@ k("n", "<leader>lf", function()
 	vim.lsp.buf.format({
 		async = true,
 		filter = function(client)
-			return true
-			-- return client.name == "null-ls"
+			print(client.name)
+			return client.name ~= "html" and client.name ~= "css"
 		end,
 	})
 end)
