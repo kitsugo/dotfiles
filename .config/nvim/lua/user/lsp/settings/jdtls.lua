@@ -82,7 +82,7 @@ if OS_NAME == "Linux" then
 			},
 			{
 				name = "JavaSE-20",
-				path = "/usr/lib/jvm/java-20-openjdk/",
+				path = "/usr/lib/jvm/java-21-openjdk/",
 			},
 		},
 	}

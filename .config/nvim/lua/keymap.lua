@@ -46,7 +46,8 @@ k("n", "<leader>lf", function()
 	vim.lsp.buf.format({
 		async = true,
 		filter = function(client)
-			return client.name == "null-ls"
+			return true
+			-- return client.name == "null-ls"
 		end,
 	})
 end)
