@@ -1,6 +1,6 @@
 local M = {
 	"lewis6991/gitsigns.nvim",
-	enabled = check_installed("git"),
+	enabled = Check_Installed("git"),
 }
 
 function M.config()

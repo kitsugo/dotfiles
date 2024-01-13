@@ -31,3 +31,4 @@ fi
 
 envsubst "$i3blocks_vars" <"$i3blocks_config" >/tmp/colorscheme/i3blocks.conf
 envsubst <"$U_KITTY_THEME" >/tmp/colorscheme/kitty_theme.conf
+echo "$U_COLORSCHEME" > /tmp/colorscheme/name.txt

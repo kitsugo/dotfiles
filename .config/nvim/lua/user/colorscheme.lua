@@ -5,6 +5,14 @@ local M = {
 	priority = 1000,
 }
 
+-- Updates the colorscheme depending on the current globally set theme on Linux
+local function update_colorscheme()
+	local status_cf, colorFile = pcall(vim.fn.readfile, "/tmp/colorscheme/name.txt", 1)
+	if status_cf then
+		vim.cmd("colorscheme " .. colorFile[1])
+	end
+end
+
 function M.config()
 	local status_cs, cs = pcall(require, "nightfox")
 	if not status_cs then
@@ -33,8 +41,9 @@ function M.config()
 
 	if OS_NAME == "Linux" then
 		return update_colorscheme()
+	else
+		vim.cmd("colorscheme nightfox")
 	end
-	vim.cmd("colorscheme nightfox")
 end
 
 return M

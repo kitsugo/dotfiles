@@ -51,3 +51,4 @@ export U_COLOR_CRIT="$color16"
 
 # External themes and resources
 export U_KITTY_THEME="$HOME/.config/kitty/theme_nightfox.conf"
+export U_COLORSCHEME="nightfox"

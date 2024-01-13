@@ -6,9 +6,9 @@
 # Setup the IME (fcitx5 or ibus). If neither is installed return error code so a default xkbmap / sway input setting takes over
 setup_IME() {
 	if command -v fcitx5 >/dev/null; then
-		fcitx5 -d
+		fcitx5 -d &
 	elif command -v ibus >/dev/null; then
-		ibus-daemon -rxRd
+		ibus-daemon -rxRd &
 	else
 		return 1
 	fi
@@ -24,8 +24,8 @@ if [ -n "$WAYLAND_DISPLAY" ]; then
 	fi
 else
 	if ! setup_IME; then
-		setxkbmap -layout us,de -option 'grp:alt_shift_toggle,compose:caps'
+		setxkbmap -layout us,de -option '"grp:alt_shift_toggle,compose:caps"'
 	else
-		setxkbmap -option 'compose:caps'
+		setxkbmap -option '"compose:caps"'
 	fi
 fi

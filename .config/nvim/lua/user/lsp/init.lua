@@ -5,6 +5,7 @@ if not lang_status then
 	print(
 		"LSP server configuration not found. Please create " .. DOTFILES .. ".dotfiles/lsp_config.lua\n:EditLspConfig"
 	)
+	return
 end
 
 return { import = "user.lsp" }

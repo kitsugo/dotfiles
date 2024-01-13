@@ -50,3 +50,4 @@ export U_COLOR_CRIT="$color5"
 
 # External themes and resources
 export U_KITTY_THEME="$HOME/.config/kitty/theme_dayfox.conf"
+export U_COLORSCHEME="dayfox"

@@ -20,12 +20,12 @@ if MARKDOWN_TYPE == "t1" then
 	vim.keymap.set("i", "<C-J>", "\\\\<CR>", { silent = true }) -- Windows sees this as <C-CR>
 
 	if snippets_status and not SNIP_SET then -- Only load fast markdown snippets in fast mode
-		snippets.lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets/" } })
+		snippets.lazy_load({ include = { "markdown" }, paths = { vim.fn.stdpath("config") .. "/snippets/" } })
 		SNIP_SET = true
 	end
 else
 	if snippets_status and not SNIP_SET then -- Load all markdown snippets in normal mode
-		snippets.lazy_load()
+		snippets.lazy_load({ include = { "markdown", "all" } })
 		SNIP_SET = true
 	end
 end
