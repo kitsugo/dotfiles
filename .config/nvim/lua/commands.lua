@@ -2,7 +2,7 @@ local template_location = vim.fn.stdpath("config") .. "/templates/"
 
 -- Quickly edit config files
 vim.api.nvim_create_user_command("EditVimConfig", "edit " .. vim.fn.stdpath("config"), {})
-vim.api.nvim_create_user_command("EditLspConfig", "edit " .. DOTFILES .. ".dotfiles/lsp_config.lua", {})
+vim.api.nvim_create_user_command("EditLspConfig", "edit " .. DOTFILES_PATH .. ".dotfiles/lsp_config.lua", {})
 
 vim.api.nvim_create_user_command("NewJavaProject", function()
 	vim.cmd("silent ! mkdir -p src/")

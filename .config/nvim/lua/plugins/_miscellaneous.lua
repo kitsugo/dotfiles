@@ -1,4 +1,5 @@
--- Plugins without elaborate configuration setup
+local utils = require("utils")
+
 return {
 	{ -- Minimal VimWiki
 		"serenevoid/kiwi.nvim",
@@ -13,13 +14,12 @@ return {
 		},
 		keys = {
 			{ "<leader>ww", ':lua require("kiwi").open_wiki_index()<cr>', desc = "Open wiki index" },
-			{ "<leader>wt", ':lua require("kiwi").todo.toggle()<cr>',     desc = "Toggle task" },
+			{ "<leader>wt", ':lua require("kiwi").todo.toggle()<cr>', desc = "Toggle task" },
 		},
-		lazy = true,
 	},
 	{ -- Preview Markdown
 		"iamcco/markdown-preview.nvim",
-		enabled = Check_Installed("node") and Check_Installed("npm"),
+		enabled = utils.is_installed("node") and utils.is_installed("npm"),
 		config = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 			vim.g.mkdp_auto_close = 0
@@ -28,27 +28,30 @@ return {
 			vim.fn["mkdp#util#install"]()
 		end,
 		ft = "markdown",
-		lazy = true,
 	},
 	{ -- Show color of color codes in vim
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup()
 		end,
+		keys = {
+			{ "<leader>wb", ":ColorizerAttachToBuffer<cr>" },
+		},
+		ft = { "html", "css", "markdown" },
 	},
 	{ -- Dedicated Java LSP
 		"mfussenegger/nvim-jdtls",
-		enabled = Check_Installed("javac"),
+		enabled = utils.is_installed("javac"),
 		ft = "java",
 	},
 	{ -- Dedicated Scala LSP
 		"scalameta/nvim-metals",
-		enabled = Check_Installed("scala") and Check_Installed("cs"),
+		enabled = utils.is_installed("scala") and utils.is_installed("cs"),
 		ft = "scala",
 	},
-	{ -- Dedicated Assembly LSP
+	{ -- SNES assembly syntax
 		"ARM9/snes-syntax-vim",
-		enabled = Check_Installed("ca65") and Check_Installed("bsnes"),
+		enabled = utils.is_installed("ca65") and utils.is_installed("bsnes"),
 		ft = "snes",
 	},
 }

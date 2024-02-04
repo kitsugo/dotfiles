@@ -43,19 +43,6 @@ end
 
 -- Options to be called when the server is attached to buffer
 _M.on_attach = function(client, bufnr)
-	-- if client.name == "html" then
-	-- 	print("stop")
-	-- 	client.resolved_capabilities.document_formatting = false
-	-- 	client.resolved_capabilities.document_range_formatting = false
-	-- 	client.server_capabilities.documentFormattingProvider = false
-	-- end
-	--
-	--
-	-- if client.name == "tsserver" then
-	-- 	client.resolved_capabilities.document_formatting = false
-	-- 	client.resolved_capabilities.document_range_formatting = false
-	-- 	client.server_capabilities.documentFormattingProvider = false
-	-- end
 end
 
 return _M

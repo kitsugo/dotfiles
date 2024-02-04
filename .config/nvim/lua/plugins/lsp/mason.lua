@@ -32,10 +32,11 @@ function M.config()
 			on_attach = handlers.on_attach,
 			capabilities = handlers.capabilities,
 		}
-		local status_settings, conf_opts = pcall(require, "user.lsp.settings." .. server)
+		local status_settings, conf_opts = pcall(require, "plugins.lsp.settings." .. server)
 		if status_settings then
 			opts = vim.tbl_deep_extend("force", conf_opts, opts)
 		end
+		-- print(server)
 		lspconfig[server].setup(opts)
 	end
 end

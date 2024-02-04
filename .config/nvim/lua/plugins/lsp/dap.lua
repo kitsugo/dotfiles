@@ -4,6 +4,8 @@ local M = {
 		{ "rcarriga/nvim-dap-ui" },
 		{ "rcarriga/cmp-dap" },
 	},
+	keys = { "<leader>dr" },
+	lazy = true,
 }
 
 function M.config()
@@ -66,17 +68,17 @@ function M.config()
 		layouts = {
 			{
 				elements = {
-					{ id = "scopes",      size = 0.33 },
+					{ id = "scopes", size = 0.33 },
 					{ id = "breakpoints", size = 0.17 },
-					{ id = "stacks",      size = 0.25 },
-					{ id = "watches",     size = 0.25 },
+					{ id = "stacks", size = 0.25 },
+					{ id = "watches", size = 0.25 },
 				},
 				size = 0.33,
 				position = "right",
 			},
 			{
 				elements = {
-					{ id = "repl",    size = 0.65 },
+					{ id = "repl", size = 0.65 },
 					{ id = "console", size = 0.35 },
 				},
 				size = 0.27,

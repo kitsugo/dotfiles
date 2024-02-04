@@ -8,7 +8,7 @@ local M = {
 function M.config()
 	-- Null-LS setup for additional language options (formatting/linting)
 	local null_ls = require("null-ls")
-	local null_ls_builtins = require("user.lsp.settings.null-ls-builtins")
+	local null_ls_builtins = require(PLUGINS_MOD .. ".lsp.settings.null-ls-builtins")
 
 	local configs_location = vim.fn.stdpath("config") .. "/configs/"
 	-- Checks whether a source has a local config file by searching upward from the current buffer

@@ -1,4 +1,3 @@
--- Install Lazy nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -12,15 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Checks whether a given program is executable/installed on this machine
-function Check_Installed(program)
-	if vim.fn.executable(program) == 1 then
-		return true
-	end
-	return false
-end
-
-require("lazy").setup("user", {
+require("lazy").setup("plugins", {
 	defaults = {
 		lazy = false,
 	},

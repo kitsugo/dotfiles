@@ -1,0 +1,10 @@
+[Unit]
+Description=Setup colorscheme for i3/sway on startup
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=%h/.dotfiles/scripts/colorscheme.sh --startup
+
+[Install]
+WantedBy=default.target

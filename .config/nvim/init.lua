@@ -1,15 +1,19 @@
+-- Entry point for nvim + global defintions
 OS_NAME = vim.loop.os_uname().sysname
-DOTFILES = ""
+DOTFILES_PATH = ""
+PLUGINS_MOD = "plugins"
 LANGUAGES = {}
 
+-- Setup dotfiles location for either OS
 if OS_NAME == "Linux" then
-	DOTFILES = os.getenv("HOME") .. "/"
+	DOTFILES_PATH = os.getenv("HOME") .. "/"
 elseif OS_NAME == "Windows_NT" then
-	DOTFILES = os.getenv("UserProfile") .. "\\windotfiles\\"
+	DOTFILES_PATH = os.getenv("UserProfile") .. "\\windotfiles\\"
 end
 
 require("options")
 require("keymap")
 require("commands")
 require("templates")
-require("lazy_plugins")
+
+require("plugin_init")

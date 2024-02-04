@@ -20,6 +20,7 @@ else
 	. "$colorscheme_dir/nightfox.sh"
 fi
 
+# Replace all color strings in the config files and write them to /tmp
 mkdir -p /tmp/colorscheme
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	envsubst <"$swaybar_config" >/tmp/colorscheme/swaybar.conf
@@ -28,7 +29,17 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 else
 	envsubst <"$i3bar_config" >/tmp/colorscheme/i3bar.conf
 fi
-
 envsubst "$i3blocks_vars" <"$i3blocks_config" >/tmp/colorscheme/i3blocks.conf
 envsubst <"$U_KITTY_THEME" >/tmp/colorscheme/kitty_theme.conf
-echo "$U_COLORSCHEME" > /tmp/colorscheme/name.txt
+echo "$U_COLORSCHEME" >/tmp/colorscheme/name.txt
+
+# If not called on startup, signal to all relevant programs to perform an action that reloads their config files (IPC / restart)
+if [ "$1" != "--startup" ]; then
+	if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+		swaymsg reload
+	else
+		i3 restart
+	fi
+	kitty @ set-colors -a --configured /tmp/colorscheme/kitty_theme.conf
+	echo "not startup" >>/tmp/debug.log
+fi
