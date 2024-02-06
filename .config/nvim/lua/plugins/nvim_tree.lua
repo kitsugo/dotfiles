@@ -1,6 +1,11 @@
 -- Nvim-Tree Setup
+local utils = require("utils")
 local M = {
 	"kyazdani42/nvim-tree.lua",
+	keys = {
+		{ "<leader>e", ":NvimTreeToggle<CR>" },
+	},
+	lazy = not utils.num_to_bool(vim.fn.isdirectory(vim.fn.expand("%:p"))),
 }
 
 function M.config()
@@ -30,7 +35,7 @@ function M.config()
 			enable = true,
 		},
 		renderer = {
-			group_empty = true,
+			group_empty = false,
 		},
 	})
 end

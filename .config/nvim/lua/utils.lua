@@ -8,4 +8,11 @@ function M.is_installed(program)
 	return false
 end
 
+function M.num_to_bool(num)
+	if num == 1 then
+		return true
+	end
+	return false
+end
+
 return M

@@ -4,13 +4,6 @@ local template_location = vim.fn.stdpath("config") .. "/templates/"
 vim.api.nvim_create_user_command("EditVimConfig", "edit " .. vim.fn.stdpath("config"), {})
 vim.api.nvim_create_user_command("EditLspConfig", "edit " .. DOTFILES_PATH .. ".dotfiles/lsp_config.lua", {})
 
-vim.api.nvim_create_user_command("NewJavaProject", function()
-	vim.cmd("silent ! mkdir -p src/")
-	vim.cmd("silent ! mkdir -p test/")
-	vim.cmd("silent ! ln -s /tmp/java_bin/ bin")
-	vim.cmd("silent ! cp " .. template_location .. "java_classpath.xml .classpath")
-end, {})
-
 -- Setup custom autocommands
 local start_up = vim.api.nvim_create_augroup("start_up", { clear = true })
 
