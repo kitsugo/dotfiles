@@ -1,9 +1,9 @@
-local M = {
+return {
 	"numToStr/Comment.nvim",
+	keys = {
+		{ "gcc" },
+	},
+	config = function()
+		require("Comment").setup()
+	end,
 }
-
-function M.config()
-	require("Comment").setup()
-end
-
-return M

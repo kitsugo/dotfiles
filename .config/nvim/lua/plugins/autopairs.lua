@@ -7,7 +7,7 @@ function M.config()
 	local rule = require("nvim-autopairs.rule")
 
 	autopairs.setup({
-		check_ts = true,
+		-- check_ts = true,
 	})
 
 	autopairs.add_rules({

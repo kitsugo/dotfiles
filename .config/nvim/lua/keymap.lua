@@ -42,15 +42,18 @@ k("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 k("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
 k("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
 k("n", "<leader>li", "<cmd>LspInfo<cr>", opts)
-k("n", "<leader>lf", function()
-	vim.lsp.buf.format({
-		async = true,
-		filter = function(client)
-			print(client.name)
-			return client.name ~= "html" and client.name ~= "css"
-		end,
-	})
-end)
+-- k("n", "<leader>lf", function()
+-- 	vim.lsp.buf.format({
+-- 		async = true,
+-- 		filter = function(client)
+-- 			print(client.name)
+-- 			print(client.name == "lua_ls")
+-- 			return client.name ~= "html" and client.name ~= "css" and client.name ~= "texlab" and client.name ~= "ltex" and client.name ~= "lua_ls"
+-- 		end,
+-- 	})
+-- end)
+--
+
 
 -- Spawn IDE-like Terminal at the bottom. Requires kitty / Windows terminal
 k("n", "<leader>t", function()

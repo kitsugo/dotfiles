@@ -1,6 +1,15 @@
 #!/bin/sh
 # Utility functions for shell scripts
 
+# Returns number indicating whether the current session is a Wayland session
+is_wayland() {
+	if [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
 # Returns the absolute path to the directory the script is executed in. Does not work when sourcing the script
 script_dir() {
 	echo "$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)"

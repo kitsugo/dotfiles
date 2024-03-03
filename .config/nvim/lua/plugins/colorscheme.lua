@@ -14,6 +14,10 @@ local function update_colorscheme()
 end
 
 function M.config()
+	vim.keymap.set("n", "<leader>c", function()
+		update_colorscheme()
+	end)
+
 	local status_cs, cs = pcall(require, "nightfox")
 	if not status_cs then
 		return

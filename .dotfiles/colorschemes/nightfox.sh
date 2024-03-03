@@ -1,5 +1,6 @@
 #!/bin/sh
 # Nightfox colorscheme definitions
+# https://github.com/EdenEast/nightfox.nvim
 
 # Color definitions
 background=#192330
@@ -48,6 +49,15 @@ export U_COLOR_BLOCKS_5="$color6"
 export U_COLOR_BLOCKS_6="$color17"
 export U_COLOR_WARN="$color11"
 export U_COLOR_CRIT="$color16"
+
+# Dunst
+export U_COLOR_DUNST_BG=#2b3b51
+export U_COLOR_DUNST_FG_LOW=#738091
+export U_COLOR_DUNST_FG_NORM="$color7"
+export U_COLOR_DUNST_FG_CRIT="$color9"
+export U_COLOR_DUNST_LOW="$color4"
+export U_COLOR_DUNST_NORM="$color5"
+export U_COLOR_DUNST_CRIT="$color9"
 
 # External themes and resources
 export U_KITTY_THEME="$HOME/.config/kitty/theme_nightfox.conf"

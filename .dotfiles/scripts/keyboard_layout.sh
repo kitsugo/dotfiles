@@ -2,6 +2,7 @@
 # Setup keyboard configuration depending on display server and installed IME
 # If an IME is present, it shall take over the keyboard configuration
 # The compose key should always be set, but other input-mappings interfere with the IME
+. utils.sh
 
 # Setup the IME (fcitx5 or ibus). If neither is installed return error code so a default xkbmap / sway input setting takes over
 setup_IME() {
@@ -15,7 +16,7 @@ setup_IME() {
 	return 0
 }
 
-if [ -n "$WAYLAND_DISPLAY" ]; then
+if is_wayland; then
 	if ! setup_IME; then
 		swaymsg input type:keyboard xkb_layout '"us,de"'
 		swaymsg input type:keyboard xkb_options '"grp:alt_shift_toggle,compose:caps"'
@@ -24,8 +25,10 @@ if [ -n "$WAYLAND_DISPLAY" ]; then
 	fi
 else
 	if ! setup_IME; then
+		echo "no fctix, set everything" >> /tmp/debug.log
 		setxkbmap -layout us,de -option 'grp:alt_shift_toggle,compose:caps'
 	else
+		echo "fctix, set caps" >> /tmp/debug.log
 		setxkbmap -option 'compose:caps'
 	fi
 fi

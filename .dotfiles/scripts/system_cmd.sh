@@ -1,5 +1,6 @@
 #!/bin/sh
 # Portable system commands with timeout, notifications and naive locking capability
+. "$HOME/.dotfiles/scripts/utils.sh"
 
 if mkdir "/tmp/system_cmd.lock.d"; then
 	case "$1" in
@@ -8,7 +9,12 @@ if mkdir "/tmp/system_cmd.lock.d"; then
 		;;
 	"lock") # Lock system via swaylock or xsecurelock. Remove lockfile to allow subsequent suspension
 		rmdir "/tmp/system_cmd.lock.d/"
-		(swaylock -e -k -s fill -i "$XSECURELOCK_IMAGE_PATH" || xsecurelock) &
+		if is_wayland; then
+			swaylock -e -k -s fill -i "$XSECURELOCK_IMAGE_PATH" &
+		else
+			echo "Locking x " >>/tmp/debug.log
+			xsecurelock
+		fi
 		;;
 	"suspend-lock") # Lock and suspend / hibernate system after short timeout. Remove lockfile to allow subsequent suspension. swaylock will lock implicitly
 		dunstify -i "$HOME"/.dotfiles/extra/images/sleep.* -u low -a "Locker" "Suspending in just a moment..."
@@ -33,6 +39,7 @@ if mkdir "/tmp/system_cmd.lock.d"; then
 		systemctl poweroff || shutdown -P now
 		;;
 	"suspend")
+		echo "suspending.. " >>/tmp/debug.log
 		systemctl suspend || loginctl suspend || zzz -z
 		;;
 	"hibernate")

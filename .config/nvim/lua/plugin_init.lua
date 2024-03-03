@@ -10,10 +10,14 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-
+--
 require("lazy").setup("plugins", {
 	defaults = {
 		lazy = false,
+	},
+	change_detection = {
+		enabled = false,
+		notify = false,
 	},
 	performance = {
 		rtp = {
@@ -24,6 +28,10 @@ require("lazy").setup("plugins", {
 				"shada",
 				"tutor",
 				"health",
+				"zipPlugin",
+				"tarPlugin",
+				"gzip",
+				"tohtml",
 			},
 		},
 	},

@@ -1,5 +1,6 @@
 #!/bin/sh
 # Dayfox colorscheme definitions
+# https://github.com/EdenEast/nightfox.nvim
 
 background=#f6f2ee
 foreground=#3d2b5a
@@ -22,7 +23,6 @@ color15=#f4ece6
 color16=#955f61
 color17=#a440b5
 
-# Color inputs
 # I3bar / Swaybar
 export U_COLOR_BAR_BG="$background"
 export U_COLOR_BAR_FWS1="$color1"
@@ -47,6 +47,15 @@ export U_COLOR_BLOCKS_5="$color6"
 export U_COLOR_BLOCKS_6="$color17"
 export U_COLOR_WARN="$color4"
 export U_COLOR_CRIT="$color5"
+
+# Dunst
+export U_COLOR_DUNST_BG=#e7d2be
+export U_COLOR_DUNST_FG_LOW=#837a72
+export U_COLOR_DUNST_FG_NORM="$color8"
+export U_COLOR_DUNST_FG_CRIT="$color5"
+export U_COLOR_DUNST_LOW="$color3"
+export U_COLOR_DUNST_NORM="$color1"
+export U_COLOR_DUNST_CRIT="$color5"
 
 # External themes and resources
 export U_KITTY_THEME="$HOME/.config/kitty/theme_dayfox.conf"

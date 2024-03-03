@@ -15,5 +15,4 @@ require("options")
 require("keymap")
 require("commands")
 require("templates")
-
 require("plugin_init")

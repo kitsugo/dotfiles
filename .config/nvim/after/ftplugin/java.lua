@@ -1,6 +1,6 @@
 local jdtls_status, jdtls = pcall(require, "jdtls")
 if jdtls_status then
-	jdtls.start_or_attach(require("plugins.lsp.settings.jdtls"))
+	jdtls.start_or_attach(require("plugins.lsp.servers.standalone.jdtls"))
 
 	local config_location = vim.fn.stdpath("config") .. "/configs/"
 	local project_dir = vim.fs.dirname(vim.fs.find({ "src" }, { upward = true })[1])
