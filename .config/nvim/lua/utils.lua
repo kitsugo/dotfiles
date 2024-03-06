@@ -21,6 +21,15 @@ function M.has_local_config(location, config_names)
 	return has
 end
 
+function M.is_git_project(location)
+	local found = vim.fs.find(".git", { upward = true, location })
+	if not (next(found) == nil) then
+		return true
+	else
+		return false
+	end
+end
+
 function M.num_to_bool(num)
 	if num == 1 then
 		return true

@@ -19,12 +19,11 @@ return {
 	config = function(_, opts)
 		for formatter, formatter_settings in pairs(opts) do
 			opts[formatter] = {
-				args = function(_, ctx)
+				prepend_args = function(_, ctx)
 					if utils.has_local_config(ctx.filename, formatter_settings.config_names) then
-						return { ctx.filename }
+						return {}
 					else
 						return {
-							ctx.filename,
 							formatter_settings.config_command,
 							configs_location .. formatter_settings.config_path,
 						}
@@ -32,15 +31,14 @@ return {
 				end,
 			}
 		end
-
 		require("conform").setup({
 			log_level = vim.log.levels.DEBUG,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { { "prettierd", "prettier" } },
-				markdown = { { "prettierd", "prettier" } },
-				html = { { "prettierd", "prettier" } },
-				css = { { "prettierd", "prettier" } },
+				javascript = { { "prettier" } },
+				markdown = { { "prettier" } },
+				html = { { "prettier" } },
+				css = { { "prettier" } },
 			},
 			formatters = opts,
 		})

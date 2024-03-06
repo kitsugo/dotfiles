@@ -1,6 +1,9 @@
 -- Treesitter configuration
 return {
 	"nvim-treesitter/nvim-treesitter",
+	dependencies = {
+		{ "neovim/nvim-lspconfig" },
+	},
 	ft = { "lua", "bash", "html", "markdown", "scala", "java" },
 	config = function()
 		require("nvim-treesitter.configs").setup({

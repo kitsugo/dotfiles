@@ -2,9 +2,10 @@ local M = {
 	"feline-nvim/feline.nvim",
 	dependencies = {
 		{
-"nvim-tree/nvim-web-devicons" 
+			"nvim-tree/nvim-web-devicons",
 		},
-	}
+	},
+	lazy = true,
 }
 
 function M.config()

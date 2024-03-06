@@ -25,7 +25,8 @@ if MARKDOWN_TYPE == "t1" then
 	end
 else
 	if snippets_status and not SNIP_SET then -- Load all markdown snippets in normal mode
-		snippets.lazy_load({ include = { "markdown", "all" } })
+		-- print("ok")
+		-- snippets.lazy_load({ include = { "markdown", "all" } })
 		SNIP_SET = true
 	end
 end

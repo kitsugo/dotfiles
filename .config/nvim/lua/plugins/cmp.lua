@@ -4,9 +4,6 @@ local M = {
 	dependencies = {
 		{
 			"L3MON4D3/LuaSnip",
-			dependencies = {
-				"honza/vim-snippets",
-			},
 		},
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-path" },
@@ -15,19 +12,14 @@ local M = {
 	},
 }
 
+local function check_backspace()
+	local col = vim.fn.col(".") - 1
+	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+end
+
 function M.config()
 	local cmp = require("cmp")
 	local snip = require("luasnip")
-
-	-- Load snipmate snippets, but exclude unwanted
-	require("luasnip.loaders.from_snipmate").lazy_load({
-		exclude = { "all", "markdown", "assembly" },
-	})
-
-	local check_backspace = function()
-		local col = vim.fn.col(".") - 1
-		return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-	end
 
 	cmp.setup({
 		snippet = {

@@ -23,7 +23,6 @@ require("lazy").setup("plugins", {
 		rtp = {
 			paths = { vim.fn.stdpath("data") .. "/site" },
 			disabled_plugins = {
-				"netrwPlugin",
 				"man",
 				"shada",
 				"tutor",

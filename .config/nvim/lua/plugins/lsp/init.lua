@@ -10,7 +10,6 @@ return {
 		import = "plugins.lsp.servers",
 		dependencies = {
 			{ "williamboman/mason-lspconfig.nvim" },
-			{ "williamboman/mason.nvim" },
 			{ "hrsh7th/cmp-nvim-lsp" },
 		},
 		ft = { "java", "scala" },
@@ -60,6 +59,7 @@ return {
 	},
 	{
 		"williamboman/mason.nvim",
+		cmd = "Mason",
 		config = function()
 			require("mason").setup({
 				ui = {

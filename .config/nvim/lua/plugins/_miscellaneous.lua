@@ -37,7 +37,7 @@ return {
 		keys = {
 			{ "<leader>wb", ":ColorizerAttachToBuffer<cr>" },
 		},
-		ft = { "html", "css", "markdown" },
+		ft = { "html", "css" },
 	},
 	{ -- Dedicated Java LSP
 		"mfussenegger/nvim-jdtls",

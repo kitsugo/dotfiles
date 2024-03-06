@@ -5,7 +5,6 @@ local M = {
 		{ "rcarriga/cmp-dap" },
 	},
 	keys = { "<leader>dr" },
-	lazy = true,
 }
 
 function M.config()

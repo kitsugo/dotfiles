@@ -8,8 +8,6 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.clipboard:append("unnamedplus,unnamed")
 vim.opt.updatetime = 500
 vim.opt.timeoutlen = 1000
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 vim.opt.guifont = "monospace:h17"
 vim.opt.mouse = "a"
@@ -41,3 +39,10 @@ vim.opt.splitright = true
 vim.opt.iskeyword:append("-")
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.g.tex_flavor = "latex"
+vim.g.netrw_banner = 0
+vim.g.netrw_browse_split = 4
+vim.g.netrw_liststyle = 3
+vim.g.netrw_altv = 1
+vim.g.netrw_winsize = 14
+vim.g.netrw_keepdir = 0
+vim.opt.autochdir = true
