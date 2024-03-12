@@ -111,15 +111,6 @@ function M.config()
 		end,
 	})
 
-	-- No buffer completion for word-only files
-	cmp.setup.filetype({ "markdown", "text" }, {
-		sources = cmp.config.sources({
-			{ name = "nvim_lsp" },
-			{ name = "luasnip" },
-			{ name = "path" },
-		}),
-	})
-
 	-- DAP REPL Completion
 	cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 		sources = {

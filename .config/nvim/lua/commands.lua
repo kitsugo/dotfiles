@@ -1,8 +1,5 @@
-local template_location = vim.fn.stdpath("config") .. "/templates/"
-
 -- Quickly edit config files
 vim.api.nvim_create_user_command("EditVimConfig", "edit " .. vim.fn.stdpath("config"), {})
-vim.api.nvim_create_user_command("EditLspConfig", "edit " .. DOTFILES_PATH .. ".dotfiles/lsp_config.lua", {})
 
 -- Setup custom autocommands
 local start_up = vim.api.nvim_create_augroup("start_up", { clear = true })

@@ -8,6 +8,9 @@ vim.keymap.set("n", "a", "Ccd%:w<CR>:bw<CR>:Lexplore<CR>", { remap = true, buffe
 vim.keymap.set("n", "v", "mf", { remap = true, buffer = true })
 -- Mark directory with shift v
 vim.keymap.set("n", "<S-v>", "mt:echom 'Marked directory!'<CR>", { remap = true, buffer = true })
+-- Map going up and down directories to vim direction keys
+vim.keymap.set("n", "ll", "<Plug>NetrwLocalBrowseCheck", { noremap = true, buffer = true })
+vim.keymap.set("n", "hh", "<Plug>NetrwBrowseUpDir", { noremap = true, buffer = true })
 
 
 

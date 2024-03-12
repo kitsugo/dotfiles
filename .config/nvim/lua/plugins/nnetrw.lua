@@ -52,7 +52,6 @@ return {
 			end,
 		},
 	},
-	branch = "more-list-styles",
 	lazy = not utils.num_to_bool(vim.fn.isdirectory(vim.fn.expand("%:p"))),
 	config = function()
 		require("netrw").setup()
