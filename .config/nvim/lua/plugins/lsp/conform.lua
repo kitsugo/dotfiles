@@ -39,6 +39,7 @@ return {
 				markdown = { { "prettier" } },
 				html = { { "prettier" } },
 				css = { { "prettier" } },
+				sh = { { "shfmt" }}
 			},
 			formatters = opts,
 		})

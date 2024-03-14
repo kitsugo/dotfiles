@@ -13,8 +13,22 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>ww", ':lua require("kiwi").open_wiki_index()<cr>', desc = "Open wiki index" },
-			{ "<leader>wt", ':lua require("kiwi").todo.toggle()<cr>', desc = "Toggle task" },
+			{
+				"<leader>ww",
+				function()
+					-- autochdir conflicts with kiwi's implementation, so it must be set off here. This is fine given netrw isn't used in kiwi's context
+					vim.opt.autochdir = false
+					require("kiwi").open_wiki_index()
+				end,
+				desc = "Open wiki index",
+			},
+			{
+				"<leader>wt",
+				function()
+					require("kiwi").todo.toggle()
+				end,
+				desc = "Toggle task",
+			},
 		},
 	},
 	{ -- Preview Markdown

@@ -24,7 +24,7 @@ fi
 
 # Replace all color strings in the config files and write them to /tmp
 mkdir -p /tmp/colorscheme
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+if is_wayland; then
 	envsubst <"$swaybar_config" >/tmp/colorscheme/swaybar.conf
 	envsubst <"$swaybar_touch" >/tmp/colorscheme/swaybar_touch.conf
 	envsubst "$i3blocks_vars" <"$i3blocks_touch" >/tmp/colorscheme/i3blocks_touch.conf
