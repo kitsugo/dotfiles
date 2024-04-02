@@ -1,15 +1,16 @@
-local ft = { "python" }
+local ft = { "css" }
 return {
 	{
 		"neovim/nvim-lspconfig",
 		ft = ft,
 		opts = {
 			servers = {
-				pylsp = {
+				cssls = {
 					ft = ft,
-					settings = {},
+					settings = {}
 				},
 			},
 		},
 	},
 }
+

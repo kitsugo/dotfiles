@@ -37,6 +37,10 @@ function M.num_to_bool(num)
 	return false
 end
 
+function M.is_table(obj)
+	return type(obj) == "table"
+end
+
 function M.dump_table(o)
 	if type(o) == "table" then
 		local s = "{ "

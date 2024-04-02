@@ -16,8 +16,6 @@ return {
 			{
 				"<leader>ww",
 				function()
-					-- autochdir conflicts with kiwi's implementation, so it must be set off here. This is fine given netrw isn't used in kiwi's context
-					vim.opt.autochdir = false
 					require("kiwi").open_wiki_index()
 				end,
 				desc = "Open wiki index",

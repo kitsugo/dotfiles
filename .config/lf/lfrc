@@ -52,7 +52,11 @@ cmd open &{{
 # Add files to a (shuffled) mpv playlist and play it
 cmd playlist &{{
 	set -f
-	find $fx -type f -printf '%h\0%p\n' | sort | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+	if [[ -n "$1" ]]; then
+		mp3tag_to_mpv.py "$1"
+	else
+		find $fx -type f -printf '%h\0%p\n' | sort | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+	fi
 	lf_player.sh auto
 }}
 cmd playlist-shuffle &{{
@@ -102,3 +106,27 @@ cmd bulk-rename ${{
     rm -- "$old" "$new"
     lf -remote "send $id unselect"
 }}
+
+# Tag an mp3 file with common mp3tags
+cmd mp3-tag ${{
+	set +u
+	target="$1"
+	file="$(mktemp)"
+	entry=$(ffprobe -v quiet -of json -show_entries format $f | grep "$target") || echo ""
+    printf '%s\n' "$f $entry" >"$file"
+	if [[ -n "$2" ]]; then
+		line="$2"
+	else
+		$EDITOR "$file"
+		line=$(head -n 1 $file)
+	fi
+	case "$target" in
+		"title") eyeD3 --encoding utf8 -t "$line" "$f";;
+		"artist") eyeD3 --encoding utf8 -a "$line" "$f";;
+		"album") eyeD3 --encoding utf8 -A "$line" "$f";;
+		"genre") eyeD3 --encoding utf8 --non-std-genres -G "$line" "$f";;
+		*) echo "Not a valid mp3tag target.";;
+	esac
+    rm "$file"
+}}
+# vim:ft=bash

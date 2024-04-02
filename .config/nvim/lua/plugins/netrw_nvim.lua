@@ -14,7 +14,7 @@ local function clean_empty_bufs()
 end
 
 -- Clean up netrw's empty buffer artifacts and let that logic toggle it
-local function toggle_netrw()
+local function toggle_netrw(use_local)
 	clean_empty_bufs()
 	local flag = false
 	for _, buf in pairs(vim.api.nvim_list_bufs()) do
@@ -33,7 +33,11 @@ local function toggle_netrw()
 	end
 
 	if not flag then
-		vim.cmd(":Lexplore")
+		if use_local then
+			vim.cmd(":Lexplore %:p:h")
+		else
+			vim.cmd(":Lexplore")
+		end
 	end
 end
 
@@ -48,12 +52,19 @@ return {
 		{
 			"<leader>e",
 			function()
-				toggle_netrw()
+				toggle_netrw(false)
+			end,
+		},
+		{
+			"<leader><S-e>",
+			function()
+				toggle_netrw(true)
 			end,
 		},
 	},
 	lazy = not utils.num_to_bool(vim.fn.isdirectory(vim.fn.expand("%:p"))),
 	config = function()
+		vim.cmd(":cd %:h")
 		require("netrw").setup()
 	end,
 }

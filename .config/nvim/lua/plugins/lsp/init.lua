@@ -52,6 +52,7 @@ return {
 					capabilities = vim.tbl_deep_extend("force", global_capabilities, server_config.capabilities or {}),
 					on_attach = server_config.on_attach,
 					settings = server_config.settings,
+					autostart = server_config.autostart,
 				}
 				lspconfig[server].setup(options)
 			end

@@ -1,11 +1,11 @@
-local ft = { "python" }
+local ft = { "html" }
 return {
 	{
 		"neovim/nvim-lspconfig",
 		ft = ft,
 		opts = {
 			servers = {
-				pylsp = {
+				html = {
 					ft = ft,
 					settings = {},
 				},
