@@ -51,18 +51,18 @@ cmd open &{{
 
 # Add files to a (shuffled) mpv playlist and play it
 cmd playlist &{{
-	set -f
-	if [[ -n "$1" ]]; then
-		mp3tag_to_mpv.py "$1"
+	set +u
+	if [[ "$1" == "shuffle" ]]; then
+		find $fx -type f -printf '%h\0%p\n' | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+		lf_player.sh auto --shuffle
+	elif [[ -n "$*" ]]; then
+		IFS=" "
+		mp3tag_to_mpv.py "$(sed -e 's/= \([^" >][^ >]*\)/= "\1"/g' <<<"$*")"
+		lf_player.sh auto --shuffle
 	else
 		find $fx -type f -printf '%h\0%p\n' | sort | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+		lf_player.sh auto
 	fi
-	lf_player.sh auto
-}}
-cmd playlist-shuffle &{{
-	set -f
-	find $fx -type f -printf '%h\0%p\n' | awk -F'\0' '{print $2}' > /tmp/playlist.txt
-	lf_player.sh auto --shuffle
 }}
 
 # Extract an archive into /tmp/

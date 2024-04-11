@@ -4,7 +4,7 @@ return {
 	dependencies = {
 		{ "neovim/nvim-lspconfig" },
 	},
-	ft = { "lua", "bash", "html", "markdown", "scala", "java" },
+	ft = { "lua", "bash", "html", "markdown", "scala", "java", "python" },
 	config = function()
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = { "lua" },
