@@ -112,21 +112,26 @@ cmd mp3-tag ${{
 	set +u
 	target="$1"
 	file="$(mktemp)"
-	entry=$(ffprobe -v quiet -of json -show_entries format $f | grep "$target") || echo ""
-    printf '%s\n' "$f $entry" >"$file"
+	# Print mp3tag info. Extract target value. Remove quotations marks from target value
+	entry=$(ffprobe -v quiet -of json -show_entries format "$f" | grep -oP "(?<=\"$target\": )\".*\"" | sed 's/"//g')
+    printf '%s\n' "$entry" >"$file"
 	if [[ -n "$2" ]]; then
 		line="$2"
 	else
 		$EDITOR "$file"
 		line=$(head -n 1 $file)
 	fi
-	case "$target" in
-		"title") eyeD3 --encoding utf8 -t "$line" "$f";;
-		"artist") eyeD3 --encoding utf8 -a "$line" "$f";;
-		"album") eyeD3 --encoding utf8 -A "$line" "$f";;
-		"genre") eyeD3 --encoding utf8 --non-std-genres -G "$line" "$f";;
-		*) echo "Not a valid mp3tag target.";;
-	esac
+	for ff in $fx; do
+		# title and genre are never performed in bulk
+		case "$target" in
+			"title") eyeD3 --encoding utf8 -t "$line" "$f";;
+			"artist") eyeD3 --encoding utf8 -a "$line" "$ff";;
+			"album") eyeD3 --encoding utf8 -A "$line" "$ff";;
+			"genre") eyeD3 --encoding utf8 --non-std-genres -G "$line" "$f";;
+			*) echo "Not a valid mp3tag target.";;
+		esac
+		echo $ff
+	done
     rm "$file"
 }}
 # vim:ft=bash

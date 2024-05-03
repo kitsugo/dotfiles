@@ -52,13 +52,13 @@ return {
 		{
 			"<leader>e",
 			function()
-				toggle_netrw(false)
+				toggle_netrw(true)
 			end,
 		},
 		{
 			"<leader><S-e>",
 			function()
-				toggle_netrw(true)
+				toggle_netrw(false)
 			end,
 		},
 	},

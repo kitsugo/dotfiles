@@ -42,7 +42,7 @@ return {
 		ft = "markdown",
 	},
 	{ -- Show color of color codes in vim
-		"norcalli/nvim-colorizer.lua",
+		"JosefLitos/colorizer.nvim",
 		config = function()
 			require("colorizer").setup()
 		end,

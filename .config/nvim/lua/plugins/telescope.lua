@@ -8,4 +8,12 @@ return {
 		{ "<leader>/b", ":Telescope buffers<CR>" },
 		{ "<leader>/h", ":Telescope help_tags<CR>" },
 	},
+
+	config = function()
+		require("telescope").setup({
+			defaults = {
+				file_ignore_patterns = { ".git/", "node_modules/" },
+			},
+		})
+	end,
 }

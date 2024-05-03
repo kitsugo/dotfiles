@@ -41,8 +41,8 @@ vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.g.tex_flavor = "latex"
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 4
-vim.g.netrw_liststyle = 3
+vim.g.netrw_liststyle = 4
 vim.g.netrw_altv = 1
-vim.g.netrw_winsize = 14
+vim.g.netrw_winsize = 20
 vim.g.netrw_fastbrowse = 2
 vim.g.netrw_clipboard = 0

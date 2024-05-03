@@ -10,9 +10,14 @@ case "${file,,}" in
 *.gif) ;&
 *.jpg) ;&
 *.jpeg) ;&
+*.webp) ;&
+*.svg) ;&
 *.png)
 	(identify -ping -format "%wx%h" "$file") || echo "No info"
 	kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y+2}" "$file" </dev/null >/dev/tty
+	;;
+*.mp3)
+	eyeD3 "$file"
 	;;
 *.txt)
 	cat "$file"

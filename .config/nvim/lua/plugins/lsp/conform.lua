@@ -36,10 +36,11 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = { { "prettier" } },
+				typescript = { { "prettier" } },
 				markdown = { { "prettier" } },
 				html = { { "prettier" } },
 				css = { { "prettier" } },
-				sh = { { "shfmt" }}
+				sh = { { "shfmt" } },
 			},
 			formatters = opts,
 		})

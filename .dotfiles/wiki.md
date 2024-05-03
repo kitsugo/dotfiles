@@ -9,6 +9,9 @@ got config status.showUntrackedFiles no
 got add -u
 got commit && got push
 
+# Find string in directories
+grep -Rnw '/path/to/somewhere/' -e 'pattern'
+
 # Create 1G data file for testing
 head -c 1G /dev/urandom > file.txt
 
