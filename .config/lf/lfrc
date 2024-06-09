@@ -128,6 +128,7 @@ cmd mp3-tag ${{
 			"artist") eyeD3 --encoding utf8 -a "$line" "$ff";;
 			"album") eyeD3 --encoding utf8 -A "$line" "$ff";;
 			"genre") eyeD3 --encoding utf8 --non-std-genres -G "$line" "$f";;
+			"genre-bulk") eyeD3 --encoding utf8 --non-std-genres -G "$line" "$ff";;
 			*) echo "Not a valid mp3tag target.";;
 		esac
 		echo $ff

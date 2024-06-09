@@ -1,4 +1,4 @@
-# Kitsugo's Dotfiles 🦊
+# Kitsugo Dotfiles
 
 These are my Dotfiles for most of the programs I use - they partly work with Windows as well.  
 You likely don't want to use these directly, but you are more than welcome to take them as inspiration or reference.

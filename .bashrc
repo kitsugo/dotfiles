@@ -17,6 +17,7 @@ bind '"\e[C": forward-char'
 bind '"\e[D": backward-char'
 bind '"\t": menu-complete'
 bind '"\e[Z": menu-complete-backward'
+shopt -s no_empty_cmd_completion
 shopt -s autocd
 shopt -s dirspell direxpand
 shopt -s cdspell

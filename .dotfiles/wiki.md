@@ -51,8 +51,8 @@ task status:deleted purge
 
 # Open and close encrypted rive
 cryptsetup luksOpen /dev/sdX sdX
-# Mount /dev/mapper/sdX
-# Unmount /dev/mapper/sdX
+mnt /dev/mapper/sdX
+mnt /dev/mapper/sdX
 cryptsetup luksClose sdX
 ```
 

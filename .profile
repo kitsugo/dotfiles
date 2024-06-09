@@ -14,7 +14,7 @@ export TASKRC="$HOME/.dotfiles/extra/gtd/task/.taskrc"
 export TASKDATA="$HOME/.dotfiles/extra/gtd/task/"
 export MOZ_ENABLE_WAYLAND=1
 export GLFW_IM_MODULE=ibus
-export PATH="$PATH:$HOME/.local/bin/:$HOME/.dotfiles/scripts/:$HOME/.dotfiles/tablet/"
+export PATH="$PATH:$HOME/.local/bin/:$HOME/.local/share/nvim/mason/bin/:$HOME/.dotfiles/scripts/:$HOME/.dotfiles/tablet/"
 
 if command -v fcitx5 >/dev/null; then
 	export GTK_IM_MODULE=fcitx

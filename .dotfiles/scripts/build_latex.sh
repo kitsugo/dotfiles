@@ -1,4 +1,7 @@
 #!/bin/sh
+# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Licensed under the terms of the GNU GPL v3, or any later version.
+#
 # Wrapper script for 'pdflatex' to output LaTeX PDF and additional files into a /tmp/ directory
 # This allows a clear separation of source and build files for most LaTeX projects
 

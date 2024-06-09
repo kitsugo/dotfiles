@@ -1,5 +1,5 @@
 #!/bin/sh
 # Get current mediaplayer (playerctl) info
 icon=$([ "$(playerctl --player=mpd,mpv status)" = "Playing" ] && echo "󰐊" || echo "󰏤")
-title=$(playerctl --player=mpd,mpv metadata title || basename "$(playerctl --player=mpd metadata xesam:url)")
+title=$(playerctl --player=mpd,mpv metadata title || printf "%s" basename "$(playerctl --player=mpd metadata xesam:url)")
 playerctl --player=mpd,mpv metadata --format "$icon ${title%%.mp3} {{ duration(position) }}/{{ duration(mpris:length) }}"

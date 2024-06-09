@@ -34,13 +34,14 @@ return {
 		require("conform").setup({
 			log_level = vim.log.levels.DEBUG,
 			formatters_by_ft = {
-				lua = { "stylua" },
-				javascript = { { "prettier" } },
-				typescript = { { "prettier" } },
-				markdown = { { "prettier" } },
-				html = { { "prettier" } },
 				css = { { "prettier" } },
+				html = { { "prettier" } },
+				javascript = { { "prettier" } },
+				lua = { "stylua" },
+				markdown = { { "prettier" } },
+				rust = { { "rustfmt" } },
 				sh = { { "shfmt" } },
+				typescript = { { "prettier" } },
 			},
 			formatters = opts,
 		})

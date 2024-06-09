@@ -1,4 +1,4 @@
-local ft = { "markdown", "tex" }
+local ft = { "markdown", "tex", "latex" }
 return {
 	{
 		"neovim/nvim-lspconfig",
