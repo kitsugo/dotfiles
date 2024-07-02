@@ -81,7 +81,7 @@ def db_fetch(cursor, sql):
 
 def db_list(cursor, target):
     res = cursor.execute(
-        "SELECT DISTINCT " + target + " FROM mp3 AS m LEFT JOIN mp3Genres")
+        "SELECT DISTINCT " + target + " FROM mp3 AS m LEFT JOIN mp3Genres ORDER BY " + target)
     for row in res:
         print(row[0])
 

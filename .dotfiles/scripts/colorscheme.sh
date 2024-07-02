@@ -24,17 +24,16 @@ fi
 
 # Replace all color strings in the config files and write them to /tmp
 mkdir -p /tmp/colorscheme
-if is_wayland; then
-	envsubst <"$swaybar_config" >/tmp/colorscheme/swaybar.conf
-	envsubst <"$swaybar_touch" >/tmp/colorscheme/swaybar_touch.conf
-	envsubst "$i3blocks_vars" <"$i3blocks_touch" >/tmp/colorscheme/i3blocks_touch.conf
-else
-	envsubst <"$i3bar_config" >/tmp/colorscheme/i3bar.conf
-fi
+envsubst <"$swaybar_config" >/tmp/colorscheme/swaybar.conf
+envsubst <"$swaybar_touch" >/tmp/colorscheme/swaybar_touch.conf
+envsubst "$i3blocks_vars" <"$i3blocks_touch" >/tmp/colorscheme/i3blocks_touch.conf
+envsubst <"$i3bar_config" >/tmp/colorscheme/i3bar.conf
 envsubst "$i3blocks_vars" <"$i3blocks_config" >/tmp/colorscheme/i3blocks.conf
 envsubst <"$dunst_config" >/tmp/colorscheme/dunstrc.conf
 envsubst <"$U_KITTY_THEME" >/tmp/colorscheme/kitty_theme.conf
 echo "$U_COLORSCHEME" >/tmp/colorscheme/name.txt
+
+is_wayland
 
 # If not called on startup, signal to all relevant programs to perform an action that reloads their config files (IPC / restart)
 if [ "$1" != "--startup" ]; then

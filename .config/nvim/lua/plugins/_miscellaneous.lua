@@ -1,34 +1,6 @@
 local utils = require("utils")
 
 return {
-	{ -- Minimal VimWiki
-		"serenevoid/kiwi.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		opts = {
-			{
-				name = "general",
-				path = os.getenv("HOME") .. "/.dotfiles/extra/gtd/wiki",
-			},
-		},
-		keys = {
-			{
-				"<leader>ww",
-				function()
-					require("kiwi").open_wiki_index()
-				end,
-				desc = "Open wiki index",
-			},
-			{
-				"<leader>wt",
-				function()
-					require("kiwi").todo.toggle()
-				end,
-				desc = "Toggle task",
-			},
-		},
-	},
 	{ -- Preview Markdown
 		"iamcco/markdown-preview.nvim",
 		enabled = utils.is_installed("node") and utils.is_installed("npm"),
