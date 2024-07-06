@@ -1,5 +1,9 @@
 -- Quickly edit config files
-vim.api.nvim_create_user_command("EditVimConfig", "edit " .. vim.fn.stdpath("config"), {})
+vim.api.nvim_create_user_command("EditVimConfig", function()
+	local vim_config = vim.fn.stdpath("config")
+	vim.cmd("edit " .. vim_config)
+	vim.cmd("cd " .. vim_config)
+end, {})
 
 -- Setup custom autocommands
 local start_up = vim.api.nvim_create_augroup("start_up", { clear = true })
@@ -31,4 +35,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		set colorcolumn=72
 		]])
 	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.mdx",
+	command = "set ft=markdown",
 })

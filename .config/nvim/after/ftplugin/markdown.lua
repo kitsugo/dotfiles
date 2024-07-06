@@ -1,6 +1,3 @@
-local snippets_status, snippets = pcall(require, "luasnip.loaders.from_snipmate")
--- Conceal markdown syntax to make it readable as a pure text file
-vim.opt.conceallevel = 1
 -- Preview markdown file
 vim.keymap.set("n", "<leader>fp", ":MarkdownPreviewToggle<CR>", { silent = true })
 
@@ -12,5 +9,12 @@ vim.api.nvim_create_user_command("FastNote", function()
 	vim.keymap.set("i", "<S-CR>", "<CR>", { silent = true })
 	vim.keymap.set("i", "<C-CR>", "\\\\<CR>", { silent = true })
 	vim.keymap.set("i", "<C-J>", "\\\\<CR>", { silent = true }) -- Windows sees this as <C-CR>
-	snippets.lazy_load({ include = { "markdown" }, paths = { vim.fn.stdpath("config") .. "/snippets/" } })
+
+	-- Load LaTeX snippets
+	local snippets_status, snippets = pcall(require, "luasnip.loaders.from_snipmate")
+	if snippets_status then
+		snippets.lazy_load({ include = { "markdown" }, paths = { vim.fn.stdpath("config") .. "/snippets/" } })
+	end
+	-- Conceal markdown syntax to make it readable as a pure text file
+	vim.opt.conceallevel = 1
 end, {})

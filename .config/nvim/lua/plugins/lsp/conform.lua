@@ -37,6 +37,8 @@ return {
 				css = { { "prettier" } },
 				html = { { "prettier" } },
 				javascript = { { "prettier" } },
+				json = { { "prettier" } },
+				jsonc = { { "prettier" } },
 				lua = { "stylua" },
 				markdown = { { "prettier" } },
 				rust = { { "rustfmt" } },

@@ -62,9 +62,22 @@ return {
 			end,
 		},
 	},
+	event = "BufEnter */*",
 	lazy = not utils.num_to_bool(vim.fn.isdirectory(vim.fn.expand("%:p"))),
 	config = function()
-		vim.cmd(":cd %:h")
+		-- vim.cmd(":cd %:h")
+		START_DIR = vim.fn.getcwd()
 		require("netrw").setup()
+
+		vim.api.nvim_create_autocmd({ "BufEnter" }, {
+			pattern = "*/*",
+			callback = function()
+				if utils.num_to_bool(vim.fn.isdirectory(vim.fn.expand("%:p"))) then
+					vim.cmd(":bd")
+					toggle_netrw(false)
+				end
+			end,
+			once = true,
+		})
 	end,
 }

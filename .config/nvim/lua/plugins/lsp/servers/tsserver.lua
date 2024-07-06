@@ -1,4 +1,4 @@
-local ft = { "javascript", "typescript" }
+local ft = { "javascript", "typescript", "typescriptreact" }
 return {
 	{
 		"neovim/nvim-lspconfig",

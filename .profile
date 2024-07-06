@@ -26,5 +26,9 @@ elif command -v ibus >/dev/null; then
 	export XMODIFIERS=@im=ibus
 fi
 
+if [ -z "$DBUS_SESSION_BUS_ADDRESS"  ] && [ -z "$DBUS_SESSION_BUS_PID" ]; then
+	export "$(dbus-launch)"
+fi
+
 [ -f "$HOME/.bash_history" ] && rm "$HOME/.bash_history"
 [ -f "$HOME/.dotfiles/dotfiles_profile.sh" ] && . "$HOME/.dotfiles/dotfiles_profile.sh"

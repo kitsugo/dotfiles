@@ -12,3 +12,5 @@ x-scheme-handler/http=io.gitlab.librewolf-community.desktop
 x-scheme-handler/https=io.gitlab.librewolf-community.desktop
 x-scheme-handler/about=io.gitlab.librewolf-community.desktop
 x-scheme-handler/unknown=io.gitlab.librewolf-community.desktop
+x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_home_toffee_.local_bin_eclipse_data_.desktop
+x-scheme-handler/eclipse+mpc x-scheme-handler/eclipse+command=_home_toffee_.local_bin_eclipse_data_.desktop

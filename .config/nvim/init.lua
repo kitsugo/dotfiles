@@ -3,6 +3,7 @@ OS_NAME = vim.loop.os_uname().sysname
 DOTFILES_PATH = ""
 PLUGINS_MOD = "plugins"
 LANGUAGES = {}
+START_DIR = ""
 
 -- Setup dotfiles location for either OS
 if OS_NAME == "Linux" then

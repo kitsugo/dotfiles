@@ -5,7 +5,7 @@ local utils = require("utils")
 -- This "fix" creates a new issue of Lexplore no longer behaving as expected and spawning the new buffer inside the netrw split (unlike what Lexplore should do).
 -- To fix this utilize ":w<CR>:bd<CR>" to simply write the file empty and close it (as nvim_tree would do). Then just reopen netrw to give the illusion nothing changed.
 -- Must use "set autochdir" so netrw is actually reopened in the viewed directory. Sadly this won't happen when switching directories before
-vim.keymap.set("n", "a", "Ccd%:w<CR>:bw<CR>:Lexplore<CR>", { remap = true, buffer = true })
+vim.keymap.set("n", "a", "Ccd%:w<CR>:let L = expand('%:p')<CR>:bw<CR>:execute ':e' L<CR>:cd" .. START_DIR .. "<CR>", { remap = true, buffer = true })
 -- Mark files with v
 vim.keymap.set("n", "v", "mf", { remap = true, buffer = true })
 vim.keymap.set("n", "r", "R", { remap = true, buffer = true })

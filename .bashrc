@@ -30,6 +30,8 @@ alias novim='nvim -u NONE'
 alias ks='kitty +kitten ssh'
 alias mnt='udisksctl mount -b'
 alias umnt='udisksctl unmount -b'
+alias mtp='mkdir -p /run/user/1000/mtp/ && aft-mtp-mount /run/user/1000/mtp/'
+alias umtp='fusermount -u /run/user/1000/mtp/'
 
 # SSH + Git setup
 if [[ $(git --version 2>&1 >/dev/null) -eq 0 ]]; then
