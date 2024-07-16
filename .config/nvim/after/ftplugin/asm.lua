@@ -9,6 +9,10 @@ local assembly_types = {
 		command = "set filetype=snes",
 		pattern = "*.asm,*.s,*.inc,*.cfg",
 	},
+	t3 = {
+		command = "set filetype=asm8051",
+		pattern = "*.a51,*.b51",
+	}
 }
 
 if not ASM_TYPE then
@@ -17,6 +21,7 @@ if not ASM_TYPE then
 			"You opened an assembly file. What kind of assembly are you running?",
 			"0. x86 (GAS)",
 			"2. 65816 (SNES)",
+			"3. 8051",
 		})
 end
 
@@ -33,3 +38,4 @@ vim.cmd("syntax on")
 if snippets_status then
 	snippets.lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets/" })
 end
+

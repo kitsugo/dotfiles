@@ -54,6 +54,10 @@ cryptsetup luksOpen /dev/sdX sdX
 mnt /dev/mapper/sdX
 mnt /dev/mapper/sdX
 cryptsetup luksClose sdX
+
+# Add pipx environment to PATH
+source ~/.local/share/pipx/venvs/<module>/bin/activate
+
 ```
 
 ### SSH Config Example

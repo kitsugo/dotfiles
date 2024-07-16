@@ -1,0 +1,10 @@
+[Unit]
+Description=Setup log directory in /tmp/ for permanent symlinks to save SSD writes
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=mkdir -p /tmp/logs/
+
+[Install]
+WantedBy=default.target

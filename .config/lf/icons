@@ -27,6 +27,7 @@ fi 
 *.gdns 
 *.tscn 
 *.ass 󰨖
+*.srt 󰨖
 *.aseprite 
 *.csv 
 *.ods 
@@ -54,6 +55,7 @@ fi 
 *.cfg 
 *config 
 *PKGBUILD 󰣇
+*.SRCINFO 󰣇
 *.prettierrc 
 *.torrent 
 *.service 

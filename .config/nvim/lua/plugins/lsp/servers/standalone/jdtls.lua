@@ -53,10 +53,9 @@ local config = {
 
 if OS_NAME == "Linux" then
 	local home = os.getenv("HOME")
-	-- local workspace_dir = home .. "/.local/eclipse/" .. project_name
-	local workspace_dir = "/tmp/eclipse/" .. project_name
-	local bundles = { vim.fn.glob(home .. "/.local/share/nvim/com.microsoft.java.debug.plugin-*.jar", 1) }
-	vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/server/*.jar", 1), "\n"))
+	local workspace_dir = "/tmp/java/" .. project_name
+	local bundles = { vim.fn.glob(home .. "/.local/share/nvim/com.microsoft.java.debug.plugin-*.jar", true) }
+	vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/server/*.jar", true), "\n"))
 	config.cmd = {
 		"java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",

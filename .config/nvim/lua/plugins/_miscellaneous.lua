@@ -33,9 +33,4 @@ return {
 		enabled = utils.is_installed("scala") and utils.is_installed("cs"),
 		ft = "scala",
 	},
-	{ -- SNES assembly syntax
-		"ARM9/snes-syntax-vim",
-		enabled = utils.is_installed("ca65") and utils.is_installed("bsnes"),
-		ft = "snes",
-	},
 }

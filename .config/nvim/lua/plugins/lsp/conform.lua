@@ -43,6 +43,7 @@ return {
 				markdown = { { "prettier" } },
 				rust = { { "rustfmt" } },
 				sh = { { "shfmt" } },
+				tex = { { "latexindent" } },
 				typescript = { { "prettier" } },
 			},
 			formatters = opts,

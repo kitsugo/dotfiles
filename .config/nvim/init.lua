@@ -13,6 +13,7 @@ elseif OS_NAME == "Windows_NT" then
 end
 
 require("options")
+require("filetypes")
 require("keymap")
 require("commands")
 require("templates")
