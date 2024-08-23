@@ -4,6 +4,8 @@
 	br = branch
 	logge = log --color --graph --all --pretty='format:%C(auto)%d%C(reset)\n%C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'
 	purge-hist = "!f(){ git reset $(git commit-tree HEAD^{tree} \"$@\");};f"
+	squash = "!f(){ git rebase -i HEAD~${1};};f"
+
 
 [core]
 	editor = nvim

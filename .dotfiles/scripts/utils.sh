@@ -4,10 +4,8 @@
 # Returns number indicating whether the current session is a Wayland session
 is_wayland() {
 	if [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ] || [ "$(loginctl show-session $(loginctl | grep $(whoami) | awk '{print $1}') -p Type)" = "Type=wayland" ]; then
-		echo "It is wayland" >> /tmp/debug.log
 		return 0
 	else
-		echo "It is x" >> /tmp/debug.log
 		return 1
 	fi
 }

@@ -12,7 +12,6 @@ if mkdir "/tmp/system_cmd.lock.d"; then
 		if is_wayland; then
 			swaylock -e -k -s fill -i "$XSECURELOCK_IMAGE_PATH" &
 		else
-			echo "Locking x " >>/tmp/debug.log
 			xsecurelock
 		fi
 		;;
@@ -39,7 +38,6 @@ if mkdir "/tmp/system_cmd.lock.d"; then
 		systemctl poweroff || shutdown -P now
 		;;
 	"suspend")
-		echo "suspending.. " >>/tmp/debug.log
 		systemctl suspend || loginctl suspend || zzz -z
 		;;
 	"hibernate")

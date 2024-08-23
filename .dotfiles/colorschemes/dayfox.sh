@@ -59,4 +59,6 @@ export U_COLOR_DUNST_CRIT="$color5"
 
 # External themes and resources
 export U_KITTY_THEME="$HOME/.config/kitty/theme_dayfox.conf"
+export U_TASKW_THEME="$HOME/.dotfiles/extra/gtd/task/light.theme"
+export U_TIME_THEME="$HOME/.dotfiles/extra/gtd/timew/light.theme"
 export U_COLORSCHEME="dayfox"

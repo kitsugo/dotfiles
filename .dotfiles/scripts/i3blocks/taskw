@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-# Print the current taskwarrior task
-task=$(task export active | jq '.[0] | ."description"' 2>/dev/null) || exit 0
-[ "$task" = "null" ] && exit 0
-printf "%s\n" "$task"

@@ -30,8 +30,8 @@ alias novim='nvim -u NONE'
 alias ks='kitty +kitten ssh'
 alias mnt='udisksctl mount -b'
 alias umnt='udisksctl unmount -b'
-alias mtp='mkdir -p /run/user/1000/mtp/ && aft-mtp-mount /run/user/1000/mtp/'
-alias umtp='fusermount -u /run/user/1000/mtp/'
+alias mnt_mtp='mkdir -p /run/user/1000/mtp/ && aft-mtp-mount /run/user/1000/mtp/'
+alias umnt_mtp='fusermount -u /run/user/1000/mtp/'
 
 # SSH + Git setup
 if [[ $(git --version 2>&1 >/dev/null) -eq 0 ]]; then
@@ -55,7 +55,7 @@ if [[ $(git --version 2>&1 >/dev/null) -eq 0 ]]; then
 	fi
 fi
 
-# Global function definitions
+# Functions
 lfcd() {
 	tmp="$(mktemp)"
 	command lf -last-dir-path="$tmp" "$@"
@@ -68,4 +68,14 @@ lfcd() {
 			fi
 		fi
 	fi
+}
+
+mnt_crypt() {
+	sudo cryptsetup luksOpen /dev/"$1" "$1"
+	mnt /dev/mapper/"$1"
+}
+
+umnt_crypt() {
+	umnt /dev/mapper/"$1"
+	sudo cryptsetup luksClose "$1"
 }

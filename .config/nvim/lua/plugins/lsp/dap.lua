@@ -14,6 +14,8 @@ function M.config()
 	if not dap_status or not dapui_status then
 		return
 	end
+	
+	print("test success")
 
 	-- Set DAP keybindings
 	vim.keymap.set("n", "<leader>dc", function()

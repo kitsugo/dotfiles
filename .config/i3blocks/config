@@ -29,13 +29,6 @@ interval=47
 background=$U_COLOR_BLOCKS_BG3
 color=$U_COLOR_BLOCKS_3
 
-# Current taskwarrior task
-[taskw]
-label=  
-interval=41
-background=$U_COLOR_BLOCKS_BG3
-color=$U_COLOR_BLOCKS_3
-
 # Current timewarrior trackign
 [timew]
 label= 󰥔 

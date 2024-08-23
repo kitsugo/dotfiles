@@ -63,16 +63,26 @@ def db_insert_replace(cursor):
                         genre_data.append((genre,))
                         mp3Genres_data.append((absolute_path, genre))
 
-    cur.executemany("INSERT OR REPLACE INTO mp3 VALUES(?, ?, ?, ?)", mp3_data)
-    cur.executemany(
+    cursor.executemany(
+        "INSERT OR REPLACE INTO mp3 VALUES(?, ?, ?, ?)", mp3_data)
+    cursor.executemany(
         "INSERT OR IGNORE INTO genre VALUES(?)", genre_data)
-    cur.executemany(
+    cursor.executemany(
         "INSERT OR REPLACE INTO mp3Genres VALUES(?, ?)", mp3Genres_data)
+
+
+def db_purge(cursor):
+    res = cursor.execute("SELECT filePath FROM mp3")
+    d = []
+    for row in res:
+        if not os.path.isfile(row[0]):
+            d.append((row[0],))
+    cursor.executemany("DELETE FROM mp3 WHERE filePath = ?", d)
 
 
 def db_fetch(cursor, sql):
     res = cursor.execute(
-        "SELECT m.filePath FROM mp3 AS m LEFT JOIN mp3Genres AS g ON m.filePath = g.filePath WHERE " + sql).fetchall()
+        "SELECT DISTINCT m.filePath FROM mp3 AS m LEFT JOIN mp3Genres AS g ON m.filePath = g.filePath WHERE " + sql).fetchall()
     playlist_file = open("/tmp/playlist.txt", "w")
     for row in res:
         playlist_file.write(row[0] + "\n")
@@ -98,6 +108,9 @@ if __name__ == "__main__":
         con.commit()
     elif args == "artist" or args == "album" or args == "genreName":
         db_list(cur, args)
+    elif args == "purge":
+        db_purge(cur)
+        con.commit()
     else:
         db_fetch(cur, args)
 
