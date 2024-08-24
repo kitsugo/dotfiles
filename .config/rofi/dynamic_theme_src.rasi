@@ -1,18 +1,19 @@
 /**
-* Kitsugo's ROFI theme
-* My personal ROFI theme. You probably don't want to use it, but you are welcome to copy and modify it to your needs. 
+* Dynamic Rofi theme using 'envsubst'.
+* This file is copied into /tmp/ and has all environment variables replaced with color codes
+* The color codes are choosen dynamically allowing any colorscheme to be used.
 *
-* User: Kitsugo
-* Copyright: Kitsugo
+* Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+* Licensed under the terms of the GNU GPL v3, or any later version.
 */
 
 * {
-	foxWhite: #dfdfe0;
-	foxGray: #738091;
-	foxBlue: #719cd6;
-	foxPurple: #9d79d6;
-	foxBackground: #192330;
-	text-color: @foxWhite;
+	color-bg: $U_COLOR_ROFI_BG;
+	color-fg: $U_COLOR_ROFI_FG;
+	color-bo: $U_COLOR_ROFI_BO;
+	color-text: $U_COLOR_ROFI_TEXT;
+	color-highlight: $U_COLOR_ROFI_HL;
+	text-color: @color-text;
 	background-color: transparent;
 }
 
@@ -22,8 +23,8 @@ window {
 	height: 80%;
 	border: 4px;
 	border-radius: 16px;
-	background-color: #192330cc;
-	border-color: #131a24;
+	background-color: @color-bg;
+	border-color: @color-bo;
 }
 
 mainbox {
@@ -41,8 +42,8 @@ listview {
 scrollbar {
     handle-width: 0.5em;
     border-radius: 16px;
-	handle-color: @foxWhite;
-	border-color: @foxWhite;
+	handle-color: @color-highlight;
+	border-color: @color-highlight;
 	border: 1px;
 	margin: 10px;
 }
@@ -66,7 +67,7 @@ element-text {
 }
 
 element selected {
-	background-color: #39506d;
+	background-color: @color-fg;
 	border-radius: 16px;
 }
 
@@ -78,6 +79,6 @@ inputbar {
 textbox-separator {
 	expand: false;
 	str: ":";
-	text-color: @foxWhite;
+	text-color: @color-text;
 	margin: 0px 4px 0px 0px;
 }

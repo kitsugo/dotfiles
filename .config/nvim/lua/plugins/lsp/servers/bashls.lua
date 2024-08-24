@@ -7,7 +7,13 @@ return {
 			servers = {
 				bashls = {
 					ft = ft,
-					settings = {}
+					settings = {
+						bashIde = {
+							shellcheckArguments = "--rcfile="
+								.. vim.fn.stdpath("config")
+								.. "/configs/shellcheckrc.conf",
+						},
+					},
 				},
 			},
 		},
