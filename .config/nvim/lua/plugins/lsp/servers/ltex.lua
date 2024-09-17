@@ -8,7 +8,7 @@ return {
 				ltex = {
 					settings = {
 						ltex = {
-							enabled = ft,
+							enabled = false,
 						},
 					},
 				},

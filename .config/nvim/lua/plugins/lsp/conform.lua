@@ -45,6 +45,7 @@ return {
 				sh = { { "shfmt" } },
 				tex = { { "latexindent" } },
 				typescript = { { "prettier" } },
+				typescriptreact = { { "prettier" } },
 			},
 			formatters = opts,
 		})

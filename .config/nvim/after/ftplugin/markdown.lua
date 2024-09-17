@@ -1,6 +1,3 @@
--- Preview markdown file
-vim.keymap.set("n", "<leader>fp", ":MarkdownPreviewToggle<CR>", { silent = true })
-
 -- Load fast note taking markdown setup
 vim.api.nvim_create_user_command("FastNote", function()
 	-- Have <CR> create actual newlines by appending two spaces.

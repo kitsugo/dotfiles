@@ -18,11 +18,13 @@ readonly i3blocks_config="$HOME/.config/i3blocks/config"
 readonly i3blocks_touch="$HOME/.config/i3blocks/touch_bar"
 readonly dunst_config="$HOME/.config/dunst/dunstrc.conf"
 readonly rofi_theme="$HOME/.config/rofi/dynamic_theme_src.rasi"
+color_theme="dark"
 
 if [ -f "$colorscheme_dir$1.sh" ]; then
 	. "$colorscheme_dir$1.sh"
 elif [ "$1" = "light" ]; then
 	random_light="$(find -L "$colorscheme_dir" -name "light_*" -type f | shuf -n1)"
+	color_theme="light"
 	. "$random_light"
 else
 	random_dark="$(find -L "$colorscheme_dir" -name "dark_*" -type f | shuf -n1)"
@@ -46,11 +48,19 @@ echo "$U_COLORSCHEME" >/tmp/colorscheme/name.txt
 
 # If not called on startup, signal to all relevant programs to perform an action that reloads their config files (IPC / restart)
 if [ "$1" != "--startup" ]; then
+	# Restart WM
 	if is_wayland; then
 		swaymsg reload
 	else
 		i3 restart
 	fi
+	# Adjust GTK settings
+	if [ "$color_theme" = "light" ]; then
+		gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+	elif [ "$color_theme" = "dark" ]; then
+		gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+	fi
+
 	kitty @ set-colors -a --configured /tmp/colorscheme/kitty_theme.conf
 	wallpaper.sh
 	killall dunst

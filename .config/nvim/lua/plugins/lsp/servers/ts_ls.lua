@@ -5,7 +5,7 @@ return {
 		ft = ft,
 		opts = {
 			servers = {
-				tsserver = {
+				ts_ls = {
 					ft = ft,
 					settings = {},
 				},

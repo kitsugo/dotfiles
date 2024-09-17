@@ -2,16 +2,11 @@ local utils = require("utils")
 
 return {
 	{ -- Preview Markdown
-		"iamcco/markdown-preview.nvim",
-		enabled = utils.is_installed("node") and utils.is_installed("npm"),
-		config = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-			vim.g.mkdp_auto_close = 0
-		end,
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-		ft = "markdown",
+		"jannis-baum/vivify.vim",
+		enabled = utils.is_installed("viv") and utils.is_installed("vivify-server"),
+		keys = {
+			{ "<leader>fp", ":Vivify<cr>" },
+		},
 	},
 	{ -- Show color of color codes in vim
 		"JosefLitos/colorizer.nvim",
