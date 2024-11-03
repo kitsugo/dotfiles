@@ -2,8 +2,8 @@ local configs_location = vim.fn.stdpath("config") .. "/configs/"
 local utils = require("utils")
 
 -- Formatter manager
--- Formatting is deferred until formatting operation takes place once manually. Formatting is then also done on save.
--- All formatters are setup regardless of open filetype but only start when ued within the respective filetype "formatters_by_ft"
+-- Formatting is deferred until formatting operation takes place once manually.
+-- All formatters are setup regardless of open filetype but only start when used within the respective filetype "formatters_by_ft"
 -- Formatters can be set explicitly in their respective ./formatters/*.lua file to allow default configuration handling
 return {
 	"stevearc/conform.nvim",
@@ -34,18 +34,18 @@ return {
 		require("conform").setup({
 			log_level = vim.log.levels.DEBUG,
 			formatters_by_ft = {
-				css = { { "prettier" } },
-				html = { { "prettier" } },
-				javascript = { { "prettier" } },
-				json = { { "prettier" } },
-				jsonc = { { "prettier" } },
+				css = { "prettier" },
+				html = { "prettier" },
+				javascript = { "prettier" },
+				json = { "prettier" },
+				jsonc = { "prettier" },
 				lua = { "stylua" },
-				markdown = { { "prettier" } },
-				rust = { { "rustfmt" } },
-				sh = { { "shfmt" } },
-				tex = { { "latexindent" } },
-				typescript = { { "prettier" } },
-				typescriptreact = { { "prettier" } },
+				markdown = { "prettier" },
+				rust = { "rustfmt" },
+				sh = { "shfmt" },
+				tex = { "latexindent" },
+				typescript = { "prettier" },
+				typescriptreact = { "prettier" },
 			},
 			formatters = opts,
 		})

@@ -9,7 +9,7 @@ return {
 	},
 	config = function()
 		vim.api.nvim_create_user_command("SnippetsOn", function()
-			require("luasnip.loaders.from_snipmate").lazy_load()
+			require("luasnip.loaders.from_snipmate").load()
 		end, {})
 	end,
 }

@@ -80,6 +80,10 @@ fi 
 *.editorconfig 
 *.env 󰫧
 *.pid 
+*.cct 󰣢
+*.clf 󰣣
+*.psc 󰚌
+*.pex 󰯆
 *.asm 
 *.styl 
 *.sass 
@@ -120,7 +124,7 @@ fi 
 *.yml 
 *.yaml 
 *.toml 
-*.bat 
+*.bat 󰭟
 *.mk 
 *.ico 
 *.twig 
@@ -305,6 +309,7 @@ fi 
 *.dwm 
 *.esd 
 *.webp 
+*.avif 
 *.jpg 
 *.jpeg 
 *.mjpg 

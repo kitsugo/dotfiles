@@ -4,8 +4,8 @@ return {
 		{ "nvim-lua/plenary.nvim" },
 	},
 	keys = {
-		{ "<leader>//", ":Telescope find_files<CR>" },
-		{ "<leader>/.", ":Telescope live_grep<CR>" },
+		{ "<leader>/.", ":Telescope find_files<CR>" },
+		{ "<leader>//", ":Telescope live_grep<CR>" },
 		{ "<leader>/b", ":Telescope buffers<CR>" },
 		{ "<leader>/h", ":Telescope help_tags<CR>" },
 	},
