@@ -1,0 +1,19 @@
+/**
+* Completely dynamic rofi colors by utilizing 'envsubst'.
+* This file is copied into /tmp/ and has all environment variables replaced with color codes.
+* The color codes are choosen dynamically by exporting color codes inside of the usedenvironment variables.
+* See 'envsubst --help' for more information.
+*
+* Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+* Licensed under the terms of the GNU GPL v3, or any later version.
+*/
+
+* {
+	color-bg: $U_COLOR_ROFI_BG;
+	color-fg: $U_COLOR_ROFI_FG;
+	color-bo: $U_COLOR_ROFI_BO;
+	color-text: $U_COLOR_ROFI_TEXT;
+	color-highlight: $U_COLOR_ROFI_HL;
+	text-color: @color-text;
+	background-color: transparent;
+}

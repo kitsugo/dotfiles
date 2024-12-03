@@ -8,8 +8,11 @@
 . "$HOME/.dotfiles/scripts/utils.sh"
 export WALLPAPER_DIR="$HOME/.dotfiles/extra/wallpapers/"
 readonly colorscheme_dir="$HOME/.dotfiles/extra/colorschemes/"
-# List of variables envsubst is allowed to substitute in files with other env vars
+
+# List of variables envsubst is allowed to substitute in files which also contain other environment variables
 readonly substitute_vars='$U_COLOR_BLOCKS_BG1$U_COLOR_BLOCKS_BG2$U_COLOR_BLOCKS_BG3$U_COLOR_BLOCKS_1$U_COLOR_BLOCKS_2$U_COLOR_BLOCKS_3$U_COLOR_BLOCKS_4$U_COLOR_BLOCKS_5$U_COLOR_BLOCKS_6$U_COLOR_WARN$U_COLOR_CRIT'
+
+# Filename definitions for all source config files
 readonly i3colors_config="$HOME/.config/i3/colors.conf"
 readonly i3bar_config="$HOME/.config/i3/i3bar.conf"
 readonly swaybar_config="$HOME/.config/sway/swaybar.conf"
@@ -17,7 +20,7 @@ readonly swaybar_touch="$HOME/.config/sway/swaybar_touch.conf"
 readonly i3blocks_config="$HOME/.config/i3blocks/config"
 readonly i3blocks_touch="$HOME/.config/i3blocks/touch_bar"
 readonly dunst_config="$HOME/.config/dunst/dunstrc.conf"
-readonly rofi_theme="$HOME/.config/rofi/dynamic_theme_src.rasi"
+readonly rofi_colors="$HOME/.config/rofi/dynamic_colors_src.rasi"
 color_theme="dark"
 
 if [ -f "$colorscheme_dir$1.sh" ]; then
@@ -31,7 +34,7 @@ else
 	. "$random_dark"
 fi
 
-# Replace all color strings in the config files and write them to /tmp/colorscheme/
+# Replace all color strings in the source config files and write the tranformed output files to /tmp/colorscheme/
 mkdir -p /tmp/colorscheme
 envsubst <"$i3colors_config" >/tmp/colorscheme/i3colors.conf
 envsubst <"$swaybar_config" >/tmp/colorscheme/swaybar.conf
@@ -40,21 +43,22 @@ envsubst "$substitute_vars" <"$i3blocks_touch" >/tmp/colorscheme/i3blocks_touch.
 envsubst <"$i3bar_config" >/tmp/colorscheme/i3bar.conf
 envsubst "$substitute_vars" <"$i3blocks_config" >/tmp/colorscheme/i3blocks.conf
 envsubst <"$dunst_config" >/tmp/colorscheme/dunstrc.conf
-envsubst <"$rofi_theme" >/tmp/colorscheme/dynamic_theme.rasi
+envsubst <"$rofi_colors" >/tmp/colorscheme/dynamic_colors.rasi
 cp -sf "$U_KITTY_THEME" /tmp/colorscheme/kitty_theme.conf
 cp -sf "$U_TASKW_THEME" /tmp/colorscheme/taskw.theme
 echo "$U_WALLPAPERS" >/tmp/colorscheme/wallpapers.txt
 echo "$U_COLORSCHEME" >/tmp/colorscheme/name.txt
 
-# If not called on startup, signal to all relevant programs to perform an action that reloads their config files (IPC / restart)
+# If this script is not called on startup, signal to all relevant programs to perform an action that reloads their config files (IPC / restart) or changes their colorscheme
 if [ "$1" != "--startup" ]; then
-	# Restart WM
+	# Restart i3/sway
 	if is_wayland; then
 		swaymsg reload
 	else
 		i3 restart
 	fi
-	# Adjust GTK settings
+
+	# Change GTK settings
 	if [ "$color_theme" = "light" ]; then
 		gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 	elif [ "$color_theme" = "dark" ]; then

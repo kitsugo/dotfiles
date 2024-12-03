@@ -27,8 +27,9 @@ alias got='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ls='ls -a --color=auto'
 alias lf='lfcd'
 alias novim='nvim -u NONE'
-alias ks='kitten ssh'
-alias diff="kitten diff || \diff"
+alias ks='kitty +kitten ssh'
+alias dif="kitty +kitten diff"
+alias identify="gm identify"
 alias mnt='udisksctl mount -b'
 alias umnt='udisksctl unmount -b'
 alias mnt_mtp='mkdir -p /run/user/1000/mtp/ && aft-mtp-mount /run/user/1000/mtp/'

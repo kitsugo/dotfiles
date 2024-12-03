@@ -7,7 +7,15 @@ return {
 			servers = {
 				pylsp = {
 					ft = ft,
-					settings = {},
+					settings = {
+						pylsp = {
+							plugins = {
+								pycodestyle = {
+									ignore = { "E501" },
+								},
+							},
+						},
+					},
 				},
 			},
 		},

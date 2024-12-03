@@ -14,4 +14,4 @@ configuration {
 		fallback-icon: "application-x-generic";
 	}
  }
-@theme "dynamic_theme"
+@theme "kitsugo"

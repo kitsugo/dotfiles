@@ -89,11 +89,14 @@ def db_fetch(cursor, sql):
     playlist_file.close()
 
 
-def db_list(cursor, target):
+# Prints out all entries of the desired targetCol
+def db_list(cursor, targetCol):
     res = cursor.execute(
-        "SELECT DISTINCT " + target + " FROM mp3 AS m LEFT JOIN mp3Genres ORDER BY " + target)
+        "SELECT DISTINCT " + targetCol + " FROM mp3 AS m LEFT JOIN mp3Genres ORDER BY " + targetCol)
+    out_string = ""
     for row in res:
-        print(row[0])
+        out_string += "{}, ".format(row[0])
+    print(out_string)
 
 
 if __name__ == "__main__":

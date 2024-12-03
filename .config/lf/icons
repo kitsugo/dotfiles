@@ -33,6 +33,7 @@ fi 
 *.ods 
 *.odt 
 *.odp 󰐨
+*.~1~ 󰁯
 *.bak 󰁯
 *.old 󰁯
 *.hex 󱊧
@@ -84,6 +85,10 @@ fi 
 *.clf 󰣣
 *.psc 󰚌
 *.pex 󰯆
+*.esp 󰱉
+*.bsa 󱝑
+*.ess 
+*.skse 
 *.asm 
 *.styl 
 *.sass 
@@ -367,6 +372,7 @@ fi 
 *.midi 
 *.mka 
 *.mp3 
+*.m3u 󰃂
 *.mpc 
 *.ogg 
 *.ra 

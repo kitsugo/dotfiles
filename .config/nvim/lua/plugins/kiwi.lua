@@ -32,7 +32,7 @@ return {
 				local id = os.date("%y%m%d")
 				local name = opts.args
 				local fileName = string.lower(opts.args:gsub(" ", "_"))
-				local line = "[" .. id .. " " .. name .. "]" .. "(" .. "./" .. fileName .. ".md" .. ")"
+				local line = "[" .. id .. " " .. name .. "]" .. "(" .. "./" .. id .. "_" .. fileName .. ".md" .. ")"
 				vim.api.nvim_set_current_line(line)
 			end, { nargs = "?" })
 			require("kiwi").setup(opts)

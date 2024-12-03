@@ -49,22 +49,6 @@ cmd open &{{
 	esac
 }}
 
-# Add files to a (shuffled) mpv playlist and play it
-cmd playlist &{{
-	set +u
-	if [[ "$1" == "shuffle" ]]; then
-		find $fx -type f -printf '%h\0%p\n' | awk -F'\0' '{print $2}' > /tmp/playlist.txt
-		lf_player.sh auto --shuffle
-	elif [[ -n "$*" ]]; then
-		IFS=" "
-		mp3tag_to_mpv.py "$(sed -e 's/= \([^" >][^ >]*\)/= "\1"/g' <<<"$*")"
-		lf_player.sh auto --shuffle
-	else
-		find $fx -type f -printf '%h\0%p\n' | sort | awk -F'\0' '{print $2}' > /tmp/playlist.txt
-		lf_player.sh auto
-	fi
-}}
-
 # Extract an archive into /tmp/
 cmd extract ${{
     set -f
@@ -73,7 +57,7 @@ cmd extract ${{
         *.tar.gz|*.tgz) tar xzvf "$f" -C /tmp/;;
         *.tar.xz|*.txz) tar xJvf "$f" -C /tmp/;;
         *.7z) 7z x "$f" -o/tmp/$(basename -s .7z "$fx");;
-        *.zip) unzip "$f" -d /tmp/;;
+        *.zip) 7z x "$f" -o/tmp/$(basename -s .7z "$fx") || unzip "$f" -d /tmp/;;
         *.rar) unrar x "$f" /tmp/;;
     esac
 }}
@@ -105,6 +89,22 @@ cmd bulk-rename ${{
     done
     rm -- "$old" "$new"
     lf -remote "send $id unselect"
+}}
+
+# Add files to a (shuffled) mpv playlist and play it
+cmd pl &{{
+	set +u
+	if [[ "$1" == "shuffle" ]]; then
+		find $fx -type f -printf '%h\0%p\n' | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+		lf_player.sh auto --shuffle
+	elif [[ -n "$*" ]]; then
+		IFS=" "
+		mp3tag_to_mpv.py "$(sed -e 's/= \([^" >][^ >]*\)/= "\1"/g' <<<"$*")"
+		lf_player.sh auto --shuffle
+	else
+		find $fx -type f -printf '%h\0%p\n' | sort | awk -F'\0' '{print $2}' > /tmp/playlist.txt
+		lf_player.sh auto
+	fi
 }}
 
 # Tag an mp3 file with common mp3tags

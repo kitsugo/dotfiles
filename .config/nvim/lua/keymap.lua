@@ -17,7 +17,7 @@ k("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 -- Buffer controls
 k("n", "<S-l>", ":bnext<CR>", opts)
 k("n", "<S-h>", ":bprevious<CR>", opts)
-k("n", "<S-q>", ":bdelete!<CR>:bnext<CR>", opts)
+k("n", "<S-q>", ":bdelete!<CR>:bprevious<CR>", opts)
 -- Indenting mode
 k("v", "<", "<gv", opts)
 k("v", ">", ">gv", opts)

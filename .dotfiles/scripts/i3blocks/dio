@@ -1,5 +1,9 @@
 #!/bin/bash
-# Calculate bytes "written / read" in the last N seconds
+# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Licensed under the terms of the GNU GPL v3, or any later version.
+#
+# Calculate bytes "written / read" in the last 7 seconds for i3blocks
+# Requires color variables to be defined in the environment it is executed in
 last_writes=0
 last_reads=0
 device=0
