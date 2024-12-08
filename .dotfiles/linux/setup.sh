@@ -25,4 +25,6 @@ if [ "$ans" = "y" ]; then
 	rm "$HOME/.local/state/nvim/lsp.log" && ln -s "/tmp/logs/lsp.log" "$HOME/.local/state/nvim/lsp.log"
 	rm "$HOME/.local/state/nvim/conform.log" && ln -s "/tmp/logs/conform.log" "$HOME/.local/state/nvim/conform.log"
 	rm "$HOME/.local/state/nvim/mason.log" && ln -s "/tmp/logs/mason.log" "$HOME/.local/state/nvim/mason.log"
+	rm "$HOME/.local/state/nvim/shada/main.shada" && ln -s "/tmp/logs/main.shada" "$HOME/.local/state/nvim/shada/main.shada"
+	echo "Setup logfile symlinks!"
 fi

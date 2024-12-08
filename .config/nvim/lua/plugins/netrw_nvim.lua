@@ -65,7 +65,6 @@ return {
 	event = "BufEnter */*",
 	lazy = not utils.num_to_bool(vim.fn.isdirectory(vim.fn.expand("%:p"))),
 	config = function()
-		-- vim.cmd(":cd %:h")
 		START_DIR = vim.fn.getcwd()
 		require("netrw").setup()
 
