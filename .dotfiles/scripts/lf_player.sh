@@ -1,4 +1,7 @@
 #!/bin/sh
+# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Licensed under the terms of the GNU GPL v3, or any later version.
+#
 # Wrapper script around mpv to utilize LF as a very simple directory-based terminal music player
 # Tries to use mpv remotely if possible but will default to killing and respawing the process if socat is not available for remote controlling
 # $1: The playlist-start index

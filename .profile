@@ -26,7 +26,7 @@ elif command -v ibus >/dev/null; then
 	export XMODIFIERS=@im=ibus
 fi
 
-if [ -z "$DBUS_SESSION_BUS_ADDRESS"  ] && [ -z "$DBUS_SESSION_BUS_PID" ]; then
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && [ -z "$DBUS_SESSION_BUS_PID" ]; then
 	export "$(dbus-launch)"
 fi
 

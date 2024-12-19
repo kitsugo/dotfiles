@@ -1,11 +1,15 @@
 #!/bin/sh
+# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Licensed under the terms of the GNU GPL v3, or any later version.
+#
 # Sync firefox browser profile in and out of memory to boost performance and preserve disk writes
+
 . "$HOME/.dotfiles/dotfiles_profile.sh"
 
 set -efu
-link=$U_FF_PROFILE
-static=static-$U_FF_PROFILE
-volatile=/tmp/firefox/volatile-$U_FF_PROFILE
+readonly link="$U_FF_PROFILE"
+readonly static="static-$U_FF_PROFILE"
+readonly volatile="/tmp/firefox/volatile-$U_FF_PROFILE"
 IFS=
 
 cd "$U_FF_DIRECTORY" 2>/dev/null || exit 0
@@ -20,10 +24,10 @@ if [ "$(readlink "$link")" != "$volatile" ]; then
 fi
 
 if [ -e "$link"/.unpacked ]; then
-	rsync -av --delete --exclude .unpacked ./"$link"/ ./"$static"/
-	echo "Moved volatile profile into static storage."
+	rsync -a --delete --exclude .unpacked ./"$link"/ ./"$static"/
+	echo "Moved volatile firefox profile into static storage."
 else
-	rsync -av ./"$static"/ ./"$link"/
+	rsync -a ./"$static"/ ./"$link"/
 	touch "$link"/.unpacked
-	echo "Moved static profile into volatile storage."
+	echo "Moved static firefox profile into volatile storage."
 fi

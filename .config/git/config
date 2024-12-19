@@ -21,5 +21,5 @@
 	gpgsign = true
 [user]
 	email = hayashi.jiro@kitsugo.com
-	name = kitsu
+	name = kitsugo
 	signingkey = C38E81D2CED25C5B

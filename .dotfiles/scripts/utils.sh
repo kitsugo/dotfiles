@@ -1,4 +1,7 @@
 #!/bin/sh
+# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Licensed under the terms of the GNU GPL v3, or any later version.
+#
 # Utility functions for shell scripts
 
 # Returns number indicating whether the current session is a Wayland session

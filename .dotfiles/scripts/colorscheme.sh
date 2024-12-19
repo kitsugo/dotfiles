@@ -21,16 +21,18 @@ readonly i3blocks_config="$HOME/.config/i3blocks/config"
 readonly i3blocks_touch="$HOME/.config/i3blocks/touch_bar"
 readonly dunst_config="$HOME/.config/dunst/dunstrc.conf"
 readonly rofi_colors="$HOME/.config/rofi/dynamic_colors_src.rasi"
-color_theme="dark"
+readonly color_theme="dark"
 
 if [ -f "$colorscheme_dir$1.sh" ]; then
 	. "$colorscheme_dir$1.sh"
 elif [ "$1" = "light" ]; then
 	random_light="$(find -L "$colorscheme_dir" -name "light_*" -type f | shuf -n1)"
-	color_theme="light"
+	readonly random_light
+	readonly color_theme="light"
 	. "$random_light"
 else
 	random_dark="$(find -L "$colorscheme_dir" -name "dark_*" -type f | shuf -n1)"
+	readonly random_dark
 	. "$random_dark"
 fi
 
@@ -49,7 +51,7 @@ cp -sf "$U_TASKW_THEME" /tmp/colorscheme/taskw.theme
 echo "$U_WALLPAPERS" >/tmp/colorscheme/wallpapers.txt
 echo "$U_COLORSCHEME" >/tmp/colorscheme/name.txt
 
-# If this script is not called on startup, signal to all relevant programs to perform an action that reloads their config files (IPC / restart) or changes their colorscheme
+# If this script is not called on startup, signal to all relevant programs to perform an action that reloads their config files (IPC / restart) or that changes their colorscheme
 if [ "$1" != "--startup" ]; then
 	# Restart i3/sway
 	if is_wayland; then

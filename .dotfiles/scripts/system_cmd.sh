@@ -1,5 +1,9 @@
 #!/bin/sh
+# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Licensed under the terms of the GNU GPL v3, or any later version.
+#
 # Portable system commands with timeout, notifications and naive locking capability
+
 . "$HOME/.dotfiles/scripts/utils.sh"
 
 if mkdir "/tmp/system_cmd.lock.d"; then

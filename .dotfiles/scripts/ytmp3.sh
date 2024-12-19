@@ -1,10 +1,14 @@
 #!/bin/sh
+# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Licensed under the terms of the GNU GPL v3, or any later version.
+#
 # Helper script for youtube-dl / yt-dlp to download as mp3
 # ytmp3.sh [URL]
 # ytmp3.sh [URL] [PLAYLIST_NAME] [PLAYLIST_START]
-url="$1"
-playlist_name="$2"
-playlist_start="$3"
+
+readonly url="$1"
+readonly playlist_name="$2"
+readonly playlist_start="$3"
 
 if [ -n "$playlist_start" ] && [ -n "$playlist_name" ]; then
 	playlist_location="/tmp/music/$playlist_name/%(playlist_index)s - %(title)s.%(ext)s"

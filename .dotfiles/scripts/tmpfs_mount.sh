@@ -1,4 +1,7 @@
 #!/bin/bash
+# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Licensed under the terms of the GNU GPL v3, or any later version.
+#
 # Mount a given directory permanently as tmpfs. Requires root.
 # This will result in all contents of the directory to be lost upon reboot
 

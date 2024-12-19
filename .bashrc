@@ -25,18 +25,19 @@ shopt -s cdspell
 # Alias setup
 alias got='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ls='ls -a --color=auto'
+alias grep='grep --color=auto'
 alias lf='lfcd'
 alias novim='nvim -u NONE'
 alias ks='kitty +kitten ssh'
-alias dif="kitty +kitten diff"
-alias identify="gm identify"
+alias dif='kitty +kitten diff'
 alias mnt='udisksctl mount -b'
 alias umnt='udisksctl unmount -b'
 alias mnt_mtp='mkdir -p /run/user/1000/mtp/ && aft-mtp-mount /run/user/1000/mtp/'
 alias umnt_mtp='fusermount -u /run/user/1000/mtp/'
 
-# SSH + Git setup
+# Setup ssh+gpg only if git is installed
 if [[ $(git --version 2>&1 >/dev/null) -eq 0 ]]; then
+	## Git setup
 	# Git completion
 	[[ -f /usr/share/git/completion/git-completion.bash ]] && . "/usr/share/git/completion/git-completion.bash"
 	[[ -f /usr/share/bash-completion/completions/git ]] && . "/usr/share/bash-completion/completions/git"
@@ -46,15 +47,19 @@ if [[ $(git --version 2>&1 >/dev/null) -eq 0 ]]; then
 		GIT_PROMPT_FETCH_REMOTE_STATUS=0
 		. "$HOME/.local/share/bash-git-prompt/gitprompt.sh"
 	fi
-	# Start ssh agent if not started yet
+
+	## SSH setup
+	# Start ssh agent if not started yet. Kill after 4 hours
 	if [[ ! $(pgrep -u "$USER" ssh-agent) ]]; then
 		ssh-agent -t 4h >"$XDG_RUNTIME_DIR/ssh-agent.env"
 		chmod 600 "$XDG_RUNTIME_DIR/ssh-agent.env"
 	fi
-	# Source auth_socket
+	# Source the current ssh agent if not already done (subshells don't require re-source)
 	if [[ -z $SSH_AUTH_SOCK ]]; then
 		. "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null 2>&1
 	fi
+
+	## GPG setup
 fi
 
 # Functions

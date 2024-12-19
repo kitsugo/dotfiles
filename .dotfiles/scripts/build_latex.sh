@@ -5,8 +5,8 @@
 # Wrapper script for 'pdflatex' to output LaTeX PDF and additional files into a /tmp/ directory
 # This allows a clear separation of source and build files for most LaTeX projects
 
-out_dir_name=${PWD##*/}
-out_dir="/tmp/$out_dir_name"
+readonly out_dir_name="${PWD##*/}"
+readonly out_dir="/tmp/$out_dir_name"
 # Create an identical, but empty directory structure in the output directory
 find . -type d -exec mkdir -p -- "$out_dir/"{} \;
 

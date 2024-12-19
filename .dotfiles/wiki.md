@@ -58,6 +58,9 @@ cryptsetup luksClose sdX
 # Add pipx environment to PATH
 source ~/.local/share/pipx/venvs/<module>/bin/activate
 
+# Burn ISO to device
+sudo dd bs=4M if=my.iso of=/dev/mysda conv=fdatasync status=progress
+
 ```
 
 ### SSH Config Example

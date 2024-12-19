@@ -3,6 +3,7 @@
 # Licensed under the terms of the GNU GPL v3, or any later version.
 #
 # Selects a random wallpaper from /tmp/colorscheme/wallpapers.txt with swaybg/feh.
+
 readonly wallpaper_dir="$HOME/.dotfiles/extra/wallpapers/"
 readonly wallpaper_list="/tmp/colorscheme/wallpapers.txt"
 
