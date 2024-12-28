@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Copyright 2024 Jirou Hayashi <hayashi.jiro@kitsugo.com>
 # Licensed under the terms of the GNU GPL v3, or any later version.
 #
 # Wrapper script for 'pdflatex' to output LaTeX PDF and additional files into a /tmp/ directory
@@ -11,7 +11,7 @@ readonly out_dir="/tmp/$out_dir_name"
 find . -type d -exec mkdir -p -- "$out_dir/"{} \;
 
 # Check if bibtex files are present
-bib_present=$(find "$PWD/" -type f -name "*.bib" | wc -l)
+readonly bib_present=$(find "$PWD/" -type f -name "*.bib" | wc -l)
 if [ ! "$bib_present" -eq 0 ]; then
 	# Symlink bibtex related files
 	ln -s "$PWD"/*.bib "$out_dir/"

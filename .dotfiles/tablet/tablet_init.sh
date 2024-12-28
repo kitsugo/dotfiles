@@ -1,10 +1,16 @@
 #!/bin/sh
+# Copyright 2024 Jirou Hayashi <hayashi.jiro@kitsugo.com>
+# Licensed under the terms of the GNU GPL v3, or any later version.
+#
 # Create configuration files (initilization) for programs which require access to tablet-specific device events which may not consistently appear with /dev/input/by-path/
 
 # Read local environment variables of device names and then fetch respective event path via 'libinpiut list-devices'
 device_list=$(libinput list-devices)
+readonly device_list
 switch_mode_event=$(echo "$device_list" | grep -A 1 "$U_TABLET_SWITCH_DEV" | awk 'FNR == 2 {print $2}')
+readonly switch_mode_event
 touch_event=$(echo "$device_list" | grep -A 1 "$U_TOUCH_DEV" | awk 'FNR == 2 {print $2}')
+readonly touch_event
 
 # Write device event for watch_tablet into the first line and device event for lisgd into the second line of ./configs/watch_tablet.yml config.
 # Both programs will read their respective lines on startup

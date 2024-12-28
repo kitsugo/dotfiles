@@ -90,6 +90,7 @@ fi 
 *.ess 
 *.skse 
 *.asm 
+*.j2 
 *.styl 
 *.sass 
 *.scss 

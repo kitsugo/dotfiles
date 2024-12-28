@@ -46,6 +46,7 @@ return {
 				tex = { "latexindent" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
+				yaml = { "prettier" },
 			},
 			formatters = opts,
 		})

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Copyright 2024 Jirou Hayashi <hayashi.jiro@kitsugo.com>
 # Licensed under the terms of the GNU GPL v3, or any later version.
 #
 # Helper script for youtube-dl / yt-dlp to download as mp3

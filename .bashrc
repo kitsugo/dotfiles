@@ -86,3 +86,12 @@ umnt_crypt() {
 	umnt /dev/mapper/"$1"
 	sudo cryptsetup luksClose "$1"
 }
+
+mnt_flatpak_usb() {
+	local mount_path
+	mnt "$1"
+	mount_path=$(mount | grep -o ".\S*FLATPAK_USB" | xargs)
+	printf $mount_path
+	ln -s "$mount_path/" "/tmp/flatpak_usb"
+	cp -n "$HOME/.dotfiles/linux/flatpak_usb.conf" "/tmp/usb.conf"
+}

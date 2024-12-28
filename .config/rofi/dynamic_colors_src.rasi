@@ -4,7 +4,7 @@
 * The color codes are choosen dynamically by exporting color codes inside of the usedenvironment variables.
 * See 'envsubst --help' for more information.
 *
-* Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+* Copyright 2024 Jirou Hayashi <hayashi.jiro@kitsugo.com>
 * Licensed under the terms of the GNU GPL v3, or any later version.
 */
 

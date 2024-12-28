@@ -1,12 +1,12 @@
 #!/bin/sh
-# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Copyright 2024 Jirou Hayashi <hayashi.jiro@kitsugo.com>
 # Licensed under the terms of the GNU GPL v3, or any later version.
 #
 # Setup keyboard configuration depending on display server and installed IME
 # If an IME is present, it shall take over the keyboard configuration
 # The compose key should always be set, but other input-mappings interfere with the IME
 
-. utils.sh
+. "$HOME/.dotfiles/scripts/utils.sh"
 
 # Setup the IME (fcitx5 or ibus). If neither is installed return error code so a default xkbmap / sway input setting takes over
 setup_IME() {

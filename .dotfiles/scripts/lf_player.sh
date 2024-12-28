@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright 2024 Jirou Hayashi <hayashi.jirou@kitsugo.dev>
+# Copyright 2024 Jirou Hayashi <hayashi.jiro@kitsugo.com>
 # Licensed under the terms of the GNU GPL v3, or any later version.
 #
 # Wrapper script around mpv to utilize LF as a very simple directory-based terminal music player
