@@ -4,7 +4,7 @@ Description=Setup log directory in /tmp/ for permanent symlinks to save SSD writ
 [Service]
 Type=oneshot
 RemainAfterExit=no
-ExecStart=mkdir -p /tmp/logs/
+ExecStart=mkdir -p /tmp/logs/ && mkdir -p /tmp/.thumbnails/
 
 [Install]
 WantedBy=default.target

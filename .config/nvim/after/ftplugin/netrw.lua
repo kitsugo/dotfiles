@@ -1,5 +1,23 @@
 local utils = require("utils")
 
+-- Removes the buffer of a file when it no longer exists (no fs_access)
+function remove_deleted_file_buffer(deletion_candidate)
+	local current_dir = vim.b.netrw_curdir
+	local file_path = current_dir .. "/" .. deletion_candidate
+	local file_not_deleted = vim.loop.fs_access(file_path, "W")
+
+	if not file_not_deleted then
+		for _, buf in pairs(vim.api.nvim_list_bufs()) do
+			if vim.api.nvim_buf_get_name(buf) == file_path and vim.api.nvim_buf_is_loaded(buf) then
+				vim.api.nvim_buf_delete(buf, {})
+			end
+		end
+		print("Removed buffer of deleted file: " .. file_path)
+	else
+		print("Cancelled deletion of " .. file_path)
+	end
+end
+
 --[[ HACK: Remap creating files "%" to "a" and have them be created in the actual viewed directory while using Lexplore.
 Lexplore messes with the way files are written (not directories though). This requires "Ccd%" to be used: https://www.reddit.com/r/vim/comments/1agcdkz/lexplore_not_opening_new_file_in_current/
 This "fix" creates a new issue of Lexplore no longer behaving as expected and spawning the new buffer inside the netrw split (unlike what Lexplore should do).
@@ -20,6 +38,15 @@ vim.keymap.set("n", "hh", "<Plug>NetrwBrowseUpDir", { noremap = true, buffer = t
 
 -- Overwrite <C-l> again so it doesn't call Netrw commands
 vim.keymap.set("n", "<C-l>", "<C-w>l", { remap = true, buffer = true })
+
+-- Rebind Netrw deletion to include removing the buffer of the deleted file.
+-- We must first define the variable of the potentially deleted file before triggerin '<S-d>' (newrw file deletion dialogue), because otherwise we cannot track if it was deleted.
+vim.keymap.set(
+	"n",
+	"X",
+	':lua last_netrw_word = vim.fn["netrw#Call"]("NetrwGetWord")<CR><S-d>:lua remove_deleted_file_buffer(last_netrw_word)<CR>',
+	{ remap = true, buffer = true }
+)
 
 -- Overwrite copy
 vim.keymap.set("n", "yp", function()
@@ -53,13 +80,16 @@ end, { remap = true, buffer = true })
 
 -- Overwrite rename
 vim.keymap.set("n", "r", function()
-	local target_dir = vim.b.netrw_curdir
+	local current_dir = vim.b.netrw_curdir
 	local old_file_name = vim.fn["netrw#Call"]("NetrwGetWord")
 	local new_file_name = vim.fn.input("New Name: ", old_file_name)
 	if new_file_name ~= "" then
-		local file_exists = vim.loop.fs_access(target_dir .. "/" .. new_file_name, "W")
+		local new_file_path = current_dir .. "/" .. new_file_name
+		local old_file_path = current_dir .. "/" .. old_file_name
+		local file_exists = vim.loop.fs_access(new_file_path, "W")
 		if not file_exists then
-			vim.loop.fs_rename(target_dir .. "/" .. old_file_name, target_dir .. "/" .. new_file_name)
+			vim.loop.fs_rename(old_file_path, new_file_path)
+			remove_deleted_file_buffer(old_file_name)
 		else
 			print("File '" .. new_file_name .. "' already exists! Skipping...")
 		end

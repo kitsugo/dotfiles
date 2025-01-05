@@ -1,6 +1,10 @@
 -- LSP Manager
 -- LSP setup is deferred until any filetype is entered with available LSP.
 -- A server attaches automatically for its respective filetypes
+--
+-- Adding a new server? Check `config.md` for the Lua filename:
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+-- Then add it to ./servers/<name from config.md>.lua and define it. Take another server as a template.
 return {
 	{
 		import = "plugins.lsp",

@@ -3,7 +3,7 @@
 [[ $- != *i* ]] && return
 
 # Custom prompt
-PS1="\[$(printf '\e[0;35m')\][\@] \[$(printf '\e[0;35m')\]\u †\[$(printf '\e[0m')\] \[$(printf '\e[0;33m')\]\w \[$(printf '\e[0;36m')\]\\$ \[$(printf '\e[0m')\]"
+PS1="\[$(printf '\e[0;35m')\][\t] \[$(printf '\e[0;35m')\]\H:\u † \[$(printf '\e[0m')\]\[$(printf '\e[0;33m')\]\w \[$(printf '\e[0;36m')\]\\$ \[$(printf '\e[0m')\]"
 
 # Better bash
 bind 'set bell-style none'
@@ -62,7 +62,9 @@ if [[ $(git --version 2>&1 >/dev/null) -eq 0 ]]; then
 	## GPG setup
 fi
 
-# Functions
+## Functions
+
+# cd into the last opened lf directory
 lfcd() {
 	tmp="$(mktemp)"
 	command lf -last-dir-path="$tmp" "$@"
@@ -91,7 +93,6 @@ mnt_flatpak_usb() {
 	local mount_path
 	mnt "$1"
 	mount_path=$(mount | grep -o ".\S*FLATPAK_USB" | xargs)
-	printf $mount_path
 	ln -s "$mount_path/" "/tmp/flatpak_usb"
 	cp -n "$HOME/.dotfiles/linux/flatpak_usb.conf" "/tmp/usb.conf"
 }

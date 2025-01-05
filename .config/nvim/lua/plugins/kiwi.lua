@@ -1,4 +1,4 @@
-#!/usr/bin/env lua
+local utils = require("utils")
 return {
 	{ -- Minimal VimWiki
 		"serenevoid/kiwi.nvim",
@@ -16,6 +16,10 @@ return {
 				"<leader>ww",
 				function()
 					require("kiwi").open_wiki_index()
+					-- Remove starting empty buffer
+					utils.clean_empty_bufs()
+					-- Deactivate browsing file viewer
+					vim.keymap.set("", "<leader>e", "<Nop>", { silent = true })
 				end,
 				desc = "Open wiki index",
 			},
@@ -29,7 +33,7 @@ return {
 		},
 		config = function(_, opts)
 			vim.api.nvim_create_user_command("Zet", function(opts)
-				local id = os.date("%y%m%d")
+				local id = os.date("%y%m%d%H%M")
 				local name = opts.args
 				local fileName = string.lower(opts.args:gsub(" ", "_"))
 				local line = "[" .. id .. " " .. name .. "]" .. "(" .. "./" .. id .. "_" .. fileName .. ".md" .. ")"

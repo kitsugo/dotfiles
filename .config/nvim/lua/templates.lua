@@ -29,6 +29,12 @@ vim.api.nvim_create_autocmd({ "BufNewFile" }, {
 })
 vim.api.nvim_create_autocmd({ "BufNewFile" }, {
 	group = template,
+	pattern = "index.html",
+	command = "0r " .. template_location .. "template.html",
+})
+
+vim.api.nvim_create_autocmd({ "BufNewFile" }, {
+	group = template,
 	pattern = "lsp_config.lua",
 	command = "0r " .. template_location .. "lsp_config.lua",
 })
@@ -37,3 +43,4 @@ vim.api.nvim_create_autocmd({ "BufNewFile" }, {
 	pattern = "dotfiles_profile.sh",
 	command = "0r " .. template_location .. "dotfiles_profile.sh",
 })
+

@@ -1,5 +1,18 @@
 local M = {}
 
+-- Remove all empty "No Name" buffers that are unmodified
+function M.clean_empty_bufs()
+	for _, buf in pairs(vim.api.nvim_list_bufs()) do
+		if
+			vim.api.nvim_buf_get_name(buf) == ""
+			and not vim.api.nvim_buf_get_option(buf, "modified")
+			and vim.api.nvim_buf_is_loaded(buf)
+		then
+			vim.api.nvim_buf_delete(buf, {})
+		end
+	end
+end
+
 -- Checks whether a given program is executable/installed on this machine
 function M.is_installed(program)
 	if vim.fn.executable(program) == 1 then

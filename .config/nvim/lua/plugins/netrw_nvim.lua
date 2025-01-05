@@ -1,21 +1,8 @@
 local utils = require("utils")
 
--- Remove all empty "No Name" buffers that are unmodified
-local function clean_empty_bufs()
-	for _, buf in pairs(vim.api.nvim_list_bufs()) do
-		if
-			vim.api.nvim_buf_get_name(buf) == ""
-			and not vim.api.nvim_buf_get_option(buf, "modified")
-			and vim.api.nvim_buf_is_loaded(buf)
-		then
-			vim.api.nvim_buf_delete(buf, {})
-		end
-	end
-end
-
 -- Clean up netrw's empty buffer artifacts and let that logic toggle it
 local function toggle_netrw(use_local)
-	clean_empty_bufs()
+	utils.clean_empty_bufs()
 	local flag = false
 	for _, buf in pairs(vim.api.nvim_list_bufs()) do
 		local e, v = pcall(function()

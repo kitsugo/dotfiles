@@ -1,0 +1,11 @@
+[Unit]
+Description=Sync chromium data in and out of memory
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.dotfiles/scripts/chromium_sync.sh
+ExecStop=%h/.dotfiles/scripts/chromium_sync.sh
+
+[Install]
+WantedBy=default.target
