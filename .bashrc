@@ -90,9 +90,15 @@ umnt_crypt() {
 }
 
 mnt_flatpak_usb() {
+	set -e 
 	local mount_path
 	mnt "$1"
 	mount_path=$(mount | grep -o ".\S*FLATPAK_USB" | xargs)
 	ln -s "$mount_path/" "/tmp/flatpak_usb"
 	cp -n "$HOME/.dotfiles/linux/flatpak_usb.conf" "/tmp/usb.conf"
+}
+
+umnt_flatpak_usb() {
+	umnt "$1"
+	rm "/tmp/usb.conf"
 }

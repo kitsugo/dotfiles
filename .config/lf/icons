@@ -50,7 +50,8 @@ fi 
 *.lock 
 *.kdbx 󰪪
 *.keyx 
-*.pub 
+*.key 
+*.pub 
 *.gpg 󱝗
 *.theme 
 *.cfg 
@@ -89,8 +90,9 @@ fi 
 *.bsa 󱝑
 *.ess 
 *.skse 
-*.asm 
 *.j2 
+*.vhd 
+*.asm 
 *.styl 
 *.sass 
 *.scss 

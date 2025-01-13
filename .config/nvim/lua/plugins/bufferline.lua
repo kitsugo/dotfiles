@@ -4,7 +4,6 @@ return {
 		{ "nvim-tree/nvim-web-devicons" },
 	},
 	event = "BufAdd",
-
 	config = function()
 		require("bufferline").setup({
 			options = {
@@ -21,5 +20,7 @@ return {
 		})
 		vim.keymap.set("n", "<leader>,", ":BufferLineMovePrev<CR>", { remap = true, silent = true })
 		vim.keymap.set("n", "<leader>.", ":BufferLineMoveNext<CR>", { remap = true, silent = true })
+		vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>", { remap = true, silent = true })
+		vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", { remap = true, silent = true })
 	end,
 }

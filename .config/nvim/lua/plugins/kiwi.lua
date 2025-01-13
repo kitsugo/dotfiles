@@ -1,4 +1,5 @@
 local utils = require("utils")
+local wiki_path = os.getenv("HOME") .. "/.dotfiles/extra/gtd/wiki"
 return {
 	{ -- Minimal VimWiki
 		"serenevoid/kiwi.nvim",
@@ -8,7 +9,7 @@ return {
 		opts = {
 			{
 				name = "general",
-				path = os.getenv("HOME") .. "/.dotfiles/extra/gtd/wiki",
+				path = wiki_path,
 			},
 		},
 		keys = {
@@ -28,10 +29,11 @@ return {
 				function()
 					require("kiwi").todo.toggle()
 				end,
-				desc = "Toggle task",
+				desc = "Toggle wiki task",
 			},
 		},
 		config = function(_, opts)
+			-- Quick Zettelkasten creation command
 			vim.api.nvim_create_user_command("Zet", function(opts)
 				local id = os.date("%y%m%d%H%M")
 				local name = opts.args
@@ -39,7 +41,9 @@ return {
 				local line = "[" .. id .. " " .. name .. "]" .. "(" .. "./" .. id .. "_" .. fileName .. ".md" .. ")"
 				vim.api.nvim_set_current_line(line)
 			end, { nargs = "?" })
+
 			require("kiwi").setup(opts)
+			vim.cmd(":cd " .. wiki_path)
 		end,
 	},
 }
