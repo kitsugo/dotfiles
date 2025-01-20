@@ -13,6 +13,7 @@ return {
 				".editorconfig",
 			},
 			config_path = ".prettierrc.json",
+			continuous_string = false,
 		},
 	},
 }

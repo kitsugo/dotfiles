@@ -75,6 +75,7 @@ return {
 										server_config.capabilities or {}
 									),
 									on_attach = server_config.on_attach,
+									on_new_config = server_config.on_new_config,
 									settings = server_config.settings,
 								}
 								-- Setup server and start it, then remove it form table

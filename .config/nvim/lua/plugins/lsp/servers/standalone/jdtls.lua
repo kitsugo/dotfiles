@@ -7,7 +7,6 @@ local local_libs = {}
 if root_dir then
 	local_libs = vim.split(vim.fn.glob(root_dir .. "/lib/*.jar"), "\n")
 end
-
 local config = {
 	settings = {
 		java = {
@@ -55,6 +54,18 @@ if OS_NAME == "Linux" then
 	local home = os.getenv("HOME")
 	local workspace_dir = "/tmp/java/" .. project_name
 	local bundles = { vim.fn.glob(home .. "/.local/share/nvim/com.microsoft.java.debug.plugin-*.jar", true) }
+
+	-- Find Java runtimes on Linux
+	local runtimes = {}
+	local system_runtimes = vim.fn.glob("/usr/lib/jvm/java-*-openjdk/", true, true)
+	for _, runtime in ipairs(system_runtimes) do
+		local version = string.match(runtime, "%d+")
+		table.insert(runtimes, {
+			name = "JavaSE-" .. version,
+			path = runtime,
+		})
+	end
+
 	vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/server/*.jar", true), "\n"))
 	config.cmd = {
 		"java",
@@ -75,16 +86,8 @@ if OS_NAME == "Linux" then
 		workspace_dir,
 	}
 	config.settings.java.configuration = {
-		runtimes = {
-			{
-				name = "JavaSE-17",
-				path = "/usr/lib/jvm/java-17-openjdk/",
-			},
-			{
-				name = "JavaSE-21",
-				path = "/usr/lib/jvm/java-21-openjdk/",
-			},
-		},
+		-- Find all installed runtimes on Linux
+		runtimes = runtimes,
 	}
 	config.init_options = {
 		bundles = bundles,

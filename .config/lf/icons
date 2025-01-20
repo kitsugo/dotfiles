@@ -51,6 +51,7 @@ fi 
 *.kdbx 󰪪
 *.keyx 
 *.key 
+*.asc 
 *.pub 
 *.gpg 󱝗
 *.theme 
@@ -92,6 +93,7 @@ fi 
 *.skse 
 *.j2 
 *.vhd 
+*.ino 
 *.asm 
 *.styl 
 *.sass 

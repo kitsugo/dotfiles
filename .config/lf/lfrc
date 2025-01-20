@@ -1,3 +1,4 @@
+# vim:ft=bash
 set shell bash
 set shellopts '-eu'
 set ifs "\n"
@@ -5,11 +6,9 @@ set info size
 set icons true
 set history false
 set hidden true
-
 set previewer ~/.config/lf/lf_preview.sh
 set cleaner ~/.config/lf/lf_clean.sh
 
-map D $gio trash "$fx"
 map o calcdirsize
 
 # Move to trash with GIO or move to /tmp/.trash/ if not available
@@ -129,10 +128,10 @@ cmd mp3-tag ${{
 			"album") eyeD3 --encoding utf8 -A "$line" "$ff";;
 			"genre") eyeD3 --encoding utf8 --non-std-genres -G "$line" "$f";;
 			"genre-bulk") eyeD3 --encoding utf8 --non-std-genres -G "$line" "$ff";;
-			*) echo "Not a valid mp3tag target.";;
+			"image") eyeD3 --encoding utf8 --add-image "${line}:FRONT_COVER" "$ff";;
+			*) printf "Not a valid mp3tag target!\n";;
 		esac
 		echo $ff
 	done
     rm "$file"
 }}
-# vim:ft=bash
