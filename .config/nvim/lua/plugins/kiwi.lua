@@ -10,6 +10,7 @@ return {
 			{
 				name = "general",
 				path = wiki_path,
+				cd_wiki = false,
 			},
 		},
 		keys = {

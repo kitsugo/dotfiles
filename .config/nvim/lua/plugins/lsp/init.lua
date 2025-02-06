@@ -39,12 +39,6 @@ return {
 
 			-- Capabilities definition
 			local cmp_status, cmp_lsp = pcall(require, "cmp_nvim_lsp")
-			local global_capabilities = vim.tbl_deep_extend(
-				"force",
-				{},
-				vim.lsp.protocol.make_client_capabilities(),
-				cmp_status and cmp_lsp.default_capabilities() or {}
-			)
 
 			-- Diagnostics definition
 			for _, sign in ipairs(opts.diagnostics.signs) do
@@ -71,12 +65,14 @@ return {
 								local server_options = {
 									capabilities = vim.tbl_deep_extend(
 										"force",
-										global_capabilities,
+										cmp_status and cmp_lsp.default_capabilities() or {},
+										server_config.use_default and vim.lsp.protocol.make_client_capabilities() or {},
 										server_config.capabilities or {}
 									),
 									on_attach = server_config.on_attach,
 									on_new_config = server_config.on_new_config,
 									settings = server_config.settings,
+									cmd = server_config.cmd,
 								}
 								-- Setup server and start it, then remove it form table
 								lspconfig[server_name].setup(server_options)
@@ -94,11 +90,15 @@ return {
 				local server_name = cmd_opts.args
 				local server_config = opts.servers[server_name]
 				local server_options = {
-					capabilities = vim.tbl_deep_extend("force", global_capabilities, server_config.capabilities or {}),
+					capabilities = vim.tbl_deep_extend(
+						"force",
+						cmp_status and cmp_lsp.default_capabilities() or {},
+						server_config.use_default and vim.lsp.protocol.make_client_capabilities() or {},
+						server_config.capabilities or {}
+					),
 					on_attach = server_config.on_attach,
 					settings = server_config.settings,
 				}
-
 				lspconfig[server_name].setup(server_options)
 				vim.cmd("LspStart")
 				opts.servers[server_name] = nil

@@ -69,6 +69,12 @@ case "${file,,}" in
 *.txt)
 	cat "$file"
 	;;
+*.key) ;&
+*.pub) ;&
+*.env) ;&
+*.asc)
+	cat "$HOME/.dotfiles/extra/ascii/private.txt"
+	;;
 *)
 	if [[ "$(file -Lb --mime-type "$file")" =~ ^text ]]; then
 		cat "$file"
