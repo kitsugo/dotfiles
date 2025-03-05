@@ -1,21 +1,29 @@
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local root_dir = vim.fs.dirname(
-	vim.fs.find({ ".gradlew", ".git", "mvnw", ".classpath", ".project", "build.sh" }, { upward = true })[1]
-)
+-- JDTLS is the most-feature complete language server for Java available in nvim.
+-- Because of its complex setup, it is not setup as part of "nvim-lspconfig", but as a standalone server.
+-- Refer to "https://github.com/mfussenegger/nvim-jdtls" for help.
+
+-- Detect Java project
+local project_root_dir =
+	vim.fs.dirname(vim.fs.find({ ".git", ".gradlew", "pom.xml", ".classpath", ".project" }, { upward = true })[1])
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local local_libs = {}
-if root_dir then
-	local_libs = vim.split(vim.fn.glob(root_dir .. "/lib/*.jar"), "\n")
+
+-- Find project-specific libraries situated inside "/lib"
+-- This is only needed for pure eclipse (not maven/gradle) projects
+local project_libs = {}
+if project_root_dir then
+	project_libs = vim.split(vim.fn.glob(project_root_dir .. "/lib/*.jar"), "\n")
 end
-local config = {
+
+local jdtls_config = {
 	settings = {
 		java = {
+			-- Java default formatting style
 			format = {
 				settings = {
 					url = vim.fn.stdpath("config") .. "/configs/.java_style.xml",
 				},
 			},
-			-- For full java docs a jdk-sources package might need to be installed
+			-- For full Java docs a jdk-sources package might need to be installed
 			signatureHelp = { enabled = true },
 			contentProvider = { preferred = "fernflower" },
 			eclipse = {
@@ -42,33 +50,43 @@ local config = {
 			-- Fallback to a project-specific JAR library in case the project is not built with gradle/maven
 			-- Requires that .classpath and .project files are deleted for the referencedLibraries to be sourced
 			project = {
-				referencedLibraries = local_libs,
+				referencedLibraries = project_libs,
 			},
 		},
 	},
-	root_dir = root_dir,
-	capabilities = capabilities,
+	root_dir = project_root_dir,
+	capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
+--
+-- LINUX SETUP
+--
 if OS_NAME == "Linux" then
+	-- Find Java runtimes on Linux
+	local java_runtimes = vim.fn.glob("/usr/lib/jvm/java-*-openjdk/", true, true)
+	local available_runtimes = {}
+	for _, runtime in ipairs(java_runtimes) do
+		-- Match only compatible runtimes: >= JDK 21
+		local version = string.match(runtime, "[2-9][1-9]")
+		if version then
+			table.insert(available_runtimes, {
+				name = "JavaSE-" .. version,
+				path = runtime,
+			})
+		end
+	end
+	if next(available_runtimes) == nil then
+		print("No JDK compatible with JDTLS detected! Please install any JDK >=21")
+		return {}
+	end
+
 	local home = os.getenv("HOME")
 	local workspace_dir = "/tmp/java/" .. project_name
 	local bundles = { vim.fn.glob(home .. "/.local/share/nvim/com.microsoft.java.debug.plugin-*.jar", true) }
 
-	-- Find Java runtimes on Linux
-	local runtimes = {}
-	local system_runtimes = vim.fn.glob("/usr/lib/jvm/java-*-openjdk/", true, true)
-	for _, runtime in ipairs(system_runtimes) do
-		local version = string.match(runtime, "%d+")
-		table.insert(runtimes, {
-			name = "JavaSE-" .. version,
-			path = runtime,
-		})
-	end
-
 	vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/server/*.jar", true), "\n"))
-	config.cmd = {
-		"java",
+	jdtls_config.cmd = {
+		available_runtimes[1].path .. "/bin/java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -85,16 +103,20 @@ if OS_NAME == "Linux" then
 		"-data",
 		workspace_dir,
 	}
-	config.settings.java.configuration = {
+	jdtls_config.settings.java.configuration = {
 		-- Find all installed runtimes on Linux
-		runtimes = runtimes,
+		runtimes = available_runtimes,
 	}
-	config.init_options = {
+	jdtls_config.init_options = {
 		bundles = bundles,
 	}
+
+--
+-- WINDOWS SETUP
+--
 elseif OS_NAME == "Windows_NT" then
 	local home = os.getenv("UserProfile")
-	config.cmd = {
+	jdtls_config.cmd = {
 		"java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
@@ -114,4 +136,4 @@ elseif OS_NAME == "Windows_NT" then
 	}
 end
 
-return config
+return jdtls_config

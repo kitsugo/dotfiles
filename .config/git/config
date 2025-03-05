@@ -23,3 +23,9 @@
 	email = hayashi.jiro@kitsugo.com
 	name = kitsugo
 	signingkey = C38E81D2CED25C5B
+[merge]
+	tool = nvimdiff
+[mergetool "nvimdiff"]
+	layout = "LOCAL,BASE,REMOTE / MERGED"
+[mergetool]
+	keepBackup = false
