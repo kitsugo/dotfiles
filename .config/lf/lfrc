@@ -42,6 +42,9 @@ cmd open &{{
 		find $(dirname $f) -maxdepth 1 -name "*.mp3" -type f -printf '%h\0%p\n' | sort | awk -F'\0' '{print $2}' > /tmp/playlist.txt
 		lf_player.sh "$(($(grep -F -n -w "$f" /tmp/playlist.txt | cut -f1 -d:)-1))"
 		;;
+	*.gif)
+		nsxiv -a "$f"
+		;;
 	*)
 		cmd open &$OPENER "$f" &
 		;;

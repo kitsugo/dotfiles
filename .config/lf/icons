@@ -94,7 +94,10 @@ fi 
 *.j2 
 *.vhd 
 *.ino 
+*.puml 
+*known_hosts 󰒒
 *.asm 
+*.bpmn 
 *.styl 
 *.sass 
 *.scss 

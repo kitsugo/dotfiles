@@ -116,7 +116,7 @@ interval=31
 background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_1
 
-# (sway only) Toggle a second swaybar for touchscreen functionality
+# Toggle a second swaybar for touchscreen functionality (sway only) 
 [touch-bar]
 full_text="   "
 command=$([ "$(swaymsg -t get_bar_config touch-bar | jq -r ".mode")" = "dock" ] && swaymsg bar mode invisible touch-bar || swaymsg bar mode dock touch-bar >/dev/null); echo "   "

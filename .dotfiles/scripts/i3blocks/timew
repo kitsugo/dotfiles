@@ -3,5 +3,5 @@
 # Licensed under the terms of the GNU GPL v3, or any later version.
 #
 # Print the current timewarrior activity
-activity=$(timew export now | jq '.[0] | ."tags" | join(",")' 2>/dev/null) || exit 0
+activity=$(timew export now | jq '.[0] | ."tags" | join(",")' 2>/dev/null) || printf "No activity tracked..."
 printf "%s\n" "$activity"

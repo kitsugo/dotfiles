@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <profiles version="13">
-<profile kind="CodeFormatterProfile" name="BourneFormatting" version="13">
-<setting id="org.eclipse.jdt.core.formatter.join_wrapped_lines" value="true"/>
-<setting id="org.eclipse.jdt.core.formatter.lineSplit" value="180"/>
-</profile>
+  <profile kind="CodeFormatterProfile" name="BourneFormatting" version="13">
+    <setting id="org.eclipse.jdt.core.formatter.join_wrapped_lines" value="true"></setting>
+    <setting id="org.eclipse.jdt.core.formatter.lineSplit" value="180"></setting>
+  </profile>
 </profiles>
