@@ -5,6 +5,8 @@
 # Custom prompt
 PS1="\[$(printf '\e[0;35m')\][\t] \[$(printf '\e[0;35m')\]\H:\u † \[$(printf '\e[0m')\]\[$(printf '\e[0;33m')\]\w \[$(printf '\e[0;36m')\]\\$ \[$(printf '\e[0m')\]"
 
+umask 0077
+
 # Better bash
 bind 'set bell-style none'
 bind 'set show-all-if-ambiguous on'
@@ -92,15 +94,32 @@ umnt_crypt() {
 }
 
 mnt_flatpak_usb() {
-	set -e 
+	if [[ -h "/tmp/flatpak_usb" ]]; then
+		printf "FlatpakUSB is already mounted!\n"
+		return 0;
+	fi
 	local mount_path
 	mnt "$1"
-	mount_path=$(mount | grep -o ".\S*FLATPAK_USB" | xargs)
-	ln -s "$mount_path/" "/tmp/flatpak_usb"
-	cp -n "$HOME/.dotfiles/linux/flatpak_usb.conf" "/tmp/usb.conf"
+	mount_path=$(mount | grep -o ".\S*FLATPAK_USB" | xargs) || return 1
+	ln -s "$mount_path/" "/tmp/flatpak_usb" || return 1
+	cp "$HOME/.dotfiles/linux/flatpak_usb.conf" "/tmp/usb.conf"
 }
 
 umnt_flatpak_usb() {
 	umnt "$1"
+	rm "/tmp/flatpak_usb"
 	rm "/tmp/usb.conf"
+}
+
+chmod_owner_only_perms() {
+	find "$1" -type d -exec chmod 700 {} \; || return 1
+	find "$1" -type f -exec bash -c '
+    for file; do
+        if stat -c "%A" "$file" | grep -q "x"; then
+            chmod 700 "$file"
+        else
+            chmod 600 "$file"
+		fi
+	done
+	' bash {} \;
 }
