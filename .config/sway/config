@@ -26,6 +26,8 @@ input "type:touch" map_to_output eDP-1
 floating_modifier $mod normal
 
 # Idle configuration
+for_window [class=".*"] inhibit_idle fullscreen
+for_window [app_id=".*"] inhibit_idle fullscreen
 exec swayidle -w \
 	timeout 270 "system_cmd.sh lock-notifier" \
 	timeout 300 "system_cmd.sh lock" \

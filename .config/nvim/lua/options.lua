@@ -3,7 +3,7 @@ vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.undofile = false
 vim.opt.viminfo = ""
-vim.opt.shadafile = "/tmp/nvim/main.shada"
+vim.opt.shadafile = "/tmp/logs/main.shada"
 vim.opt.fileencoding = "utf-8"
 vim.opt.clipboard:append("unnamedplus,unnamed")
 vim.opt.updatetime = 500

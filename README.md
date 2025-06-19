@@ -13,7 +13,7 @@ rsync --recursive --exclude '.git' dotfiles-tmp/ $HOME/
 rm --recursive dotfiles-tmp
 alias got='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 got config status.showUntrackedFiles no
-cd .dotfiles/
+cd .dotfiles/linux/
 ./setup.sh
 ```
 

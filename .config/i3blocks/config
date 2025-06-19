@@ -111,7 +111,7 @@ color=$U_COLOR_BLOCKS_1
 
 # Date Time
 [time]
-command=LANG=ja_JP.utf8 && date '+%A %d.%m.%Y %H:%M'
+command=date '+%A %d.%m.%Y %H:%M'
 interval=31
 background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_1

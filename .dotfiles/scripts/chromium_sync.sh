@@ -2,14 +2,13 @@
 # Copyright 2024 Jirou Hayashi <hayashi.jiro@kitsugo.com>
 # Licensed under the terms of the GNU GPL v3, or any later version.
 #
-# Sync chromium settings in and out of memory to boost performance and preserve disk writes
+# Create symlinks to tmp for all chromium files. This makes all chromimum settings only persist for one session.
 
 . "$HOME/.dotfiles/dotfiles_profile.sh"
 
 set -efu
-readonly link="chromium"
-readonly static="static-chromium"
-readonly volatile="/tmp/chromium/volatile-chromium/"
+readonly link_data="chromium"
+readonly tmp_data="/tmp/chromium/data/"
 readonly link_cache="cache"
 readonly tmp_cache="/tmp/chromium/cache/"
 IFS=
@@ -28,17 +27,7 @@ fi
 cd "$U_CHROME_DIRECTORY" 2>/dev/null || exit 0
 
 # Setup symlink for chromium data
-mkdir -p "$volatile"
-if [ "$(readlink "$link")" != "$volatile" ]; then
-	mv "$link" "$static"
-	ln -s "$volatile" "$link"
-fi
-
-if [ -e "$link"/.unpacked ]; then
-	rsync -a --delete --exclude .unpacked ./"$link"/ ./"$static"/
-	printf "Moved volatile chromium settings into static storage.\n"
-else
-	rsync -a ./"$static"/ ./"$link"/
-	touch "$link"/.unpacked
-	printf "Moved static chromium settings into volatile storage.\n"
+mkdir -p "$tmp_data"
+if [ "$(readlink "$link_data")" != "$tmp_data" ]; then
+	ln -s "$tmp_data" "$link_data"
 fi

@@ -71,7 +71,7 @@ if OS_NAME == "Linux" then
 		if version then
 			table.insert(available_runtimes, {
 				name = "JavaSE-" .. version,
-				path = runtime,
+				path = "/usr/lib/jvm/java-" .. version .. "-openjdk/",
 			})
 		end
 	end
@@ -87,6 +87,7 @@ if OS_NAME == "Linux" then
 	vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/server/*.jar", true), "\n"))
 	jdtls_config.cmd = {
 		available_runtimes[1].path .. "/bin/java",
+		-- "/usr/lib/jvm/java-24-openjdk/" .. "/bin/java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",

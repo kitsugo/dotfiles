@@ -2,8 +2,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Custom prompt
-PS1="\[$(printf '\e[0;35m')\][\t] \[$(printf '\e[0;35m')\]\H:\u † \[$(printf '\e[0m')\]\[$(printf '\e[0;33m')\]\w \[$(printf '\e[0;36m')\]\\$ \[$(printf '\e[0m')\]"
+# Custom prompt (magenta, yellow, cyan)
+PS1="\[$(printf '\e[0;35m')\][\t] \H:\u † \[$(printf '\e[0m')\]\[$(printf '\e[0;33m')\]\w \[$(printf '\e[0;36m')\]\\$ \[$(printf '\e[0m')\]"
 
 umask 0077
 

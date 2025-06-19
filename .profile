@@ -26,6 +26,7 @@ elif command -v ibus >/dev/null; then
 	export XMODIFIERS=@im=ibus
 fi
 
+# Restore dbus-session when logging in after a logout
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && [ -z "$DBUS_SESSION_BUS_PID" ]; then
 	export "$(dbus-launch)"
 fi
