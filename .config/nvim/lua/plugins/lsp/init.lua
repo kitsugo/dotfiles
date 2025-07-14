@@ -5,6 +5,7 @@
 -- Adding a new server? Check `config.md` for the Lua filename:
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 -- Then add it to ./servers/<name from config.md>.lua and define it. Take another server as a template.
+local o = require("utils")
 return {
 	{
 		import = "plugins.lsp",
@@ -34,7 +35,9 @@ return {
 		},
 		config = function(l, opts)
 			local lspconfig = require("lspconfig")
-			require("mason-lspconfig").setup()
+			require("mason-lspconfig").setup({
+				automatic_enable = false
+			})
 			local file_types = {}
 
 			-- Capabilities definition
@@ -75,8 +78,11 @@ return {
 									cmd = server_config.cmd,
 								}
 								-- Setup server and start it, then remove it form table
-								lspconfig[server_name].setup(server_options)
-								vim.cmd("LspStart")
+								print("boop")
+								-- lspconfig[server_name].setup(server_options)
+								vim.lsp.config(server_name, server_options)
+								vim.lsp.enable(server_name)
+								-- vim.cmd("LspStart")
 								opts.servers[server_name] = nil
 								break
 							end
@@ -97,9 +103,12 @@ return {
 						server_config.capabilities or {}
 					),
 					on_attach = server_config.on_attach,
+					on_new_config = server_config.on_new_config,
 					settings = server_config.settings,
+					cmd = server_config.cmd,
 				}
 				lspconfig[server_name].setup(server_options)
+				vim.lsp.enable(server_name)
 				vim.cmd("LspStart")
 				opts.servers[server_name] = nil
 			end, { nargs = "?" })

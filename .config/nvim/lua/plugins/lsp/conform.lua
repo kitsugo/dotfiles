@@ -30,10 +30,12 @@ return {
 								formatter_settings.config_command .. configs_location .. formatter_settings.config_path,
 							}
 						else
-							return {
+							-- TODO: This breaks a lot... Need to enforce proper coding quality here
+							local config_table = {
 								formatter_settings.config_command,
 								configs_location .. formatter_settings.config_path,
 							}
+							return vim.tbl_deep_extend("force", config_table, formatter_settings.additional_args)
 						end
 					end
 				end,
@@ -57,6 +59,7 @@ return {
 				tex = { "latexindent" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
+				vhdl = { "vsg" },
 				yaml = { "prettier" },
 				xml = { "xmlformatter" },
 			},

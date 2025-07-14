@@ -35,6 +35,7 @@ exec swayidle -w \
 	before-sleep "system_cmd.sh lock" \
 
 include ../i3/global.conf
+exec_always exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec_always import-gsettings.sh
 
 # Status Bar

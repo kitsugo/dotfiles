@@ -252,6 +252,7 @@ fi 
 *procfile 
 *dockerfile 
 *docker-compose.yml 
+*docker-compose.yaml 
 *rakefile 
 *config.ru 
 *gemfile 

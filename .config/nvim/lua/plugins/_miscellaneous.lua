@@ -2,10 +2,32 @@ local utils = require("utils")
 
 return {
 	{ -- Preview Markdown
-		"jannis-baum/vivify.vim",
-		enabled = utils.is_installed("viv") and utils.is_installed("vivify-server"),
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 		keys = {
-			{ "<leader>fp", ":Vivify<cr>" },
+			{
+				"<leader>fp",
+				function()
+					require("render-markdown").enable()
+				end,
+			},
+		},
+	},
+	{ -- Render images inside of neovim with kitty
+		"3rd/image.nvim",
+		enabled = utils.is_installed("kitty"),
+		build = false,
+		opts = {
+			backend = "kitty",
+			processor = "magick_cli",
+		},
+		keys = {
+			{
+				"<leader>fp",
+				function()
+					require("image").enable()
+				end,
+			},
 		},
 	},
 	{ -- Show color of color codes in vim

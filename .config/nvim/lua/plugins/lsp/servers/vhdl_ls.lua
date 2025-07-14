@@ -1,11 +1,12 @@
+local ft = { "vhd", "vhdl" }
 return {
 	{
 		"neovim/nvim-lspconfig",
+		ft = ft,
 		opts = {
 			servers = {
-				ltex = {
-					ft = {},
-					enabled = {},
+				vhdl_ls = {
+					ft = ft,
 					settings = {},
 				},
 			},
