@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright 2024 Jirou Hayashi <hayashi.jiro@kitsugo.com>
+# Copyright 2025 Jirou Hayashi <hayashi.jiro@kitsugo.com>
 # Licensed under the terms of the GNU GPL v3, or any later version.
 #
 # Dynamically sets the colorscheme of most applications by copying a template into /tmp/ and applying 'envsubst' to replace all color variables.
@@ -22,6 +22,8 @@ readonly i3blocks_touch="$HOME/.config/i3blocks/touch_bar"
 readonly dunst_config="$HOME/.config/dunst/dunstrc.conf"
 readonly rofi_colors="$HOME/.config/rofi/dynamic_colors_src.rasi"
 color_theme="dark"
+
+printf "$1"
 
 if [ -f "$colorscheme_dir$1.sh" ]; then
 	. "$colorscheme_dir$1.sh"

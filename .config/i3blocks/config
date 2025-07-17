@@ -10,36 +10,27 @@ color=#dfdfe0
 color2=$U_COLOR_WARN
 color3=$U_COLOR_CRIT
 
-[separator]
-full_text=<span font_size="15pt"> </span>
-color=$U_COLOR_BLOCKS_BG3
-
 # Playerctl widget
 [playerctl]
 label=  
 interval=13
 signal=10
-background=$U_COLOR_BLOCKS_BG3
+background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_3
 
 # Notification for potentially important files in /tmp/
 [tmpstore]
 label= 󰷌 
 interval=47
-background=$U_COLOR_BLOCKS_BG3
+background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_3
 
 # Current timewarrior trackign
 [timew]
 label= 󰥔 
 interval=43
-background=$U_COLOR_BLOCKS_BG3
+background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_3
-
-[separator]
-full_text= 
-background=$U_COLOR_BLOCKS_BG3
-color=$U_COLOR_BLOCKS_BG2
 
 # CPU usage
 [cpu]
@@ -47,7 +38,7 @@ label= 󰾆
 interval=3
 T_WARN=40
 T_CRIT=70
-background=$U_COLOR_BLOCKS_BG2
+background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_2
 
 # GPU usage
@@ -58,40 +49,41 @@ T_WARN=50
 T_CRIT=80
 # Will default to Nvidia if not found
 GPU_BRAND=AMD
-background=$U_COLOR_BLOCKS_BG2
+background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_2
 
 # Memory usage
 [mem]
 label=  
 interval=11
-background=$U_COLOR_BLOCKS_BG2
+background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_2
 
 # Disk input/output
 [dio]
 label= 
 interval=persist
-background=$U_COLOR_BLOCKS_BG2
+background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_2
 
 # Disk usage
 [disk]
 LABEL= 󰉉
 interval=599
-background=$U_COLOR_BLOCKS_BG2
+background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_2
 
-[separator]
-full_text= 
-background=$U_COLOR_BLOCKS_BG2
-color=$U_COLOR_BLOCKS_BG1
+# Battery
+[battery]
+interval=37
+background=$U_COLOR_BLOCKS_BG1
+color=$U_COLOR_BLOCKS_1
 
 # Volume
 [volume]
 interval=once
-LONG_FORMAT= ${SYMB}${VOL}%
-SHORT_FORMAT= ${SYMB}${VOL}%
+LONG_FORMAT= ${SYMB}${VOL}
+SHORT_FORMAT= ${SYMB}${VOL}
 signal=10
 background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_1
@@ -103,22 +95,16 @@ signal=10
 background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_1
 
-# Battery
-[battery]
-interval=37
-background=$U_COLOR_BLOCKS_BG1
-color=$U_COLOR_BLOCKS_1
-
 # Date Time
 [time]
-command=date '+%A %d.%m.%Y %H:%M'
+command=date '+%a %d.%m.%Y %H:%M'
 interval=31
 background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_BLOCKS_1
 
 # Toggle a second swaybar for touchscreen functionality (sway only) 
 [touch-bar]
-full_text="   "
+full_text="  "
 command=$([ "$(swaymsg -t get_bar_config touch-bar | jq -r ".mode")" = "dock" ] && swaymsg bar mode invisible touch-bar || swaymsg bar mode dock touch-bar >/dev/null); echo "   "
 background=$U_COLOR_BLOCKS_BG1
 color=$U_COLOR_WARN

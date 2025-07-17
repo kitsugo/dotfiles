@@ -35,8 +35,15 @@ exec swayidle -w \
 	before-sleep "system_cmd.sh lock" \
 
 include ../i3/global.conf
-exec_always exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec_always import-gsettings.sh
+
+# Do the following command in a terminal emulator when you need the virtual output:
+# swaymsg create_output
+output HEADLESS-1 resolution 1280x720 position 0,1080
+output HEADLESS-1 bg "#220900" solid_color
+workspace 0 output HEADLESS-1
+bindsym $mod+0 workspace number 0
+bindsym $mod+Shift+0 move container to workspace number 0
 
 # Status Bar
 include /tmp/colorscheme/swaybar.conf

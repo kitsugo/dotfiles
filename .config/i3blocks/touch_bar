@@ -21,17 +21,17 @@ color=$U_COLOR_BLOCKS_4
 
 [volume-mute]
 full_text=[ 󰝟 ]
-command=pactl set-sink-mute @DEFAULT_SINK@ toggle >/dev/null
+command=wpctl set-mute @DEFAULT_SINK@ toggle >/dev/null
 color=$U_COLOR_BLOCKS_4
 
 [volume-down]
 full_text=[ 󰝞 ]
-command=pamixer --decrease 5 >/dev/null
+command=wpctl set-volume @DEFAULT_SINK@ 0.05- >/dev/null
 color=$U_COLOR_BLOCKS_4
 
 [volume-up]
 full_text=[ 󰝝 ]
-command=pamixer --increase 5 >/dev/null
+command=wpctl set-volume @DEFAULT_SINK@ 0.05+ >/dev/null
 color=$U_COLOR_BLOCKS_4
 
 [separator]

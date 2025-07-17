@@ -1,31 +1,25 @@
-#!/bin/sh
-# Copyright © 2020 Filip Paskali
+#!/bin/bash
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# Copyright 2025 Jirou Hayashi <hayashi.jiro@kitsugo.com>
+# Licensed under the terms of the GNU GPL v3, or any later version.
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-case $BLOCK_BUTTON in
-1 | 3) pamixer --default-source -t ;;
-esac
-
-case $(pamixer --default-source --get-mute) in
-true)
-	echo "  "
+case "$BLOCK_BUTTON" in
+1) wpctl set-mute @DEFAULT_SOURCE@ toggle ;;
+3)
+	dunstify -u low "Microphone" "$(wpctl get-volume @DEFAULT_SOURCE@)\nPulseAudio Default Source:\n$(pactl get-default-source)"
 	;;
-false)
-	echo "  "
+4)
+	wpctl set-volume @DEFAULT_SOURCE@ 0.01+
+	pkill --signal SIGRTMIN+10 i3blocks
 	;;
-*)
-	echo " 󱦉 "
+5)
+	wpctl set-volume @DEFAULT_SOURCE@ 0.01-
+	pkill --signal SIGRTMIN+10 i3blocks
 	;;
 esac
+
+if [[ "$(wpctl get-volume @DEFAULT_SOURCE@)" == *"MUTED"* ]]; then
+	printf " 󰍭 \n"
+else
+	printf " 󰍬 \n"
+fi
