@@ -1,4 +1,4 @@
-// Copyright 2024 Jirou Hayashi <hayashi.jiro@kitsugo.com>
+// Copyright 2025 Jirou Hayashi <hayashi.jiro@kitsugo.com>
 // Licensed under the terms of the GNU GPL v3, or any later version.
 #define _GNU_SOURCE
 #include <dirent.h>
