@@ -34,7 +34,7 @@ int main() {
 	int percent = atoi(raw_percent);
 	char icon[8];
 
-	if (strcmp(status, "Discharging")) {
+	if (strstr(status, "Discharging") != NULL) {
 		if (percent < 10) {
 			sprintf(icon, "󰁺");
 		} else if (percent < 20) {
@@ -56,7 +56,7 @@ int main() {
 		} else if (percent <= 100) {
 			sprintf(icon, "󰁹");
 		}
-	} else if (strcmp(status, "Charging")) {
+	} else if (strstr(status, "Charging") != NULL) {
 		sprintf(icon, "󰚥");
 	} else {
 		sprintf(icon, "?");
@@ -65,7 +65,7 @@ int main() {
 	printf(" %s %d%%\n", icon, percent);
 	printf("\n");
 
-	if (strcmp(status, "Discharging")) {
+	if (strstr(status, "Discharging")) {
 		if (percent < 20) {
 			char *color_crit = getenv("color3");
 			if (color_crit != NULL) {
