@@ -35,7 +35,8 @@ return {
 								formatter_settings.config_command,
 								configs_location .. formatter_settings.config_path,
 							}
-							return vim.tbl_deep_extend("force", config_table, formatter_settings.additional_args)
+							-- return vim.tbl_deep_extend("force", config_table, formatter_settings.additional_args)
+							return config_table
 						end
 					end
 				end,

@@ -22,7 +22,7 @@ volume=${volume%% *}
 volume_int=${volume/./}
 volume_int=${volume_int#"${volume_int%%[!0]*}"}
 if [[ "$raw_volume" == *"MUTED"* ]]; then
-	printf ' 󰸈 %s\n' "$volume"
+	printf ' 󰸈 %s\n' "$volume_int"
 else
 	if [[ $volume_int -ge 60 ]]; then
 		printf ' 󰕾 %s%%\n' "$volume_int"
