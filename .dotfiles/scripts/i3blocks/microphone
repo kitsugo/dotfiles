@@ -6,7 +6,7 @@
 case "$BLOCK_BUTTON" in
 1) wpctl set-mute @DEFAULT_SOURCE@ toggle ;;
 3)
-	dunstify -u low "Microphone" "$(wpctl get-volume @DEFAULT_SOURCE@)\nPulseAudio Default Source:\n$(pactl get-default-source)"
+	dunstify "Microphone" "$(wpctl get-volume @DEFAULT_SOURCE@)\n<b>PulseAudio Default Source:</b>\n$(pactl get-default-source)\n<b>PipeWire Default Source Description:</b>\n$(wpctl inspect @DEFAULT_SOURCE@ | grep -oP 'node.description = \K.*')"
 	;;
 4)
 	wpctl set-volume @DEFAULT_SOURCE@ 0.01+

@@ -28,8 +28,7 @@ return {
 							workspace = {
 								library = {
 									[vim.fn.expand("/usr/share/nvim/runtime/lua")] = true,
-									["/usr/share/awesome/lib"] = true,
-									["~/.local/share/nvim/site/pack/packer/start/"] = true,
+									[vim.fn.expand( "~/.local/share/nvim/lazy/")] = true,
 								},
 								checkThirdParty = false,
 							},

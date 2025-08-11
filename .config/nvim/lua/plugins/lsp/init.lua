@@ -1,3 +1,4 @@
+local utils = require("utils")
 -- LSP Manager
 -- Server setup is deferred until any filetype is entered with available LSP.
 -- Server start is deferred until manual start ('<leader>ll' or 'Lsp <server_name>' custom command)
@@ -40,12 +41,6 @@ return {
 				},
 			},
 		},
-		keys = {
-			{
-				"<leader>ll",
-				":LspStart<CR>",
-			},
-		},
 		config = function(l, opts)
 			-- Load Mason to point to installed servers
 			require("mason-lspconfig").setup({
@@ -53,6 +48,7 @@ return {
 			})
 			-- Load cmp_lsp for snippets / autocompletion
 			local cmp_status, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+
 			-- Global diagnostics configuration
 			vim.diagnostic.config(opts.diagnostics)
 
@@ -62,6 +58,9 @@ return {
 				table.insert(file_types, file_type)
 			end
 
+			-- Sets up and enables a server by reading its configuration and calling the respective vim.lsp fucntions
+			-- This allows having extra lazy loaded language servers by configuring them once and only
+			-- when this function is called
 			local function setup_and_enable_server(server_name, server_config)
 				local server_options = {
 					capabilities = vim.tbl_deep_extend(
@@ -75,27 +74,38 @@ return {
 					settings = server_config.settings,
 					cmd = server_config.cmd,
 				}
-				-- Setup server and start it, then remove it form table
+				-- Setup server and enable it, then remove it form table
 				vim.lsp.config(server_name, server_options)
 				vim.lsp.enable(server_name)
 				opts.servers[server_name] = nil
 			end
 
 			-- Configure and enable all servers which are needed by the opened filetype.
-			-- To start the server, use '<leader>ll'
 			vim.api.nvim_create_autocmd({ "FileType" }, {
 				pattern = file_types,
-				once = false, -- Run only once for every filetype
+				once = true,
 				callback = function()
 					-- Iterate over all available servers and see if they need to be setup
 					for server_name, server_config in pairs(opts.servers) do
-						-- Check if any given filetype warrants this server to be setup. If so, set it up and remove it from the table to not set it up again
+						-- Check if any given filetype warrants this server to be setup
 						for _, server_ft in pairs(server_config.ft) do
 							if server_ft == vim.bo.filetype then
 								setup_and_enable_server(server_name, server_config)
 								break
 							end
 						end
+					end
+				end,
+			})
+
+			-- Start the server when beginning to edit a file
+			vim.api.nvim_create_autocmd("InsertEnter", {
+				pattern = "*",
+				once = true,
+				callback = function()
+					-- Start only if there is an enabled config
+					if next(vim.lsp._enabled_configs) ~= nil then
+						vim.cmd("LspStart")
 					end
 				end,
 			})

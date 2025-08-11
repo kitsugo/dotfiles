@@ -1,0 +1,13 @@
+rule:
+  global:
+    indent_size: 2
+  case_009:
+    style: no_blank_line
+  case_200:
+    style: no_blank_line
+  loop_statement_201:
+    style: no_blank_line
+  loop_statement_202:
+    style: no_blank_line
+  port_map_010:
+    disable: True

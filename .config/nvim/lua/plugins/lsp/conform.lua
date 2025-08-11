@@ -1,6 +1,23 @@
 local configs_location = vim.fn.stdpath("config") .. "/configs/"
 local utils = require("utils")
 
+local function get_formatter_config_arg(file_name, formatter_settings)
+	if utils.has_local_config(file_name, formatter_settings.config_names) then
+		return {}
+	else
+		if formatter_settings.continuous_string then
+			return {
+				formatter_settings.config_command .. configs_location .. formatter_settings.config_path,
+			}
+		else
+			return {
+				formatter_settings.config_command,
+				configs_location .. formatter_settings.config_path,
+			}
+		end
+	end
+end
+
 -- Formatter manager
 -- Formatting is deferred until formatting operation takes place once manually.
 -- All formatters are setup regardless of open filetype but only start when used within the respective filetype "formatters_by_ft"
@@ -20,30 +37,21 @@ return {
 		local formatters = {}
 		for formatter, formatter_settings in pairs(opts) do
 			formatter = formatter:gsub("_", "-")
-			formatters[formatter] = {
+			local prepend_args_table = {
 				prepend_args = function(_, ctx)
-					if utils.has_local_config(ctx.filename, formatter_settings.config_names) then
-						return {}
+					local formatter_config_arg = get_formatter_config_arg(ctx.filename, formatter_settings)
+					if formatter_settings.config ~= nil then
+						return utils.append_inplace(formatter_config_arg, formatter_settings.config.prepend_args or {})
 					else
-						if formatter_settings.continuous_string then
-							return {
-								formatter_settings.config_command .. configs_location .. formatter_settings.config_path,
-							}
-						else
-							-- TODO: This breaks a lot... Need to enforce proper coding quality here
-							local config_table = {
-								formatter_settings.config_command,
-								configs_location .. formatter_settings.config_path,
-							}
-							-- return vim.tbl_deep_extend("force", config_table, formatter_settings.additional_args)
-							return config_table
-						end
+						return formatter_config_arg
 					end
 				end,
 			}
+
+			formatters[formatter] = vim.tbl_deep_extend("keep", prepend_args_table, formatter_settings.config or {})
 		end
 		require("conform").setup({
-			log_level = vim.log.levels.WARN,
+			log_level = vim.log.levels.TRACE,
 			formatters_by_ft = {
 				arduino = { "clang-format" },
 				c = { "clang-format" },

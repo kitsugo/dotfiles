@@ -4,9 +4,11 @@ return {
 		vsg = {
 			config_command = "-c",
 			config_names = {},
-			config_path = ".vhdl_rules.json",
-			additional_args = { "--style", "jcl"},
+			config_path = "vhdl_rules.yaml",
 			continuous_string = false,
+			config = {
+				prepend_args = { "--style", "jcl" },
+			},
 		},
 	},
 }

@@ -4,15 +4,17 @@
 # Licensed under the terms of the GNU GPL v3, or any later version.
 
 case "$BLOCK_BUTTON" in
-1) wpctl set-mute @DEFAULT_SINK@ toggle ;;
+1)
+	wpctl set-mute @DEFAULT_SINK@ toggle
+	;;
 3)
-	dunstify -u low "Volume" "PulseAudio Default Sink:\n$(pactl get-default-sink)"
+	dunstify "Volume" "$(wpctl get-volume @DEFAULT_SINK@)\n<b>PulseAudio Default Sink:</b>\n$(pactl get-default-sink)\n<b>PipeWire Default Source Description:</b>\n$(wpctl inspect @DEFAULT_SINK@ | grep -oP 'node.description = \K.*')"
 	;;
 4)
 	wpctl set-volume @DEFAULT_SINK@ 0.01+
 	;;
 5)
-	wpctl set-volume @DEFAULT_SINK@ 0.01-
+	exit 0
 	;;
 esac
 
